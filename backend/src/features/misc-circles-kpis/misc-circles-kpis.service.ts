@@ -48,4 +48,27 @@ export class MiscCirclesKpisService {
 			.eq('id', id)
 		return error;
 	}
+
+	createCircleTable(): Array<CircleDto>{
+		let circleArray: Array<CircleDto> = [];
+
+		circlesKpis.forEach(kpi => {
+			if(!exist(kpi.circle, circleArray)){
+				circleArray.push({
+					"circleId": randomUUID(),
+					"circleName": kpi.circle
+				})
+			}
+		})
+		fs.writeFileSync('./src/features/misc-circles-kpis/data/circles.json', JSON.stringify(circleArray))
+		console.log("array of circles = ", circleArray);
+		return circleArray;
+	}
+}
+
+function exist(circle: string, circleArray: Array<CircleDto>) {
+const found = circleArray.find(crcl => {
+	return crcl.circleName === circle;
+})
+	return found !== undefined;
 }
