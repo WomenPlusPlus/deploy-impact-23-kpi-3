@@ -39,4 +39,8 @@ export class MiscCirclesKpisController {
 	removePhoneCall(@Param() param) {
 		return this.service.deletePhoneCall(param.id);
 	}
+	@Get('circles')
+	getAllCircles(): Array<CircleDto>  {
+		return this.service.createCircleTable();
+	}
 }
