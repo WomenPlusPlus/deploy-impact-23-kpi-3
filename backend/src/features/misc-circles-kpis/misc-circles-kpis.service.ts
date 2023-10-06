@@ -3,6 +3,9 @@ import {circlesKpis} from './data/misc-circles-kpis-data'
 import {fakeData} from './data/fakeData'
 import {MiscCirclesKpisResponseDto} from './dto/misc-circles-kpis-response-dto';
 import {DbConnectionService} from '../../core/db-connection/db-connection.service';
+import {CircleCreateDto} from "./dto/circle-create-dto";
+import * as fs from "fs";
+
 
 @Injectable()
 export class MiscCirclesKpisService {
@@ -32,6 +35,7 @@ export class MiscCirclesKpisService {
 	}
 
 	async insertPhoneCall(newCall) {
+		console.log(newCall);
 		const { data, error } = await this.service.db
 			.from('phone_calls')
 			.insert([
@@ -49,14 +53,18 @@ export class MiscCirclesKpisService {
 		return error;
 	}
 
-	createCircleTable(): Array<CircleDto>{
-		let circleArray: Array<CircleDto> = [];
+	fillCircleTable(): Array<CircleCreateDto>{
+		const circleArray: Array<CircleCreateDto> = [];
 
 		circlesKpis.forEach(kpi => {
 			if(!exist(kpi.circle, circleArray)){
 				circleArray.push({
-					"circleId": randomUUID(),
-					"circleName": kpi.circle
+					"circle_id": "",
+					"circle_name": kpi.circle,
+					"circle_description": kpi.circle,
+					"inserted_at": new Date().toISOString(),
+					"updated_at": '',
+					"closed_at": ''
 				})
 			}
 		})
@@ -64,11 +72,27 @@ export class MiscCirclesKpisService {
 		console.log("array of circles = ", circleArray);
 		return circleArray;
 	}
+	async fetchCircles() {
+		const { data, error } = await this.service.db.from('yk_okt6_circles').select('*');
+		return error || data;
+	}
+
+	async insertCircle(newCircle) {
+		console.log(newCircle);
+		const { data, error } = await this.service.db
+			.from('yk_okt6_circles')
+			.insert([
+				newCircle
+			])
+			.select()
+		console.log(data);
+		return error || data;
+	}
 }
 
-function exist(circle: string, circleArray: Array<CircleDto>) {
+function exist(circle: string, circleArray: Array<CircleCreateDto>) {
 const found = circleArray.find(crcl => {
-	return crcl.circleName === circle;
+	return crcl.circle_name === circle;
 })
 	return found !== undefined;
 }
