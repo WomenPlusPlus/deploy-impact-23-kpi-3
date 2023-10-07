@@ -1,0 +1,1 @@
+export const NoMatchPage = () => (<div>Ooops!!!</div>)

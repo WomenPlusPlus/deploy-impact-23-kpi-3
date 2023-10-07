@@ -14,5 +14,8 @@ export class CircleCreateDto {
     updated_at: string;
     @ApiPropertyOptional()
     closed_at: string;
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/features-yk
 }

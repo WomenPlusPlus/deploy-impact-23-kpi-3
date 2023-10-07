@@ -1,0 +1,418 @@
+import {Avatar, Button, Card, Checkbox, Form, Input, List} from 'antd';
+import {Content} from 'antd/es/layout/layout';
+import './style.scss';
+import {Typography} from 'antd';
+
+const {Text} = Typography;
+
+const data = [
+	{
+		'circle': 'HR',
+		'kpi': 'share of teams constituted as circles',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 1,
+		'value': 35,
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'share of teams constituted as circles',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 2,
+		'value': 50,
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'share of teams constituted as circles',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 3,
+		'value': 50,
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'share of teams constituted as circles',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 4,
+		'value': 55,
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'share of teams constituted as circles',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 5,
+		'value': 70,
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'share of teams constituted as circles',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 6,
+		'value': 80,
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'share of teams constituted as circles',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 7,
+		'value': 85,
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'share of teams constituted as circles',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 8,
+		'value': 90,
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'share of teams constituted as circles',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 9,
+		'value': '',
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'share of teams constituted as circles',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 10,
+		'value': '',
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'share of teams constituted as circles',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 11,
+		'value': '',
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'share of teams constituted as circles',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 12,
+		'value': '',
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'share short tern leave',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 1,
+		'value': 2.04,
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'share short tern leave',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 2,
+		'value': 2.2,
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'share short tern leave',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 3,
+		'value': 2.54,
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'share short tern leave',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 4,
+		'value': 2.17,
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'share short tern leave',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 5,
+		'value': 3.3,
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'share short tern leave',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 6,
+		'value': 2.58,
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'share short tern leave',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 7,
+		'value': 2.04,
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'share short tern leave',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 8,
+		'value': 0.93,
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'share short tern leave',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 9,
+		'value': '',
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'share short tern leave',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 10,
+		'value': '',
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'share short tern leave',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 11,
+		'value': '',
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'share short tern leave',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 12,
+		'value': '',
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'involuntary headcount change (FTE)',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 1,
+		'value': 2.26,
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'involuntary headcount change (FTE)',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 2,
+		'value': 0.98,
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'involuntary headcount change (FTE)',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 3,
+		'value': 1.47,
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'involuntary headcount change (FTE)',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 4,
+		'value': 1.46,
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'involuntary headcount change (FTE)',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 5,
+		'value': 0,
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'involuntary headcount change (FTE)',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 6,
+		'value': 0,
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'involuntary headcount change (FTE)',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 7,
+		'value': 0.51,
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'involuntary headcount change (FTE)',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 8,
+		'value': 1.01,
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'involuntary headcount change (FTE)',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 9,
+		'value': '',
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'involuntary headcount change (FTE)',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 10,
+		'value': '',
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'involuntary headcount change (FTE)',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 11,
+		'value': '',
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'involuntary headcount change (FTE)',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 12,
+		'value': '',
+	},
+]
+
+export const KpisDefinitionPage = () => {
+	const onFinish = (values: any) => {
+		console.log('Success:', values);
+	};
+
+	const onFinishFailed = (errorInfo: any) => {
+		console.log('Failed:', errorInfo);
+	};
+
+	type FieldType = {
+		username?: string;
+		password?: string;
+		remember?: string;
+	};
+
+	return (
+		<Content style={{margin: '3rem', overflow: 'initial'}}>
+			<div className="kpi-def-container">
+				<div className="exiting-kpis-list">
+					<h2>Existing KPIs</h2>
+					<List
+						dataSource={data}
+						renderItem={(item) => (
+							<List.Item>
+								<Card
+									title={item.kpi}
+									extra={
+										<Text italic>
+											{new Date(`${item.period_year}-${item.period_month}`).toLocaleString('default', {month: 'long'})}
+											&nbsp;
+											{item.period_year}
+										</Text>
+									}></Card>
+							</List.Item>
+						)}
+					>
+					</List>
+				</div>
+				<div className="create-kpi-def-form">
+					<Form
+						name="basic"
+						labelCol={{span: 8}}
+						wrapperCol={{span: 16}}
+						style={{maxWidth: 600}}
+						initialValues={{remember: true}}
+						onFinish={onFinish}
+						onFinishFailed={onFinishFailed}
+						autoComplete="off"
+					>
+						<Form.Item<FieldType>
+							label="Username"
+							name="username"
+							rules={[{required: true, message: 'Please input your username!'}]}
+						>
+							<Input/>
+						</Form.Item>
+
+						<Form.Item<FieldType>
+							label="Password"
+							name="password"
+							rules={[{required: true, message: 'Please input your password!'}]}
+						>
+							<Input.Password/>
+						</Form.Item>
+
+						<Form.Item<FieldType>
+							name="remember"
+							valuePropName="checked"
+							wrapperCol={{offset: 8, span: 16}}
+						>
+							<Checkbox>Remember me</Checkbox>
+						</Form.Item>
+
+						<Form.Item wrapperCol={{offset: 8, span: 16}}>
+							<Button type="primary" htmlType="submit">
+								Submit
+							</Button>
+						</Form.Item>
+					</Form>
+				</div>
+			</div>
+		</Content>
+	)
+}

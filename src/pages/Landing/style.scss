@@ -1,0 +1,20 @@
+.circles-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  .ant-card {
+    display: flex;
+    flex-direction: column;
+
+    margin: 1rem;
+    max-width: 25rem;
+    min-width: 25rem;
+    min-height: 18rem;
+    max-height: 18rem;
+
+    .ant-card-body {
+      flex-grow: 1;
+    }
+  }
+}
