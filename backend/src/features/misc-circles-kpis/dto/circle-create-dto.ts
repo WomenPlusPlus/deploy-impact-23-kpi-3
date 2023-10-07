@@ -14,5 +14,4 @@ export class CircleCreateDto {
     updated_at: string;
     @ApiPropertyOptional()
     closed_at: string;
-
 }

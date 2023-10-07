@@ -40,18 +40,4 @@ export class MiscCirclesKpisController {
 		return this.service.deletePhoneCall(param.id);
 	}
 
-	@Get('all-circles')
-	getAllCirclesList() {
-		return this.service.fetchCircles();
-	}
-
-	@Get('circles')
-	getAllCircles(): Array<CircleCreateDto>  {
-		return this.service.fillCircleTable();
-	}
-
-	@Post('add-new-circle')
-	addCircle(@Body() data) {
-		return this.service.insertCircle(data);
-	}
 }
