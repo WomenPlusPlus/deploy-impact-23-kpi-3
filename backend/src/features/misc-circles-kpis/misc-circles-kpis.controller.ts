@@ -1,7 +1,7 @@
-import {Body, Controller, Delete, Get, Param, Put} from '@nestjs/common';
+import {Body, Controller, Delete, Get, Param, Post, Put} from '@nestjs/common';
 import {MiscCirclesKpisService} from './misc-circles-kpis.service';
 import {MiscCirclesKpisResponseDto} from './dto/misc-circles-kpis-response-dto';
-import {KpiDto} from '../kpi/kpi.dto';
+import {CircleCreateDto} from "./dto/circle-create-dto";
 
 @Controller('misc-circles-kpis')
 export class MiscCirclesKpisController {
@@ -39,4 +39,5 @@ export class MiscCirclesKpisController {
 	removePhoneCall(@Param() param) {
 		return this.service.deletePhoneCall(param.id);
 	}
+
 }
