@@ -1,166 +1,336 @@
 import {Avatar, Button, Card, Checkbox, Form, Input, List} from 'antd';
 import {Content} from 'antd/es/layout/layout';
 import './style.scss';
+import {Typography} from 'antd';
+
+const {Text} = Typography;
 
 const data = [
 	{
-		'gender': 'female',
-		'name': {
-			'title': 'Miss',
-			'first': 'Annetta',
-			'last': 'Van Leer',
-		},
-		'email': 'annetta.vanleer@example.com',
-		'picture': {
-			'large': 'https://randomuser.me/api/portraits/women/34.jpg',
-			'medium': 'https://randomuser.me/api/portraits/med/women/34.jpg',
-			'thumbnail': 'https://randomuser.me/api/portraits/thumb/women/34.jpg',
-		},
-		'nat': 'NL',
+		'circle': 'HR',
+		'kpi': 'share of teams constituted as circles',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 1,
+		'value': 35,
 	},
 	{
-		'gender': 'male',
-		'name': {
-			'title': 'Mr',
-			'first': 'Jaime',
-			'last': 'Moya',
-		},
-		'email': 'jaime.moya@example.com',
-		'picture': {
-			'large': 'https://randomuser.me/api/portraits/men/11.jpg',
-			'medium': 'https://randomuser.me/api/portraits/med/men/11.jpg',
-			'thumbnail': 'https://randomuser.me/api/portraits/thumb/men/11.jpg',
-		},
-		'nat': 'ES',
+		'circle': 'HR',
+		'kpi': 'share of teams constituted as circles',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 2,
+		'value': 50,
 	},
 	{
-		'gender': 'male',
-		'name': {
-			'title': 'Monsieur',
-			'first': 'Micha',
-			'last': 'Fernandez',
-		},
-		'email': 'micha.fernandez@example.com',
-		'picture': {
-			'large': 'https://randomuser.me/api/portraits/men/67.jpg',
-			'medium': 'https://randomuser.me/api/portraits/med/men/67.jpg',
-			'thumbnail': 'https://randomuser.me/api/portraits/thumb/men/67.jpg',
-		},
-		'nat': 'CH',
+		'circle': 'HR',
+		'kpi': 'share of teams constituted as circles',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 3,
+		'value': 50,
 	},
 	{
-		'gender': 'female',
-		'name': {
-			'title': 'Miss',
-			'first': 'Nalan',
-			'last': 'Poyrazoğlu',
-		},
-		'email': 'nalan.poyrazoglu@example.com',
-		'picture': {
-			'large': 'https://randomuser.me/api/portraits/women/38.jpg',
-			'medium': 'https://randomuser.me/api/portraits/med/women/38.jpg',
-			'thumbnail': 'https://randomuser.me/api/portraits/thumb/women/38.jpg',
-		},
-		'nat': 'TR',
+		'circle': 'HR',
+		'kpi': 'share of teams constituted as circles',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 4,
+		'value': 55,
 	},
 	{
-		'gender': 'male',
-		'name': {
-			'title': 'Mr',
-			'first': 'Max',
-			'last': 'Walker',
-		},
-		'email': 'max.walker@example.com',
-		'picture': {
-			'large': 'https://randomuser.me/api/portraits/men/64.jpg',
-			'medium': 'https://randomuser.me/api/portraits/med/men/64.jpg',
-			'thumbnail': 'https://randomuser.me/api/portraits/thumb/men/64.jpg',
-		},
-		'nat': 'NZ',
+		'circle': 'HR',
+		'kpi': 'share of teams constituted as circles',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 5,
+		'value': 70,
 	},
 	{
-		'gender': 'male',
-		'name': {
-			'title': 'Mr',
-			'first': 'Nathan',
-			'last': 'Singh',
-		},
-		'email': 'nathan.singh@example.com',
-		'picture': {
-			'large': 'https://randomuser.me/api/portraits/men/70.jpg',
-			'medium': 'https://randomuser.me/api/portraits/med/men/70.jpg',
-			'thumbnail': 'https://randomuser.me/api/portraits/thumb/men/70.jpg',
-		},
-		'nat': 'CA',
+		'circle': 'HR',
+		'kpi': 'share of teams constituted as circles',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 6,
+		'value': 80,
 	},
 	{
-		'gender': 'male',
-		'name': {
-			'title': 'Mr',
-			'first': 'Farhan',
-			'last': 'Christenhusz',
-		},
-		'email': 'farhan.christenhusz@example.com',
-		'picture': {
-			'large': 'https://randomuser.me/api/portraits/men/73.jpg',
-			'medium': 'https://randomuser.me/api/portraits/med/men/73.jpg',
-			'thumbnail': 'https://randomuser.me/api/portraits/thumb/men/73.jpg',
-		},
-		'nat': 'NL',
+		'circle': 'HR',
+		'kpi': 'share of teams constituted as circles',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 7,
+		'value': 85,
 	},
 	{
-		'gender': 'female',
-		'name': {
-			'title': 'Mrs',
-			'first': 'Carla',
-			'last': 'Garcia',
-		},
-		'email': 'carla.garcia@example.com',
-		'picture': {
-			'large': 'https://randomuser.me/api/portraits/women/39.jpg',
-			'medium': 'https://randomuser.me/api/portraits/med/women/39.jpg',
-			'thumbnail': 'https://randomuser.me/api/portraits/thumb/women/39.jpg',
-		},
-		'nat': 'AU',
+		'circle': 'HR',
+		'kpi': 'share of teams constituted as circles',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 8,
+		'value': 90,
 	},
 	{
-		'gender': 'male',
-		'name': {
-			'title': 'Mr',
-			'first': 'Brennan',
-			'last': 'Simmmons',
-		},
-		'email': 'brennan.simmmons@example.com',
-		'picture': {
-			'large': 'https://randomuser.me/api/portraits/men/1.jpg',
-			'medium': 'https://randomuser.me/api/portraits/med/men/1.jpg',
-			'thumbnail': 'https://randomuser.me/api/portraits/thumb/men/1.jpg',
-		},
-		'nat': 'IE',
+		'circle': 'HR',
+		'kpi': 'share of teams constituted as circles',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 9,
+		'value': '',
 	},
 	{
-		'gender': 'female',
-		'name': {
-			'title': 'Mrs',
-			'first': 'Marie',
-			'last': 'Sørensen',
-		},
-		'email': 'marie.sorensen@example.com',
-		'picture': {
-			'large': 'https://randomuser.me/api/portraits/women/73.jpg',
-			'medium': 'https://randomuser.me/api/portraits/med/women/73.jpg',
-			'thumbnail': 'https://randomuser.me/api/portraits/thumb/women/73.jpg',
-		},
-		'nat': 'DK',
+		'circle': 'HR',
+		'kpi': 'share of teams constituted as circles',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 10,
+		'value': '',
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'share of teams constituted as circles',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 11,
+		'value': '',
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'share of teams constituted as circles',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 12,
+		'value': '',
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'share short tern leave',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 1,
+		'value': 2.04,
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'share short tern leave',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 2,
+		'value': 2.2,
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'share short tern leave',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 3,
+		'value': 2.54,
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'share short tern leave',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 4,
+		'value': 2.17,
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'share short tern leave',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 5,
+		'value': 3.3,
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'share short tern leave',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 6,
+		'value': 2.58,
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'share short tern leave',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 7,
+		'value': 2.04,
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'share short tern leave',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 8,
+		'value': 0.93,
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'share short tern leave',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 9,
+		'value': '',
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'share short tern leave',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 10,
+		'value': '',
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'share short tern leave',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 11,
+		'value': '',
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'share short tern leave',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 12,
+		'value': '',
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'involuntary headcount change (FTE)',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 1,
+		'value': 2.26,
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'involuntary headcount change (FTE)',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 2,
+		'value': 0.98,
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'involuntary headcount change (FTE)',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 3,
+		'value': 1.47,
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'involuntary headcount change (FTE)',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 4,
+		'value': 1.46,
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'involuntary headcount change (FTE)',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 5,
+		'value': 0,
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'involuntary headcount change (FTE)',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 6,
+		'value': 0,
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'involuntary headcount change (FTE)',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 7,
+		'value': 0.51,
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'involuntary headcount change (FTE)',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 8,
+		'value': 1.01,
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'involuntary headcount change (FTE)',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 9,
+		'value': '',
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'involuntary headcount change (FTE)',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 10,
+		'value': '',
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'involuntary headcount change (FTE)',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 11,
+		'value': '',
+	},
+	{
+		'circle': 'HR',
+		'kpi': 'involuntary headcount change (FTE)',
+		'periodicity': 'month',
+		'range': '0 <= % <= 100',
+		'period_year': 2023,
+		'period_month': 12,
+		'value': '',
 	},
 ]
-
-class FieldType {
-}
-
-function onFinishFailed() {
-
-}
 
 export const KpisDefinitionPage = () => {
 	const onFinish = (values: any) => {
@@ -185,17 +355,22 @@ export const KpisDefinitionPage = () => {
 					<List
 						dataSource={data}
 						renderItem={(item) => (
-							<List.Item key={item.email}>
-								<List.Item.Meta
-									title={<a href="https://ant.design">{item.name.last}</a>}
-									description={item.email}
-								/>
+							<List.Item>
+								<Card
+									title={item.kpi}
+									extra={
+										<Text italic>
+											{new Date(`${item.period_year}-${item.period_month}`).toLocaleString('default', {month: 'long'})}
+											&nbsp;
+											{item.period_year}
+										</Text>
+									}></Card>
 							</List.Item>
 						)}
 					>
 					</List>
 				</div>
-				<div className='create-kpi-def-form'>
+				<div className="create-kpi-def-form">
 					<Form
 						name="basic"
 						labelCol={{span: 8}}
