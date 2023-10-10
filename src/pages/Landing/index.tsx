@@ -20,20 +20,26 @@ export const LandingPage = () => {
 			try {
 				const response = await fetch('http://localhost:3200/circles')
 				const data = await response.json();
-				setState({
-					...state,
-					data,
-					loading: false,
-				})
+				if(response.ok) {
+					setState({
+						...state,
+						data,
+						loading: false,
+					})
+				} else {
+					throw Error(data);
+				}
+
 			} catch (e: any) {
 				setState({
 					...state,
+					loading: false,
 					error: e,
 				})
 			}
 		}
 		getCircles();
-	}, [])
+	}, []);
 	return (
 		<Content style={{margin: '3rem', overflow: 'initial'}}>
 			<div className="circles-container">

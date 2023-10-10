@@ -8,16 +8,16 @@ export class CirclesService {
 	constructor(private service: DbConnectionService) {
 	}
 
-	async fetchCircles(): Promise<PostgrestError | CircleDto[]>{
+	async fetchCircles(): Promise<{ error: PostgrestError, data: CircleDto[] }>{
 		const { data, error } = await this.service.db
-			.from('yk_okt6_circles')
+			.from('_test_yk_okt6_circles')
 			.select('*');
-		return error || data;
+		return {error, data};
 	}
 
 	async getCircle(id) {
 		const { data, error } = await this.service.db
-			.from('yk_okt6_circles')
+			.from('_test_yk_okt6_circles')
 			.select('*')
 			.eq('circle_id', id);
 		return error || data;
@@ -25,7 +25,7 @@ export class CirclesService {
 
 	async createOrUpdateCircle(newCircle) {
 		const { data, error } = await this.service.db
-			.from('yk_okt6_circles')
+			.from('_test_yk_okt6_circles')
 			.insert([
 				newCircle
 			])
