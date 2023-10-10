@@ -6,6 +6,15 @@
     display: flex;
     flex-direction: column;
     width: 35%;
+
+    .ant-list {
+      height: calc(100vh - 15rem);
+      overflow: auto;
+    }
+
+    .ant-card {
+      width: 100%;
+    }
   }
   .create-kpi-def-form {
     flex-grow: 1;

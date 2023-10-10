@@ -25,7 +25,7 @@ function App() {
 					justifyContent: 'flex-start',
 				}}>
 				<Title level={4} style={{color: 'lightgrey', margin: '0 1rem'}}>Golden Keys</Title>
-				<div>
+				<div style={{minWidth: 200}}>
 					<Menu
 						theme="dark"
 						mode="horizontal"
@@ -33,17 +33,15 @@ function App() {
 						<Menu.Item>
 							<Link to="/">Home</Link>
 						</Menu.Item>
-						<Menu.Item>
-							<Link to="/kpis">KPIs</Link>
-						</Menu.Item>
-						<Menu.Item>
-							<Link to="/analytics">Analytics</Link>
-						</Menu.Item>
 					</Menu>
 				</div>
 			</Header>
 		
 			<Routes>
+				<Route path="/" element={<Outlet />}>
+					<Route index element={<LandingPage />}/>
+					<Route path="circle/:id/kpis" element={<KpisDefinitionPage />}/>
+					<Route path="circle/:id/analytics" element={<AnalyticsPage />}/>
 			<Route path="/" element={<Outlet />}/>
 				<Route path="/" element={<Form />}>
                  <Route index element={<LandingPage />}/>
