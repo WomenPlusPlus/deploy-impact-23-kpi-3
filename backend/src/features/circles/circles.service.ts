@@ -23,7 +23,7 @@ export class CirclesService {
 		return error || data;
 	}
 
-	async createOrUpdateCircle(newCircle) { //change circleCreateDto to circleCreateUpdateDto 
+	async createOrUpdateCircle(newCircle) {
 		const { data, error } = await this.service.db
 			.from('circle')
 			.insert([
@@ -36,7 +36,7 @@ export class CirclesService {
 		return this.fetchCircles();
 	}
 
-	async removeCircle(id) {
+	/*async removeCircle(id) {
 		const { error } = await this.service.db
 			.from('circle')
 			.delete()
@@ -45,5 +45,5 @@ export class CirclesService {
 			return error
 		}
 		return this.fetchCircles();
-	}
+	}*/
 }

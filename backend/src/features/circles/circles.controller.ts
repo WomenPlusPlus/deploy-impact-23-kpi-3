@@ -1,4 +1,4 @@
-import {Body, Controller, Delete, Get, Param, Post, Put} from '@nestjs/common';
+import {Body, Controller, Get, Param, Put} from '@nestjs/common';
 import {CirclesService} from './circles.service';
 
 @Controller('circles')
@@ -21,8 +21,8 @@ export class CirclesController {
 		return this.service.createOrUpdateCircle(data);
 	}
 
-	@Delete('/:id')
+	/*@Delete('/:id')
 	addCircle(@Param() param) {
 		return this.service.removeCircle(param.id);
-	}
+	}*/
 }

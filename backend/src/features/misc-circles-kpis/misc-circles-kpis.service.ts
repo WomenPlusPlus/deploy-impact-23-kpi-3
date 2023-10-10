@@ -3,8 +3,7 @@ import {circlesKpis} from './data/misc-circles-kpis-data'
 import {fakeData} from './data/fakeData'
 import {MiscCirclesKpisResponseDto} from './dto/misc-circles-kpis-response-dto';
 import {DbConnectionService} from '../../core/db-connection/db-connection.service';
-import {CircleCreateDto} from "./dto/circle-create-dto";
-import * as fs from "fs";
+
 
 
 @Injectable()
