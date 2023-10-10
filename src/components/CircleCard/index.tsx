@@ -2,15 +2,30 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {Button, Card} from 'antd';
 import {PlusOutlined, SettingOutlined} from '@ant-design/icons';
-import './style.scss';
+import styled from 'styled-components'
+
+const SCircleCard = styled(Card)`
+  display: flex;
+  flex-direction: column;
+
+  margin: 1rem;
+  max-width: 25rem;
+  min-width: 25rem;
+  min-height: 18rem;
+  max-height: 18rem;
+
+  .ant-card-body {
+    flex-grow: 1;
+  }
+`
 
 export interface CardProps {
 	circle_id: string,
 	circle_name: string,
 	circle_description: string,
 }
-export default ({ circle_id, circle_name, circle_description }: CardProps) => (
-	<Card
+export const CircleCard = ({ circle_id, circle_name, circle_description }: CardProps) => (
+	<SCircleCard
 		key={circle_id}
 		title={circle_name}
 		bordered
@@ -30,5 +45,5 @@ export default ({ circle_id, circle_name, circle_description }: CardProps) => (
 		<div>
 			{circle_description}
 		</div>
-	</Card>
+	</SCircleCard>
 );

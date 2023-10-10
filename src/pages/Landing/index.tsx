@@ -1,5 +1,5 @@
 import {Content} from 'antd/es/layout/layout';
-import Card from '../../components/Card';
+import {CircleCard} from '../../components/CircleCard';
 import './style.scss';
 import {useEffect, useState} from 'react';
 
@@ -45,12 +45,12 @@ export const LandingPage = () => {
 				{state.error && (<span>error</span>)}
 				{
 					state.data && state.data.map((c: any) => (
-						<Card
+						<CircleCard
 							key={c.circle_id}
 							circle_id={c.circle_id}
 							circle_description={c.circle_description}
 							circle_name={c.circle_name}
-						></Card>
+						></CircleCard>
 					))
 				}
 			</div>

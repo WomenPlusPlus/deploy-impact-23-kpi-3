@@ -95,7 +95,7 @@ function App() {
 // 			<Content style={{margin: '3rem', overflow: 'initial'}}>
 // 				<Row align="middle" justify="center">
 // 					<Col span={20}>
-// 						<Card title="Card title" bordered>
+// 						<CircleCard title="CircleCard title" bordered>
 // 							<div style={{height: 500, width: '100%'}}>
 // 								{
 // 									state.error && <Title>Error</Title>
@@ -128,13 +128,13 @@ function App() {
 //                     </ResponsiveContainer>
 // 								}
 // 							</div>
-// 						</Card>
+// 						</CircleCard>
 // 					</Col>
 // 				</Row>
 // 				<Divider/>
 // 				<Row align="middle" justify="center">
 // 					<Col span={20}>
-// 						<Card title="Card title" bordered style={{height: 600}}>
+// 						<CircleCard title="CircleCard title" bordered style={{height: 600}}>
 // 							<div style={{height: 500, width: '100%'}}>
 // 								{
 // 									state.error && <Title>Error</Title>
@@ -167,7 +167,7 @@ function App() {
 //                     </ResponsiveContainer>
 // 								}
 // 							</div>
-// 						</Card>
+// 						</CircleCard>
 // 					</Col>
 // 				</Row>
 // 			</Content>
