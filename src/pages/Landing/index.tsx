@@ -1,9 +1,7 @@
 import {Content} from 'antd/es/layout/layout';
-import {Button, Card} from 'antd';
+import Card from '../../components/Card';
 import './style.scss';
 import {useEffect, useState} from 'react';
-import {Link} from 'react-router-dom';
-import {PlusOutlined, SettingOutlined} from '@ant-design/icons';
 
 export const LandingPage = () => {
 	const [state, setState] = useState<{
@@ -49,25 +47,10 @@ export const LandingPage = () => {
 					state.data && state.data.map((c: any) => (
 						<Card
 							key={c.circle_id}
-							title={c.circle_name}
-							bordered
-							actions={[
-								<Link to={`circle/${c.circle_id}/kpis`}>
-									<Button type="link" icon={<PlusOutlined/>}>
-										New KPI
-									</Button>
-								</Link>,
-								<Link to={`circle/${c.circle_id}/analytics`}>
-									<Button type="link" icon={<SettingOutlined />}>
-										Configure Data
-									</Button>
-								</Link>
-							]}
-						>
-							<div>
-								{c.circle_description}
-							</div>
-						</Card>
+							circle_id={c.circle_id}
+							circle_description={c.circle_description}
+							circle_name={c.circle_name}
+						></Card>
 					))
 				}
 			</div>
