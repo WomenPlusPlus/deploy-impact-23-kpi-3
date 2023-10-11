@@ -5,43 +5,36 @@ import './App.css';
 import {KpisDefinitionPage} from './pages/KpisDefinition'
 import {LandingPage} from './pages/Landing'
 import {NoMatchPage} from './pages/NoMatch'
-import { Menu } from 'antd';
 import {AnalyticsPage} from './pages/Analytics';
-const { Header, Content} = Layout;
-const { Title} = Typography;
+ import { StyledHeader ,StyledTitle, StyledMenu} from './styles.js';
+import {Menu} from 'antd';
+ 
+ 
+
 
 function App() {
-	return (
-		<Layout>
-			<Header
-				style={{
-					position: 'sticky',
-					top: 0,
-					zIndex: 1,
-					width: '100%',
-					display: 'flex',
-					alignItems: 'center',
-					justifyContent: 'flex-start',
-				}}>
-				<Title level={4} style={{color: 'lightgrey', margin: '0 1rem'}}>Golden Keys</Title>
-				<div>
-					<Menu
-						theme="dark"
-						mode="horizontal"
-					>
-						<Menu.Item>
-							<Link to="/">Home</Link>
-						</Menu.Item>
-						<Menu.Item>
-							<Link to="/kpis">KPIs</Link>
-						</Menu.Item>
-						<Menu.Item>
-							<Link to="/analytics">Analytics</Link>
-						</Menu.Item>
-					</Menu>
-				</div>
-			</Header>
-			<Routes>
+return (
+ 	<Layout>
+	  <StyledHeader>
+		<StyledTitle level={4} >
+		  Golden Keys
+		</StyledTitle>
+		<div>
+		  <StyledMenu mode="horizontal">
+			<Menu.Item>
+			  <Link to="/">Home</Link>
+			</Menu.Item>
+			<Menu.Item>
+			  <Link to="/kpis">KPIs</Link>
+			</Menu.Item>
+			<Menu.Item>
+			  <Link to="/analytics">Analytics</Link>
+			</Menu.Item>
+		  </StyledMenu>
+		</div>
+	  </StyledHeader>
+ 		<Routes>
+
 				<Route path="/" element={<Outlet />}>
 					<Route index element={<LandingPage />}/>
 					<Route path="kpis" element={<KpisDefinitionPage />}/>
@@ -50,6 +43,7 @@ function App() {
 				</Route>
 			</Routes>
 		</Layout>
+ 
 	);
 }
 
