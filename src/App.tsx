@@ -2,7 +2,8 @@ import React from 'react';
 import {Routes, Route, Outlet, Link} from 'react-router-dom';
 import {Layout, Typography} from 'antd';
 import './App.css';
-import {KpisDefinitionPage} from './pages/KpisDefinition'
+import {DefinedKpisListPage} from './pages/DefinedKpisList'
+import {CreateKpiFormPage} from './pages/CreateKpiForm'
 import {LandingPage} from './pages/Landing'
 import {NoMatchPage} from './pages/NoMatch'
 import { Menu } from 'antd';
@@ -38,7 +39,8 @@ function App() {
 			<Routes>
 				<Route path="/" element={<Outlet />}>
 					<Route index element={<LandingPage />}/>
-					<Route path="circle/:id/kpis" element={<KpisDefinitionPage />}/>
+					<Route path="circle/:id/kpis/create" element={<CreateKpiFormPage />}/>
+					<Route path="circle/:id/kpis" element={<DefinedKpisListPage />}/>
 					<Route path="circle/:id/analytics" element={<AnalyticsPage />}/>
 					<Route path="*" element={<NoMatchPage />}/>
 				</Route>

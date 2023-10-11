@@ -1,25 +1,24 @@
 import React from 'react';
-import {Button, Checkbox, Form, Input, Select, Card, Switch} from 'antd';
-import { Radio } from 'antd';
-import styled from 'styled-components'
+import {Button, DatePicker, Form, Input, Select, Card} from 'antd';
+import {Radio} from 'antd';
+import {SFormItemLabel, SFormItem, SCardForm} from './styled'
 
+export interface DefineKpiFormDataProps {
+	circles: Array<{ label: string, value: string }>,
+	frequencies: Array<{ label: string, value: string }>,
+	units: Array<{ label: string, value: string }>,
+}
 export interface DefineKpiFormProps {
-	circles: Array<{label: string, value: string}>,
-	frequencies: Array<{label: string, value: string}>,
-	units: Array<{label: string, value: string}>,
+	data: DefineKpiFormDataProps | null,
+	loading?: boolean,
 }
 
-const SCardForm = styled(Card)`
-	min-width: 100%;
-	max-width: 100%;
-`
-
 const onFinish = (values: any) => {
-	console.log('Success:', values);
-};
-
-const onFinishFailed = (errorInfo: any) => {
-	console.log('Failed:', errorInfo);
+	console.log('Success:', {
+		...values,
+		archived_at: values['archived_at']?.format('YYYY-MM-DD HH:mm:ss') || null,
+		closed_at: values['closed_at']?.format('YYYY-MM-DD HH:mm:ss') || null,
+	});
 };
 
 type FieldType = {
@@ -27,93 +26,116 @@ type FieldType = {
 	title?: string;
 	periodicity?: string;
 	unit?: string;
-	archived: boolean;
+	archived_at: string;
+	closed_at: string;
 };
 
 
-export const DefineKpiForm = ({circles, frequencies, units}: DefineKpiFormProps) => {
-	const selectCircles = (values: string[]) => {
-		console.log(values);
-	}
+export const DefineKpiForm = ({
+																loading,
+																data,
+															}: DefineKpiFormProps) => {
 	const filterOption = (input: string, option?: { label: string; value: string }) =>
 		(option?.label ?? '').toLowerCase().includes(input.toLowerCase());
 
 	return (
 		<SCardForm bordered>
-			<Form
-				name="define-kpi"
-				labelCol={{span: 4}}
-				wrapperCol={{span: 16}}
-				onFinish={onFinish}
-				onFinishFailed={onFinishFailed}
-			>
-				<Form.Item<FieldType>
-					label="Circles"
-					name="circles"
-					rules={[{required: true, message: 'Please select your circles!'}]}
+			{loading && <h3>Loading...</h3>}
+			{data && (
+				<Form
+					name="define-kpi"
+					labelCol={{span: 4}}
+					wrapperCol={{span: 16}}
+					onFinish={onFinish}
+					colon={false}
 				>
-					<Select
-						size="large"
-						mode="multiple"
-						allowClear
-						style={{width: '100%'}}
-						placeholder="Please select circle"
-						defaultValue={['hr']}
-						onChange={selectCircles}
-						options={circles}
-					/>
-				</Form.Item>
+					<SFormItem<FieldType>
+						label={<SFormItemLabel>Circles</SFormItemLabel>}
+						name="circles"
+						rules={[{required: true, message: 'Please select your circles!'}]}
+					>
+						<Select
+							size="large"
+							mode="multiple"
+							allowClear
+							style={{width: '100%'}}
+							placeholder="Please select circle"
+							options={data.circles}
+						/>
+					</SFormItem>
 
-				<Form.Item<FieldType>
-					label="KPI title"
-					name="title"
-					rules={[{required: true, message: 'Please input your KPI title'}]}
-				>
-					<Input
-						size="large"
-					/>
-				</Form.Item>
+					<SFormItem<FieldType>
+						label={<SFormItemLabel>Title</SFormItemLabel>}
+						name="title"
+						rules={[{required: true, message: 'Please input your KPI title'}]}
+					>
+						<Input
+							size="large"
+						/>
+					</SFormItem>
 
-				<Form.Item<FieldType>
-					label="KPI Periodicity"
-					name="periodicity"
-					rules={[{required: true, message: 'Please input your KPI periodicity'}]}
-				>
-					<Radio.Group defaultValue="a" buttonStyle="solid" size="large">
-						{
-							frequencies.map((f) => (<Radio.Button key={f.value} value={f.value}>{f.label}</Radio.Button>))
-						}
-					</Radio.Group>
-				</Form.Item>
+					<SFormItem<FieldType>
+						label={<SFormItemLabel>Periodicity</SFormItemLabel>}
+						name="periodicity"
+						rules={[{required: true, message: 'Please input your KPI periodicity'}]}
+					>
+						<Radio.Group
+							buttonStyle="solid"
+							size="large"
+							style={{width: '100%'}}
+						>
+							{
+								data.frequencies.map((f) => (<Radio.Button key={f.value} value={f.value}>{f.label}</Radio.Button>))
+							}
+						</Radio.Group>
+					</SFormItem>
 
-				<Form.Item<FieldType>
-					label="Unit"
-					name="unit"
-					rules={[{required: true, message: 'Please select your unit!'}]}
-				>
-					<Select
-						size="large"
-						showSearch
-						placeholder="Select a person"
-						optionFilterProp="children"
-						filterOption={filterOption}
-						options={units}
-					/>
-				</Form.Item>
+					<SFormItem<FieldType>
+						label={<SFormItemLabel>Unit</SFormItemLabel>}
+						name="unit"
+						rules={[{required: true, message: 'Please select your unit!'}]}
+					>
+						<Select
+							size="large"
+							showSearch
+							placeholder="Select a unit"
+							optionFilterProp="children"
+							filterOption={filterOption}
+							options={data.units}
+						/>
+					</SFormItem>
 
-				<Form.Item<FieldType>
-					label="Archived"
-					name="archived"
-				>
-					<Switch />
-				</Form.Item>
+					<SFormItem<FieldType>
+						label={<SFormItemLabel>Archived At</SFormItemLabel>}
+						name="archived_at"
+					>
+						<DatePicker
+							size="large"
+							showTime={{format: 'HH:mm'}}
+							format="YYYY-MM-DD HH:mm"
+							style={{width: '100%'}}
+						/>
+					</SFormItem>
 
-				<Form.Item wrapperCol={{offset: 16}}>
-					<Button type="primary" htmlType="submit">
-						Submit
-					</Button>
-				</Form.Item>
-			</Form>
+					<SFormItem<FieldType>
+						label={<SFormItemLabel>Closed At</SFormItemLabel>}
+						name="closed_at"
+					>
+						<DatePicker
+							size="large"
+							showTime={{format: 'HH:mm'}}
+							format="YYYY-MM-DD HH:mm"
+							style={{width: '100%'}}
+						/>
+					</SFormItem>
+
+					<SFormItem wrapperCol={{offset: 18}}>
+						<Button type="primary" htmlType="submit" size="large">
+							Submit
+						</Button>
+					</SFormItem>
+				</Form>
+			)}
 		</SCardForm>
 	)
 };

@@ -8,6 +8,7 @@ body {
 }
 html, body, .ant-layout {
   height: 100%;
+  background-color: #f5f0e1;
 }
 #root {
   height: 100%;
