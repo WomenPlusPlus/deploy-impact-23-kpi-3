@@ -16,9 +16,14 @@ export class CirclesController {
 		return this.service.getCircle(param.id);
 	}
 
-	@Put('add')
-	createOrUpdateCircle(@Body() data) {
-		return this.service.createOrUpdateCircle(data);
+	@Post('add')
+	createCircle(@Body() data) {
+		return this.service.createCircle(data);
+	}
+
+	@Put('/:id')
+	updateCircle(@Param() param, @Body() data) {
+		return this.service.updateCircle(param.id, data);
 	}
 
 	/*@Delete('/:id')
