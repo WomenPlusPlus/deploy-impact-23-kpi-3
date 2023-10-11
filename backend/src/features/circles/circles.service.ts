@@ -23,13 +23,27 @@ export class CirclesService {
 		return error || data;
 	}
 
-	async createOrUpdateCircle(newCircle) {
+	async createCircle(newCircle) {
 		const { data, error } = await this.service.db
 			.from('circle')
 			.insert([
 				newCircle
 			])
 			.select();
+		if(error) {
+			return error
+		}
+		return this.fetchCircles();
+	}
+	
+	async updateCircle(id, updateCircle: updateCircleDto) { //need to be corrected
+		const { data, error } = await this.service.db
+			.from('circle')
+			.insert([
+				newCircle
+			])
+			.select()
+			.eq('circle_id', id);;
 		if(error) {
 			return error
 		}
