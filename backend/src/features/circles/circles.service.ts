@@ -39,11 +39,9 @@ export class CirclesService {
 	async updateCircle(id, updateCircle: updateCircleDto) { //need to be corrected
 		const { data, error } = await this.service.db
 			.from('circle')
-			.insert([
-				newCircle
-			])
-			.select()
-			.eq('circle_id', id);;
+			.update(updateCircle)
+			.eq('circle_id', id)
+			.select();
 		if(error) {
 			return error
 		}
