@@ -1,26 +1,60 @@
 import { Injectable } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+import {DbConnectionService} from "../../core/db-connection/db-connection.service";
+import {PostgrestError} from "@supabase/supabase-js";
+import {UserDto} from "./dto/user.dto";
 
 @Injectable()
 export class UsersService {
-  create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+  constructor(private service: DbConnectionService) {
+  }
+  async createUser(newUser) {
+    const { data, error } = await this.service.db
+        .from('users')
+        .insert([
+          newUser
+        ])
+        .select();
+    if(error) {
+      return error
+    }
+    return this.fetchUsers();
   }
 
-  findAll() {
-    return `This action returns all users`;
+  async fetchUsers(): Promise<PostgrestError | UserDto[]> {
+    const { data, error } = await this.service.db
+        .from('users')
+        .select('*');
+    return error || data;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  async getUser(id) {
+    const { data, error } = await this.service.db
+        .from('users')
+        .select('*')
+        .eq('id', id);
+    return error || data;
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  async updateUser(id, updateUser) { //need to be corrected
+    const { data, error } = await this.service.db
+        .from('users')
+        .update(updateUser)
+        .eq('id', id)
+        .select();
+    if(error) {
+      return error
+    }
+    return this.fetchUsers();
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  async removeUser(id) {
+    const { error } = await this.service.db
+        .from('users')
+        .delete()
+        .eq('id', id)
+    if(error) {
+      return error
+    }
+    return this.fetchUsers();
   }
 }

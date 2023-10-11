@@ -3,9 +3,9 @@ import {randomStringGenerator} from "@nestjs/common/utils/random-string-generato
 
 export class CircleDto {
 	@ApiProperty()
-	circle_id: string = randomStringGenerator();
+	id: string = randomStringGenerator();
 	@ApiProperty()
-	circle_name: string;
+	name: string;
 	@ApiPropertyOptional()
 	updated_at: string;
 	@ApiPropertyOptional()

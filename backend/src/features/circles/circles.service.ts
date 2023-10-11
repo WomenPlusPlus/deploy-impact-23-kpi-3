@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import {CircleDto} from '../../common/dto/circle.dto';
+import {CircleDto} from './dto/circle.dto';
 import {DbConnectionService} from '../../core/db-connection/db-connection.service';
 import {PostgrestError} from '@supabase/supabase-js';
 
@@ -19,7 +19,7 @@ export class CirclesService {
 		const { data, error } = await this.service.db
 			.from('circle')
 			.select('*')
-			.eq('circle_id', id);
+			.eq('id', id);
 		return error || data;
 	}
 
@@ -36,11 +36,11 @@ export class CirclesService {
 		return this.fetchCircles();
 	}
 	
-	async updateCircle(id, updateCircle: updateCircleDto) { //need to be corrected
+	async updateCircle(id, updateCircle) { //need to be corrected
 		const { data, error } = await this.service.db
 			.from('circle')
 			.update(updateCircle)
-			.eq('circle_id', id)
+			.eq('id', id)
 			.select();
 		if(error) {
 			return error
@@ -48,14 +48,14 @@ export class CirclesService {
 		return this.fetchCircles();
 	}
 
-	/*async removeCircle(id) {
+	async removeCircle(id) {
 		const { error } = await this.service.db
 			.from('circle')
 			.delete()
-			.eq('circle_id', id)
+			.eq('id', id)
 		if(error) {
 			return error
 		}
 		return this.fetchCircles();
-	}*/
+	}
 }
