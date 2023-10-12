@@ -3,7 +3,8 @@ import {Routes, Route, Outlet, Link} from 'react-router-dom';
 import {Layout, Typography} from 'antd';
 import './App.css';
 import {DefinedKpisListPage} from './pages/DefinedKpisList'
-import {CreateKpiFormPage} from './pages/CreateKpiForm'
+import {CreateKpiFormPage} from './pages/CreateKpiForm';
+import {AddKpiValueFormPage} from './pages/AddKpiValueForm';
 import {LandingPage} from './pages/Landing'
 import {NoMatchPage} from './pages/NoMatch'
 import { Menu } from 'antd';
@@ -33,6 +34,12 @@ function App() {
 						<Menu.Item>
 							<Link to="/">Home</Link>
 						</Menu.Item>
+						<Menu.Item>
+							<Link to="/circle/342ccc06-2984-441f-ab1d-42bfcc32f665/kpis/create">Define KPI (will be moved)</Link>
+						</Menu.Item>
+						<Menu.Item>
+							<Link to="/circle/342ccc06-2984-441f-ab1d-42bfcc32f665/kpis/kpi___id/add-value">Add Value (will be moved)</Link>
+						</Menu.Item>
 					</Menu>
 				</div>
 			</Header>
@@ -40,6 +47,7 @@ function App() {
 				<Route path="/" element={<Outlet />}>
 					<Route index element={<LandingPage />}/>
 					<Route path="circle/:id/kpis/create" element={<CreateKpiFormPage />}/>
+					<Route path="circle/:id/kpis/:id/add-value" element={<AddKpiValueFormPage />}/>
 					<Route path="circle/:id/kpis" element={<DefinedKpisListPage />}/>
 					<Route path="circle/:id/analytics" element={<AnalyticsPage />}/>
 					<Route path="*" element={<NoMatchPage />}/>
