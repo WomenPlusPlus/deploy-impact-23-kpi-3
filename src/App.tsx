@@ -9,6 +9,9 @@ import {NoMatchPage} from './pages/NoMatch'
 import { Menu } from 'antd';
 import {AnalyticsPage} from './pages/Analytics';
 import Form from './form/Form';
+import { KpiTableCard } from './components/KpiTableCard';
+import KpiTable from './pages/KpiTable';
+
 const { Header, Content} = Layout;
 const { Title} = Typography;
 
@@ -40,15 +43,10 @@ function App() {
 		
 			<Routes>
 				<Route path="/" element={<Outlet />}>
-					<Route index element={<LandingPage />}/>
-					<Route path="circle/:id/kpis/create" element={<CreateKpiFormPage />}/>
-					<Route path="circle/:id/kpis" element={<DefinedKpisListPage />}/>
-					<Route path="circle/:id/analytics" element={<AnalyticsPage />}/>
-			<Route path="/" element={<Outlet />}/>
-				<Route path="/" element={<Form />}>
-                 <Route index element={<LandingPage />}/>
-					<Route path="kpis" element={<KpisDefinitionPage />}/>
-					<Route path="analytics" element={<AnalyticsPage />}/>
+				
+					<Route path="././pages/KpiTable" element={<KpiTable />}/>
+
+			
 					<Route path="*" element={<NoMatchPage />}/>
 				</Route>
 			</Routes>
