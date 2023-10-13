@@ -5,8 +5,9 @@ import { AppService } from './app.service';
 import { MiscCirclesKpisModule } from './features/misc-circles-kpis/misc-circles-kpis.module';
 import { KpiModule } from './features/kpi/kpi.module';
 import { CirclesModule } from './features/circles/circles.module';
+import { UnitsModule } from './features/units/units.module';
+import { PeriodicitiesModule } from './features/periodicities/periodicities.module';
 import {DbConnectionModule} from './core/db-connection/db-connection.module';
-import {UsersModule} from "./features/users/users.module";
 
 @Module({
   imports: [
@@ -15,7 +16,8 @@ import {UsersModule} from "./features/users/users.module";
     MiscCirclesKpisModule,
     KpiModule,
     CirclesModule,
-    UsersModule,
+    UnitsModule,
+    PeriodicitiesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

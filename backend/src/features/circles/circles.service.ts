@@ -8,11 +8,11 @@ export class CirclesService {
 	constructor(private service: DbConnectionService) {
 	}
 
-	async fetchCircles(): Promise<PostgrestError | CircleDto[]>{
+	async fetchCircles(): Promise<{ error: PostgrestError, data: CircleDto[] }>{
 		const { data, error } = await this.service.db
 			.from('circle')
 			.select('*');
-		return error || data;
+		return {error, data};
 	}
 
 	async getCircle(id) {

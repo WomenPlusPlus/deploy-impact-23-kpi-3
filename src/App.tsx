@@ -2,7 +2,9 @@ import React from 'react';
 import {Routes, Route, Outlet, Link} from 'react-router-dom';
 import {Layout, Typography} from 'antd';
 import './App.css';
-import {KpisDefinitionPage} from './pages/KpisDefinition'
+import {DefinedKpisListPage} from './pages/DefinedKpisList'
+import {CreateKpiFormPage} from './pages/CreateKpiForm';
+import {AddKpiValueFormPage} from './pages/AddKpiValueForm';
 import {LandingPage} from './pages/Landing'
 import {NoMatchPage} from './pages/NoMatch'
 import { Menu } from 'antd';
@@ -32,13 +34,21 @@ function App() {
 						<Menu.Item>
 							<Link to="/">Home</Link>
 						</Menu.Item>
+						<Menu.Item>
+							<Link to="/circle/342ccc06-2984-441f-ab1d-42bfcc32f665/kpis/create">Define KPI (will be moved)</Link>
+						</Menu.Item>
+						<Menu.Item>
+							<Link to="/circle/342ccc06-2984-441f-ab1d-42bfcc32f665/kpis/kpi___id/add-value">Add Value (will be moved)</Link>
+						</Menu.Item>
 					</Menu>
 				</div>
 			</Header>
 			<Routes>
 				<Route path="/" element={<Outlet />}>
 					<Route index element={<LandingPage />}/>
-					<Route path="circle/:id/kpis" element={<KpisDefinitionPage />}/>
+					<Route path="circle/:id/kpis/create" element={<CreateKpiFormPage />}/>
+					<Route path="circle/:id/kpis/:id/add-value" element={<AddKpiValueFormPage />}/>
+					<Route path="circle/:id/kpis" element={<DefinedKpisListPage />}/>
 					<Route path="circle/:id/analytics" element={<AnalyticsPage />}/>
 					<Route path="*" element={<NoMatchPage />}/>
 				</Route>
@@ -95,7 +105,7 @@ function App() {
 // 			<Content style={{margin: '3rem', overflow: 'initial'}}>
 // 				<Row align="middle" justify="center">
 // 					<Col span={20}>
-// 						<Card title="Card title" bordered>
+// 						<CircleCard title="CircleCard title" bordered>
 // 							<div style={{height: 500, width: '100%'}}>
 // 								{
 // 									state.error && <Title>Error</Title>
@@ -128,13 +138,13 @@ function App() {
 //                     </ResponsiveContainer>
 // 								}
 // 							</div>
-// 						</Card>
+// 						</CircleCard>
 // 					</Col>
 // 				</Row>
 // 				<Divider/>
 // 				<Row align="middle" justify="center">
 // 					<Col span={20}>
-// 						<Card title="Card title" bordered style={{height: 600}}>
+// 						<CircleCard title="CircleCard title" bordered style={{height: 600}}>
 // 							<div style={{height: 500, width: '100%'}}>
 // 								{
 // 									state.error && <Title>Error</Title>
@@ -167,7 +177,7 @@ function App() {
 //                     </ResponsiveContainer>
 // 								}
 // 							</div>
-// 						</Card>
+// 						</CircleCard>
 // 					</Col>
 // 				</Row>
 // 			</Content>
