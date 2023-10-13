@@ -30,9 +30,10 @@ export const CreateKpiFormPage = () => {
 			data: null,
 			loading: true,
 		})
-		const response = await fetch('', {
-			method: 'POST',
-			body: JSON.stringify(formValues)
+		const response = await fetch('http://localhost:3200/kpi/create', {
+			method: 'PUT',
+			body: JSON.stringify(formValues),
+			headers: { 'Content-Type': 'application/json' },
 		});
 		const data = response.json();
 		console.log(data);
