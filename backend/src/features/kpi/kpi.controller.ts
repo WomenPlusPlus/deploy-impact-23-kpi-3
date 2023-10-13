@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common';
 import { KpiService } from './kpi.service';
 import { KpiDto } from './kpi.dto';
-import { KpiCreationDto } from './dto/kpi-creation.dto';
+import { KpiCreationDto } from '../../common/dto/kpi-creation.dto';
 
 @Controller('kpi')
 export class KpiController {
@@ -23,9 +23,9 @@ export class KpiController {
   }
 
   @Put('create')
-  @UsePipes(new ValidationPipe())
-  async createKpi(@Body() createKpiDto: KpiCreationDto) {
-    const result = await this.kpiService.createKpi(createKpiDto);
+  // @UsePipes(new ValidationPipe())
+  async createKpi(@Body() createKpi: KpiCreationDto) {
+    const result = await this.kpiService.createKpi(createKpi);
 
     if (!result.success) {
       throw new HttpException(

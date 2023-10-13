@@ -1,8 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { KpiDto } from './kpi.dto';
 import { DbConnectionService } from '../../core/db-connection/db-connection.service';
-import { PostgrestError } from '@supabase/supabase-js';
-import { KpiCreationDto } from './dto/kpi-creation.dto';
+import { KpiCreationDto } from '../../common/dto/kpi-creation.dto';
 
 @Injectable()
 export class KpiService {
