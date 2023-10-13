@@ -70,5 +70,8 @@ export const Loading: Story = {
 	args: {
 		loading: true,
 		data: null,
+		onSubmit: (enteredData: any) => {
+			console.log(enteredData);
+		}
 	}
 };

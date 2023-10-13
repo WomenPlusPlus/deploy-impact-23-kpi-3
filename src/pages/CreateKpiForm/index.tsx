@@ -14,6 +14,29 @@ export const CreateKpiFormPage = () => {
 		data: null,
 		loading: true,
 	});
+	const [submissionState, setSubmissionState] = useState<{
+		error: string | null,
+		data: {} | null,
+		loading: boolean,
+	}>({
+		error: null,
+		data: null,
+		loading: false,
+	});
+
+	const submitKpiDefinition = async (formValues: any)=> {
+		setSubmissionState({
+			error: null,
+			data: null,
+			loading: true,
+		})
+		const response = await fetch('', {
+			method: 'POST',
+			body: JSON.stringify(formValues)
+		});
+		const data = response.json();
+		console.log(data);
+	}
 	useEffect(() => {
 		const getValues = async () => {
 			try {
@@ -51,6 +74,7 @@ export const CreateKpiFormPage = () => {
 			<DefineKpiForm
 				loading={state.loading}
 				data={state.data}
+				onSubmit={submitKpiDefinition}
 			/>
 		</Content>
 	)
