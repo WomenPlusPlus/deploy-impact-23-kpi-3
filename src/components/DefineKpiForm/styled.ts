@@ -1,10 +1,14 @@
 import styled from 'styled-components';
-import {Card, Form} from 'antd';
+import {Card, Form, Space} from 'antd';
 
 export const SCardForm = styled(Card)`
 	min-width: 100%;
 	max-width: 100%;
 	padding: 3rem;
+`
+export const SSpace = styled(Space)`
+	display: flex;
+	justify-content: center;
 `
 
 export const SFormItem = styled(Form.Item)`

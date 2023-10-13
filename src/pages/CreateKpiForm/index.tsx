@@ -14,6 +14,43 @@ export const CreateKpiFormPage = () => {
 		data: null,
 		loading: true,
 	});
+	const [submissionState, setSubmissionState] = useState<{
+		error: string | null,
+		data: {} | null,
+		loading: boolean,
+	}>({
+		error: null,
+		data: null,
+		loading: false,
+	});
+
+	const submitKpiDefinition = async (formValues: any)=> {
+		setSubmissionState({
+			error: null,
+			data: null,
+			loading: true,
+		})
+		try {
+			const response = await fetch('http://localhost:3200/kpi/create', {
+				method: 'PUT',
+				body: JSON.stringify(formValues),
+				headers: { 'Content-Type': 'application/json' },
+			});
+			const data = response.json();
+			setSubmissionState({
+				error: null,
+				data: data,
+				loading: false,
+			})
+		} catch(e) {
+			setSubmissionState({
+				error: 'error',
+				data: null,
+				loading: false,
+			})
+
+		}
+	}
 	useEffect(() => {
 		const getValues = async () => {
 			try {
@@ -26,7 +63,7 @@ export const CreateKpiFormPage = () => {
 				setState({
 					...state,
 					data: {
-						circles: data[0].map((c: {circle_name: string,circle_id: string }) => ({label: c.circle_name, value: c.circle_id})),
+						circles: data[0].map((c: {name: string,id: string }) => ({label: c.name, value: c.id})),
 						frequencies: data[1].map((f: string) => ({label: f, value: f})),
 						units: data[2].map((u: {unit: string}) => ({label: u.unit.toUpperCase(), value: u.unit})),
 					},
@@ -49,8 +86,9 @@ export const CreateKpiFormPage = () => {
 				<Title level={2}>Add New KPI</Title>
 			</div>
 			<DefineKpiForm
-				loading={state.loading}
+				loading={state.loading || submissionState.loading}
 				data={state.data}
+				onSubmit={submitKpiDefinition}
 			/>
 		</Content>
 	)
