@@ -1,4 +1,5 @@
-import {Body, Controller, Get, Param, Put} from '@nestjs/common';
+
+import {Body, Controller, Delete, Get, HttpException, HttpStatus, Param, Post, Put} from '@nestjs/common';
 import {CirclesService} from './circles.service';
 
 @Controller('circles')
@@ -7,8 +8,12 @@ export class CirclesController {
 	}
 
 	@Get('')
-	getAllCircles() {
-		return this.service.fetchCircles();
+	async getAllCircles() {
+		const {error, data} = await this.service.fetchCircles();
+		if(error) {
+			throw new HttpException(error.message, HttpStatus.FORBIDDEN);
+		}
+		return data;
 	}
 
 	@Get('/:id')

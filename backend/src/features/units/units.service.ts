@@ -1,61 +1,49 @@
 import { Injectable } from '@nestjs/common';
-import {CircleDto} from '../../common/dto/circle.dto';
 import {DbConnectionService} from '../../core/db-connection/db-connection.service';
 import {PostgrestError} from '@supabase/supabase-js';
+import {UnitDto} from '../../common/dto/unit.dto';
 
 @Injectable()
-export class CirclesService {
+export class UnitsService {
 	constructor(private service: DbConnectionService) {
 	}
 
-	async fetchCircles(): Promise<{ error: PostgrestError, data: CircleDto[] }>{
+	async fetchUnits(): Promise<{ error: PostgrestError, data: UnitDto[] }>{
 		const { data, error } = await this.service.db
-			.from('circle')
+			.from('unit_constraints')
 			.select('*');
 		return {error, data};
 	}
 
-	async getCircle(id) {
+	async getUnit(id) {
 		const { data, error } = await this.service.db
-			.from('circle')
+			.from('unit_constraints')
 			.select('*')
 			.eq('circle_id', id);
 		return error || data;
 	}
 
-	async createCircle(newCircle) {
+	async createOrUpdateUnit(newUnit) {
 		const { data, error } = await this.service.db
-			.from('circle')
+			.from('unit_constraints')
 			.insert([
-				newCircle
+				newUnit
 			])
 			.select();
 		if(error) {
 			return error
 		}
-		return this.fetchCircles();
-	}
-	
-	async updateCircle(id, updateCircle: updateCircleDto) { //need to be corrected
-		const { data, error } = await this.service.db
-			.from('circle')
-			.update(updateCircle)
-			.eq('circle_id', id)
-			.select();
-		if(error) {
-			return error
-		}
-		return this.fetchCircles();
+		return this.fetchUnits();
 	}
 
-	/*async removeCircle(id) {
+	async removeUnit(id) {
 		const { error } = await this.service.db
-			.from('circle')
+			.from('yk_okt6_circles')
 			.delete()
 			.eq('circle_id', id)
 		if(error) {
 			return error
 		}
-		return this.fetchCircles();
-	}*/
+		return this.fetchUnits();
+	}
 }

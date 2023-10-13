@@ -1,9 +1,7 @@
 import {Content} from 'antd/es/layout/layout';
-import {Button, Card} from 'antd';
+import {CircleCard} from '../../components/CircleCard';
 import './style.scss';
 import {useEffect, useState} from 'react';
-import {Link} from 'react-router-dom';
-import {PlusOutlined, SettingOutlined} from '@ant-design/icons';
 
 export const LandingPage = () => {
 	const [state, setState] = useState<{
@@ -20,20 +18,26 @@ export const LandingPage = () => {
 			try {
 				const response = await fetch('http://localhost:3200/circles')
 				const data = await response.json();
-				setState({
-					...state,
-					data,
-					loading: false,
-				})
+				if(response.ok) {
+					setState({
+						...state,
+						data,
+						loading: false,
+					})
+				} else {
+					throw Error(data);
+				}
+
 			} catch (e: any) {
 				setState({
 					...state,
+					loading: false,
 					error: e,
 				})
 			}
 		}
 		getCircles();
-	}, [])
+	}, []);
 	return (
 		<Content style={{margin: '3rem', overflow: 'initial'}}>
 			<div className="circles-container">
@@ -41,27 +45,12 @@ export const LandingPage = () => {
 				{state.error && (<span>error</span>)}
 				{
 					state.data && state.data.map((c: any) => (
-						<Card
+						<CircleCard
 							key={c.circle_id}
-							title={c.circle_name}
-							bordered
-							actions={[
-								<Link to={`circle/${c.circle_id}/kpis`}>
-									<Button type="link" icon={<PlusOutlined/>}>
-										New KPI
-									</Button>
-								</Link>,
-								<Link to={`circle/${c.circle_id}/analytics`}>
-									<Button type="link" icon={<SettingOutlined />}>
-										Configure Data
-									</Button>
-								</Link>
-							]}
-						>
-							<div>
-								{c.circle_description}
-							</div>
-						</Card>
+							circle_id={c.circle_id}
+							circle_description={c.circle_description}
+							circle_name={c.circle_name}
+						></CircleCard>
 					))
 				}
 			</div>
