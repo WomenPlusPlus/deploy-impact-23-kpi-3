@@ -30,13 +30,26 @@ export const CreateKpiFormPage = () => {
 			data: null,
 			loading: true,
 		})
-		const response = await fetch('http://localhost:3200/kpi/create', {
-			method: 'PUT',
-			body: JSON.stringify(formValues),
-			headers: { 'Content-Type': 'application/json' },
-		});
-		const data = response.json();
-		console.log(data);
+		try {
+			const response = await fetch('http://localhost:3200/kpi/create', {
+				method: 'PUT',
+				body: JSON.stringify(formValues),
+				headers: { 'Content-Type': 'application/json' },
+			});
+			const data = response.json();
+			setSubmissionState({
+				error: null,
+				data: data,
+				loading: false,
+			})
+		} catch(e) {
+			setSubmissionState({
+				error: 'error',
+				data: null,
+				loading: false,
+			})
+
+		}
 	}
 	useEffect(() => {
 		const getValues = async () => {
@@ -73,7 +86,7 @@ export const CreateKpiFormPage = () => {
 				<Title level={2}>Add New KPI</Title>
 			</div>
 			<DefineKpiForm
-				loading={state.loading}
+				loading={state.loading || submissionState.loading}
 				data={state.data}
 				onSubmit={submitKpiDefinition}
 			/>

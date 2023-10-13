@@ -1,7 +1,7 @@
 import React from 'react';
-import {Button, DatePicker, Form, Input, Select, Card} from 'antd';
+import {Button, DatePicker, Form, Input, Select, Card, Space, Spin} from 'antd';
 import {Radio} from 'antd';
-import {SFormItemLabel, SFormItem, SCardForm} from './styled'
+import {SFormItemLabel, SFormItem, SCardForm, SSpace} from './styled'
 
 export interface DefineKpiFormDataProps {
 	circles: Array<{ label: string, value: string }>,
@@ -42,7 +42,13 @@ export const DefineKpiForm = ({
 
 	return (
 		<SCardForm bordered>
-			{loading && <h3>Loading...</h3>}
+			{
+				loading && (
+					<SSpace size="large" align="center" direction="horizontal">
+						<Spin size="large" />
+					</SSpace>
+				)
+			}
 			{data && (
 				<Form
 					name="define-kpi"
