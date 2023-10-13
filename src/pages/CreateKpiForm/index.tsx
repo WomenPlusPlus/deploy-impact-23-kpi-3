@@ -49,7 +49,7 @@ export const CreateKpiFormPage = () => {
 				setState({
 					...state,
 					data: {
-						circles: data[0].map((c: {circle_name: string,circle_id: string }) => ({label: c.circle_name, value: c.circle_id})),
+						circles: data[0].map((c: {name: string,id: string }) => ({label: c.name, value: c.id})),
 						frequencies: data[1].map((f: string) => ({label: f, value: f})),
 						units: data[2].map((u: {unit: string}) => ({label: u.unit.toUpperCase(), value: u.unit})),
 					},
