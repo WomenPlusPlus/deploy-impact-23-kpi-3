@@ -1,24 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {Button, Card} from 'antd';
+import {Button} from 'antd';
 import {PlusOutlined, SettingOutlined} from '@ant-design/icons';
-import styled from 'styled-components'
-
-const SCircleCard = styled(Card)`
-  display: flex;
-  flex-direction: column;
-
-  margin: 1rem;
-  max-width: 25rem;
-  min-width: 25rem;
-  min-height: 18rem;
-  max-height: 18rem;
-
-  .ant-card-body {
-    flex-grow: 1;
-  }
-`
-
+import {SCircleCard} from './styled';
 export interface CardProps {
 	circle_id: string,
 	circle_name: string,
