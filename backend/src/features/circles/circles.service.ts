@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import {CircleDto} from './dto/circle.dto';
+import {CircleDto} from '../../common/dto/circle.dto';
 import {DbConnectionService} from '../../core/db-connection/db-connection.service';
 import {PostgrestError} from '@supabase/supabase-js';
 

@@ -5,10 +5,12 @@ import './App.css';
 import {DefinedKpisListPage} from './pages/DefinedKpisList'
 import {CreateKpiFormPage} from './pages/CreateKpiForm';
 import {AddKpiValueFormPage} from './pages/AddKpiValueForm';
+
 import {LandingPage} from './pages/Landing'
 import {NoMatchPage} from './pages/NoMatch'
 import { Menu } from 'antd';
 import {AnalyticsPage} from './pages/Analytics';
+import {AddKpiTablePage} from "./pages/AddKpiTable";
 const { Header, Content} = Layout;
 const { Title} = Typography;
 
@@ -40,6 +42,9 @@ function App() {
 						<Menu.Item>
 							<Link to="/circle/342ccc06-2984-441f-ab1d-42bfcc32f665/kpis/kpi___id/add-value">Add Value (will be moved)</Link>
 						</Menu.Item>
+						<Menu.Item>
+							<Link to="/circle/342ccc06-2984-441f-ab1d-42bfcc32f665/addkpitable">KPI Value Reporting (Economist)(will be moved)</Link>
+						</Menu.Item>
 					</Menu>
 				</div>
 			</Header>
@@ -50,6 +55,7 @@ function App() {
 					<Route path="circle/:id/kpis/:id/add-value" element={<AddKpiValueFormPage />}/>
 					<Route path="circle/:id/kpis" element={<DefinedKpisListPage />}/>
 					<Route path="circle/:id/analytics" element={<AnalyticsPage />}/>
+					<Route path="circle/:id/addkpitable" element={<AddKpiTablePage />}/>
 					<Route path="*" element={<NoMatchPage />}/>
 				</Route>
 			</Routes>
