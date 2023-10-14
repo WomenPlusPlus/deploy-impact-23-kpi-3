@@ -11,15 +11,8 @@ export interface DefineKpiFormDataProps {
 export interface DefineKpiFormProps {
 	data: DefineKpiFormDataProps | null,
 	loading?: boolean,
+	onSubmit: (values: any) => void,
 }
-
-const onFinish = (values: any) => {
-	console.log('Success:', {
-		...values,
-		archived_at: values['archived_at']?.format('YYYY-MM-DD HH:mm:ss') || null,
-		closed_at: values['closed_at']?.format('YYYY-MM-DD HH:mm:ss') || null,
-	});
-};
 
 type FieldType = {
 	circles?: string;
@@ -34,9 +27,18 @@ type FieldType = {
 export const DefineKpiForm = ({
 																loading,
 																data,
+																onSubmit,
 															}: DefineKpiFormProps) => {
 	const filterOption = (input: string, option?: { label: string; value: string }) =>
 		(option?.label ?? '').toLowerCase().includes(input.toLowerCase());
+	const onFinish = (values: any) => {
+		const formValues = {
+			...values,
+			archived_at: values['archived_at']?.format('YYYY-MM-DD HH:mm:ss') || null,
+			closed_at: values['closed_at']?.format('YYYY-MM-DD HH:mm:ss') || null,
+		};
+		onSubmit(formValues);
+	};
 
 	return (
 		<SCardForm bordered>

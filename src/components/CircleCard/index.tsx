@@ -30,14 +30,14 @@ export const CircleCard = ({ circle_id, circle_name, circle_description }: CardP
 		title={circle_name}
 		bordered
 		actions={[
-			<Link to={`circle/${circle_id}/kpis/create`}>
+			<Link to={`circle/${circle_id}/kpis`}>
 				<Button type="link" icon={<PlusOutlined/>}>
-					New KPI
+					KPIs List
 				</Button>
 			</Link>,
 			<Link to={`circle/${circle_id}/analytics`}>
 				<Button type="link" icon={<SettingOutlined />}>
-					Configure Data
+					Configure Kpis
 				</Button>
 			</Link>
 		]}
