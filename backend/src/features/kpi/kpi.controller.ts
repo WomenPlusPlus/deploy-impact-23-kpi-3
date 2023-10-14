@@ -2,6 +2,7 @@ import {
   Controller,
   Get,
   Put,
+  Query,
   Body,
   UsePipes,
   ValidationPipe,
@@ -41,5 +42,15 @@ export class KpiController {
       message: 'KPI successfully created!',
       kpiId: result.kpiId,
     };
+  }
+
+  // To fetch KPI details for the gatekeeper
+  @Get('gatekeeper-kpis')
+  fetchGatekeeperKpis(@Query('gatekeeperId') gatekeeperId?: number) {
+    if (!gatekeeperId) {
+      gatekeeperId = 3; // Default to ID 3 if none is provided. For testing
+    }
+
+    return this.kpiService.fetchGatekeeperKpis(gatekeeperId);
   }
 }

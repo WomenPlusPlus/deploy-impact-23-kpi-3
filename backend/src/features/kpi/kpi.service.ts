@@ -34,4 +34,19 @@ export class KpiService {
 
     return { success: true, kpiId };
   }
+
+  // Call the RPC function to fetch KPI details for the gatekeeper
+  async fetchGatekeeperKpis(
+    gatekeeperId: number,
+  ): Promise<{ success: boolean; data?: any[]; error?: any }> {
+    const { data, error } = await this.service.db.rpc('fetch_gatekeeper_kpis', {
+      gatekeeper_user_id: gatekeeperId,
+    });
+
+    if (error) {
+      return { success: false, error };
+    }
+
+    return { success: true, data };
+  }
 }
