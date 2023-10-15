@@ -7,11 +7,6 @@ import { KpiCreationDto } from '../../common/dto/kpi-creation.dto';
 export class KpiService {
   constructor(private service: DbConnectionService) {}
 
-  processKpiData(data: KpiDto) {
-    console.log('Received Data: ', data);
-    return 'Data Received';
-  }
-
   async createKpi(
     kpiData: KpiCreationDto,
   ): Promise<{ success: boolean; kpiId?: number; error?: any }> {
@@ -35,18 +30,28 @@ export class KpiService {
     return { success: true, kpiId };
   }
 
-  // Call the RPC function to fetch KPI details for the gatekeeper
-  async fetchGatekeeperKpis(
-    gatekeeperId: number,
-  ): Promise<{ success: boolean; data?: any[]; error?: any }> {
-    const { data, error } = await this.service.db.rpc('fetch_gatekeeper_kpis', {
-      gatekeeper_user_id: gatekeeperId,
-    });
+  // Call the RPC function to fetch KPI details
+  async fetchKpis(
+    userId: number,
+    userType: 'gatekeeper' | 'economist',
+  ): Promise<any[]> {
+    try {
+      const rpcMethod =
+        userType === 'gatekeeper'
+          ? 'fetch_gatekeeper_kpis'
+          : 'fetch_economist_kpis';
+      const { data, error } = await this.service.db.rpc(rpcMethod, {
+        [`${userType}_user_id`]: userId,
+      });
 
-    if (error) {
-      return { success: false, error };
+      if (error) {
+        throw new Error(`Error fetching ${userType} KPIs: ${error}`);
+      }
+
+      return data;
+    } catch (err) {
+      console.error(`An error occurred fetching ${userType} KPIs:`, err);
+      throw err;
     }
-
-    return { success: true, data };
   }
 }

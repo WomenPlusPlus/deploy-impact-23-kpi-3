@@ -17,12 +17,6 @@ import { KpiCreationDto } from '../../common/dto/kpi-creation.dto';
 export class KpiController {
   constructor(private readonly kpiService: KpiService) {}
 
-  @Put('submit')
-  @UsePipes(new ValidationPipe())
-  submitKpi(@Body() data: KpiDto) {
-    return this.kpiService.processKpiData(data);
-  }
-
   @Put('create')
   // @UsePipes(new ValidationPipe())
   async createKpi(@Body() createKpi: KpiCreationDto) {
@@ -45,12 +39,22 @@ export class KpiController {
   }
 
   // To fetch KPI details for the gatekeeper
-  @Get('gatekeeper-kpis')
+  @Get('gatekeeper-list')
   fetchGatekeeperKpis(@Query('gatekeeperId') gatekeeperId?: number) {
     if (!gatekeeperId) {
       gatekeeperId = 3; // Default to ID 3 if none is provided. For testing
     }
 
-    return this.kpiService.fetchGatekeeperKpis(gatekeeperId);
+    return this.kpiService.fetchKpis(gatekeeperId, 'gatekeeper');
+  }
+
+  // To fetch KPI details for the economist
+  @Get('economist-list')
+  fetchEconomistIdKpis(@Query('economistId') economistId?: number) {
+    if (!economistId) {
+      economistId = 2; // Default to ID 2 if none is provided. For testing
+    }
+
+    return this.kpiService.fetchKpis(economistId, 'economist');
   }
 }
