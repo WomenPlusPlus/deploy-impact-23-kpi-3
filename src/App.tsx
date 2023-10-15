@@ -50,12 +50,13 @@ function App() {
 		
 			<Routes>
 				<Route path="/" element={<Outlet />}>
-					<Route index element={<LandingPage />}/>
+					<Route index element={<KpiTable/>}/>
 					<Route path="circle/:id/kpis/create" element={<CreateKpiFormPage />}/>
 					<Route path="circle/:id/kpis/:id/add-value" element={<AddKpiValueFormPage />}/>
 					<Route path="circle/:id/kpis" element={<DefinedKpisListPage />}/>
 					<Route path="circle/:id/analytics" element={<AnalyticsPage />}/>
-					<Route path="*" element={<NoMatchPage />}/>
+				
+				
 				</Route>
 			</Routes>
 			

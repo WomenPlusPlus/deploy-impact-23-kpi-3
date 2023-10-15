@@ -1,47 +1,35 @@
+
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { StyleCard, StyleForm } from './styled';
 import {Button, Card} from 'antd';
-import {PlusOutlined, SettingOutlined} from '@ant-design/icons';
-import styled from 'styled-components';
+import {Link} from 'react-router-dom';
 
-
-const KpiCard = styled(Card)`
-
-display:;
-  flex-direction:column;
-  margin: 1rem;
-  max-width: 25rem;
-  min-width: 25rem;
-  min-height: 10rem;
-  max-height: 10rem;
-
-  .ant-card-body {
-    flex-grow: 1;
-  }
-
-  `
-export interface CardProps{
-
-  KpiTable_name: string,
-  
+interface CardProps {
+  KpiTable_name: string 
+  onAddClick: () => void;
 }
 
-export const KpiTableCard = ({ KpiTable_name}: CardProps) =>(
-   <KpiCard
-   title={KpiTable_name}
-		bordered
+export const KpiTableCard = ({ KpiTable_name, onAddClick }: CardProps) => {
+  return (
+    <StyleForm
+		title = {KpiTable_name}
 		actions={[
-      <Link to ={"../DefineKpiForm"}>
-
-      <Button type = "link"> Add Value</Button>
+			<Link to = {"/DefinedKpiList"}>
+				<Button type="link">
+					Add Value
+				</Button>
 			</Link>
-			
-			
-			
 		]}
-	       >
-	</KpiCard>
-);
+	>
+  </StyleForm>
+  );
+};
+
+
+
+
+
+
 
 
     

@@ -355,11 +355,16 @@ export const DefinedKpisListPage = () => {
 					<List
 						dataSource={data}
 						renderItem={(item) => (
-							<List.Item key={item.email}>
-								<List.Item.Meta
-									title={<a href="https://ant.design">{item.name.last}</a>}
-									description={item.email}
-								/>
+							<List.Item>
+								<Card
+									title={item.kpi}
+									extra={
+										<Text italic>
+											{new Date(`${item.period_year}-${item.period_month}`).toLocaleString('default', {month: 'long'})}
+											&nbsp;
+											{item.period_year}
+										</Text>
+									}></Card>
 							</List.Item>
 						)}
 					>
