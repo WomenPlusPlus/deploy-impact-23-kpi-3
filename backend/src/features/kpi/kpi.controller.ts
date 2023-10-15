@@ -18,7 +18,7 @@ export class KpiController {
   constructor(private readonly kpiService: KpiService) {}
 
   @Put('create')
-  // @UsePipes(new ValidationPipe())
+  @UsePipes(new ValidationPipe())
   async createKpi(@Body() createKpi: KpiCreationDto) {
     const result = await this.kpiService.createKpi(createKpi);
 
@@ -40,21 +40,14 @@ export class KpiController {
 
   // To fetch KPI details for the gatekeeper
   @Get('gatekeeper-list')
-  fetchGatekeeperKpis(@Query('gatekeeperId') gatekeeperId?: number) {
-    if (!gatekeeperId) {
-      gatekeeperId = 3; // Default to ID 3 if none is provided. For testing
-    }
-
-    return this.kpiService.fetchKpis(gatekeeperId, 'gatekeeper');
+  // Default to ID 3 if none is provided. For testing
+  fetchGatekeeperKpis(@Query('gatekeeperId') gatekeeperId: number = 3) {
+    return this.kpiService.fetchKpis(+gatekeeperId, 'gatekeeper');
   }
 
   // To fetch KPI details for the economist
   @Get('economist-list')
-  fetchEconomistIdKpis(@Query('economistId') economistId?: number) {
-    if (!economistId) {
-      economistId = 2; // Default to ID 2 if none is provided. For testing
-    }
-
+  fetchEconomistIdKpis(@Query('economistId') economistId: number = 2) {
     return this.kpiService.fetchKpis(economistId, 'economist');
   }
 }
