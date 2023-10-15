@@ -2,6 +2,7 @@ import {
   Controller,
   Get,
   Put,
+  Query,
   Body,
   UsePipes,
   ValidationPipe,
@@ -16,14 +17,8 @@ import { KpiCreationDto } from '../../common/dto/kpi-creation.dto';
 export class KpiController {
   constructor(private readonly kpiService: KpiService) {}
 
-  @Put('submit')
-  @UsePipes(new ValidationPipe())
-  submitKpi(@Body() data: KpiDto) {
-    return this.kpiService.processKpiData(data);
-  }
-
   @Put('create')
-  // @UsePipes(new ValidationPipe())
+  @UsePipes(new ValidationPipe())
   async createKpi(@Body() createKpi: KpiCreationDto) {
     const result = await this.kpiService.createKpi(createKpi);
 
@@ -41,5 +36,18 @@ export class KpiController {
       message: 'KPI successfully created!',
       kpiId: result.kpiId,
     };
+  }
+
+  // To fetch KPI details for the gatekeeper
+  @Get('gatekeeper-list')
+  // Default to ID 3 if none is provided. For testing
+  fetchGatekeeperKpis(@Query('gatekeeperId') gatekeeperId: number = 3) {
+    return this.kpiService.fetchKpis(+gatekeeperId, 'gatekeeper');
+  }
+
+  // To fetch KPI details for the economist
+  @Get('economist-list')
+  fetchEconomistIdKpis(@Query('economistId') economistId: number = 2) {
+    return this.kpiService.fetchKpis(economistId, 'economist');
   }
 }
