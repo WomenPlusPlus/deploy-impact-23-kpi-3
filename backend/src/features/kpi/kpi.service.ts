@@ -45,7 +45,10 @@ export class KpiService {
       });
 
       if (error) {
-        throw new Error(`Error fetching ${userType} KPIs: ${error}`);
+        console.error('Error:', JSON.stringify(error, null, 2));
+        throw new Error(
+          `Error fetching ${userType} KPIs: ${JSON.stringify(error)}`,
+        );
       }
 
       return data;
