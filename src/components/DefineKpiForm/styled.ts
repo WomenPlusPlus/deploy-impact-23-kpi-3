@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import {Card, Form, Space} from 'antd';
 
 export const SCardForm = styled(Card)`
-	min-width: 100%;
+	min-height: 30rem;
 	max-width: 100%;
 	padding: 3rem;
 `
