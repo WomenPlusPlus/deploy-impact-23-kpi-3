@@ -20,6 +20,7 @@ export const AnalyticsPage = () => {
 	useEffect(() => {
 		const getValues = async () => {
 			try {
+				// const response = await fetch('https://7923-2001-861-5e61-e390-309d-9494-a058-10c9.ngrok-free.app/kpi/economist-list?economistId=2');
 				const response = await fetch('http://localhost:3200/kpi/economist-list?economistId=2');
 				const rows = await response.json();
 				setState({
@@ -71,7 +72,7 @@ export const AnalyticsPage = () => {
 						key: 'kpi_id',
 						render: (_, kpi_id: string) => (
 							<Link to={`circle/${kpi_id}/kpis`}>
-								<Button type="primary" style={{ borderRadius: 0, fontWeight: 600 }}>
+								<Button type="primary">
 									Add Value
 								</Button>
 							</Link>

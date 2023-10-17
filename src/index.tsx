@@ -14,10 +14,17 @@ root.render(
 		<ConfigProvider
 			theme={{
 				token: {
-					// Seed Token
 					colorPrimary: '#fecc33',
 					borderRadius: 0,
-
+				},
+				components: {
+					Button: {
+						colorPrimary: '#fecc33',
+						colorWhite: '#000000',
+						algorithm: true,
+						borderRadius: 0,
+						fontWeight: 600
+					},
 				},
 			}}
 		>

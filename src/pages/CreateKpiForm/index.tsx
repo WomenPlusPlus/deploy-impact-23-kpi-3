@@ -31,7 +31,7 @@ export const CreateKpiFormPage = () => {
 			loading: true,
 		})
 		try {
-			const response = await fetch('http://localhost:3200/kpi/create', {
+			const response = await fetch('https://7923-2001-861-5e61-e390-309d-9494-a058-10c9.ngrok-free.app/kpi/create', {
 				method: 'PUT',
 				body: JSON.stringify(formValues),
 				headers: { 'Content-Type': 'application/json' },
@@ -56,7 +56,10 @@ export const CreateKpiFormPage = () => {
 			try {
 				const valuesToFetch = ['circles', 'periodicities', 'units'];
 				const data = await Promise.all(
-					valuesToFetch.map(v => fetch(`http://localhost:3200/${v}`)
+					valuesToFetch.map(v => fetch(
+						'http://localhost:3200/kpi/create'
+						// `https://7923-2001-861-5e61-e390-309d-9494-a058-10c9.ngrok-free.app/${v}`
+						)
 						.then(async (r) => await r.json())
 					)
 				);
