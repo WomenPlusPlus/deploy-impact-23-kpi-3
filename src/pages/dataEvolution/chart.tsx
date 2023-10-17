@@ -6,7 +6,7 @@ import {
     CartesianGrid,
     Tooltip,
     Legend
-  } from "recharts";
+  } from "recharts"; 
 
   interface ReusableBarChartProps {
     data: any;  

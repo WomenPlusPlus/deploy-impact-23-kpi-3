@@ -10,7 +10,7 @@ import {NoMatchPage} from './pages/NoMatch'
 import { Menu } from 'antd';
 import {AnalyticsPage} from './pages/Analytics';
 import { DataEvolution } from './pages/dataEvolution';
-const { Header, Content} = Layout;
+const { Header, Content} = Layout; 
 const { Title} = Typography;
 
 function App() {
