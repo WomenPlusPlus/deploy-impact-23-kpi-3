@@ -49,8 +49,8 @@ export const LandingPage = () => {
 						<CircleCard
 							key={c.id}
 							circle_id={c.id}
-							circle_description={c.description}
 							circle_name={c.name}
+							updated_at={c.updated_at}
 						></CircleCard>
 					))
 				}

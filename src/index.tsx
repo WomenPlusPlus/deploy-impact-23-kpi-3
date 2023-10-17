@@ -15,7 +15,6 @@ root.render(
 			theme={{
 				token: {
 					colorPrimary: '#fecc33',
-					borderRadius: 0,
 				},
 				components: {
 					Button: {

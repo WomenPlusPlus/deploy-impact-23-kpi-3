@@ -37,6 +37,9 @@ function App() {
 						<Menu.Item>
 							<Link to="/circle/1/kpis/kpi___id/add-value">Add Value (will be moved)</Link>
 						</Menu.Item>
+						<Menu.Item>
+							<Link to="circle/${circle_id}/kpis">GateKeeper KPIs List (will be moved)</Link>
+						</Menu.Item>
 					</Menu>
 				</div>
 			</Header>

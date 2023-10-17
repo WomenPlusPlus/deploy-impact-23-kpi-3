@@ -25,7 +25,7 @@ export const AnalyticsPage = () => {
 				const rows = await response.json();
 				setState({
 					...state,
-					data: rows,
+					data: rows.map((r: {key: string}, i: number) => ({...r, key: `${r.key}-${i}`})),
 					loading: false,
 				})
 
@@ -69,7 +69,7 @@ export const AnalyticsPage = () => {
 					{
 						title: '',
 						dataIndex: 'kpi_id',
-						key: 'kpi_id',
+						key: 'custom_id',
 						render: (_, kpi_id: string) => (
 							<Link to={`circle/${kpi_id}/kpis`}>
 								<Button type="primary">
