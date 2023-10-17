@@ -2,48 +2,57 @@ import React from 'react';
 import {Routes, Route, Outlet, Link} from 'react-router-dom';
 import {Layout, Typography} from 'antd';
 import './App.css';
-import {KpisDefinitionPage} from './pages/KpisDefinition'
+import {DefinedKpisListPage} from './pages/DefinedKpisList'
+import {CreateKpiFormPage} from './pages/CreateKpiForm';
+import {AddKpiValueFormPage} from './pages/AddKpiValueForm';
 import {LandingPage} from './pages/Landing'
 import {NoMatchPage} from './pages/NoMatch'
+import { Menu } from 'antd';
 import {AnalyticsPage} from './pages/Analytics';
- import { StyledHeader ,StyledTitle, StyledMenu} from './styles.js';
-import {Menu} from 'antd';
- 
- 
-
+import { DataEvolution } from './pages/dataEvolution';
+const { Header, Content} = Layout;
+const { Title} = Typography;
 
 function App() {
-return (
- 	<Layout>
-	  <StyledHeader>
-		<StyledTitle level={4} >
-		  Golden Keys
-		</StyledTitle>
-		<div>
-		  <StyledMenu mode="horizontal">
-			<Menu.Item>
-			  <Link to="/">Home</Link>
-			</Menu.Item>
-			<Menu.Item>
-			  <Link to="/kpis">KPIs</Link>
-			</Menu.Item>
-			<Menu.Item>
-			  <Link to="/analytics">Analytics</Link>
-			</Menu.Item>
-		  </StyledMenu>
-		</div>
-	  </StyledHeader>
- 		<Routes>
-
+	return (
+		<Layout>
+			<Header
+				style={{
+					position: 'sticky',
+					top: 0,
+					zIndex: 1,
+					width: '100%',
+					display: 'flex',
+					alignItems: 'center',
+					justifyContent: 'flex-start',
+				}}>
+				<Title level={4} style={{color: 'lightgrey', margin: '0 1rem'}}>Golden Keys</Title>
+				<div style={{minWidth: 200}}>
+					<Menu
+						theme="dark"
+						mode="horizontal"
+					>
+						<Menu.Item>
+							<Link to="/">Home</Link>
+						</Menu.Item>
+						<Menu.Item>
+							<Link to="/circle/1/kpis/kpi___id/add-value">Add Value (will be moved)</Link>
+						</Menu.Item>
+					</Menu>
+				</div>
+			</Header>
+			<Routes>
 				<Route path="/" element={<Outlet />}>
 					<Route index element={<LandingPage />}/>
-					<Route path="kpis" element={<KpisDefinitionPage />}/>
-					<Route path="analytics" element={<AnalyticsPage />}/>
+					<Route path="circle/:id/kpis/create" element={<CreateKpiFormPage />}/>
+					<Route path="circle/:id/kpis/:id/add-value" element={<AddKpiValueFormPage />}/>
+					<Route path="circle/:id/kpis" element={<DefinedKpisListPage />}/>
+					<Route path="circle/:id/analytics" element={<AnalyticsPage />}/>
+					<Route path="data" element={<DataEvolution/>}/>
 					<Route path="*" element={<NoMatchPage />}/>
 				</Route>
 			</Routes>
 		</Layout>
- 
 	);
 }
 
@@ -95,7 +104,7 @@ return (
 // 			<Content style={{margin: '3rem', overflow: 'initial'}}>
 // 				<Row align="middle" justify="center">
 // 					<Col span={20}>
-// 						<Card title="Card title" bordered>
+// 						<CircleCard title="CircleCard title" bordered>
 // 							<div style={{height: 500, width: '100%'}}>
 // 								{
 // 									state.error && <Title>Error</Title>
@@ -128,13 +137,13 @@ return (
 //                     </ResponsiveContainer>
 // 								}
 // 							</div>
-// 						</Card>
+// 						</CircleCard>
 // 					</Col>
 // 				</Row>
 // 				<Divider/>
 // 				<Row align="middle" justify="center">
 // 					<Col span={20}>
-// 						<Card title="Card title" bordered style={{height: 600}}>
+// 						<CircleCard title="CircleCard title" bordered style={{height: 600}}>
 // 							<div style={{height: 500, width: '100%'}}>
 // 								{
 // 									state.error && <Title>Error</Title>
@@ -167,7 +176,7 @@ return (
 //                     </ResponsiveContainer>
 // 								}
 // 							</div>
-// 						</Card>
+// 						</CircleCard>
 // 					</Col>
 // 				</Row>
 // 			</Content>
