@@ -1,20 +1,59 @@
 import {Content} from 'antd/es/layout/layout';
-import {circles} from '../../utils/constants';
-import {Card} from 'antd';
+import {CircleCard} from '../../components/CircleCard';
 import './style.scss';
+import {useEffect, useState} from 'react';
 
-export const LandingPage = () => (
-	<Content style={{margin: '3rem', overflow: 'initial'}}>
-		<div className="circles-container">
-			{
-				circles.map((c) => (
-					<Card title={c.label} bordered style={{ margin: '1rem' }}>
-						<div style={{height: 100, minWidth: 300}}>
-							{c.description}
-						</div>
-					</Card>
-				))
+export const LandingPage = () => {
+	const [state, setState] = useState<{
+		error: string | null,
+		data: Array<any>,
+		loading: boolean,
+	}>({
+		error: null,
+		data: [],
+		loading: true,
+	});
+	useEffect(() => {
+		const getCircles = async () => {
+			try {
+				const response = await fetch('http://localhost:3200/circles')
+				const data = await response.json();
+				if(response.ok) {
+					setState({
+						...state,
+						data,
+						loading: false,
+					})
+				} else {
+					throw Error(data);
+				}
+
+			} catch (e: any) {
+				setState({
+					...state,
+					loading: false,
+					error: e,
+				})
 			}
-		</div>
-	</Content>
-);
+		}
+		getCircles();
+	}, []);
+	return (
+		<Content style={{margin: '3rem', overflow: 'initial'}}>
+			<div className="circles-container">
+				{state.loading && (<span>Loading</span>)}
+				{state.error && (<span>error</span>)}
+				{
+					state.data && state.data.map((c: any) => (
+						<CircleCard
+							key={c.id}
+							circle_id={c.id}
+							circle_description={c.description}
+							circle_name={c.name}
+						></CircleCard>
+					))
+				}
+			</div>
+		</Content>
+	)
+};

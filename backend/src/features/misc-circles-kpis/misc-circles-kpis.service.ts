@@ -3,6 +3,9 @@ import {circlesKpis} from './data/misc-circles-kpis-data'
 import {fakeData} from './data/fakeData'
 import {MiscCirclesKpisResponseDto} from './dto/misc-circles-kpis-response-dto';
 import {DbConnectionService} from '../../core/db-connection/db-connection.service';
+import {CircleCreateDto} from "./dto/circle-create-dto";
+import * as fs from "fs";
+
 
 @Injectable()
 export class MiscCirclesKpisService {
@@ -15,25 +18,26 @@ export class MiscCirclesKpisService {
 		return fakeData;
 	}
 	async fetchPhoneCallsRpcPlSql() {
-		const { data, error } = await this.service.db.rpc('all_phone_calls_plsql');
+		const { data, error } = await this.service.db.rpc('_test_all_phone_calls_plsql');
 		return error || data;
 	}
 	async fetchPhoneCallsRpc() {
-		const { data, error } = await this.service.db.rpc('get_all_phone_calls');
+		const { data, error } = await this.service.db.rpc('_test_get_all_phone_calls');
 		return error || data;
 	}
 	async fetchTasksJoinMembersRpc() {
-		const { data, error } = await this.service.db.rpc('get_tasks_teammembers');
+		const { data, error } = await this.service.db.rpc('_test_get_tasks_teammembers');
 		return error || data;
 	}
 	async fetchPhoneCalls() {
-		const { data, error } = await this.service.db.from('phone_calls').select('*');
+		const { data, error } = await this.service.db.from('_test_phone_calls').select('*');
 		return error || data;
 	}
 
 	async insertPhoneCall(newCall) {
+		console.log(newCall);
 		const { data, error } = await this.service.db
-			.from('phone_calls')
+			.from('_test_phone_calls')
 			.insert([
 				newCall
 			])
@@ -43,7 +47,7 @@ export class MiscCirclesKpisService {
 
 	async deletePhoneCall(id) {
 		const { error } = await this.service.db
-			.from('phone_calls')
+			.from('_test_phone_calls')
 			.delete()
 			.eq('id', id)
 		return error;

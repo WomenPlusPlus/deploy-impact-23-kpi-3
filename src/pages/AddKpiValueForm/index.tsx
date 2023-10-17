@@ -1,0 +1,1 @@
+export const AddKpiValueFormPage = () => (<div>Add kpi value Form</div>)
