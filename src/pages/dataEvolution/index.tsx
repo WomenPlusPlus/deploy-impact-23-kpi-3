@@ -38,7 +38,6 @@ const data = [
     pv : 2200,
     amt : 2600
 }
-
   ]
 
 

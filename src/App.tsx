@@ -13,7 +13,7 @@ import { DataEvolution } from './pages/dataEvolution';
 const { Header, Content} = Layout; 
 const { Title} = Typography;
 
-function App() {
+function App() { 
 	return (
 		<Layout>
 			<Header
