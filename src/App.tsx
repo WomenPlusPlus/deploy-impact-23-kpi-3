@@ -9,7 +9,7 @@ import {LandingPage} from './pages/Landing'
 import {NoMatchPage} from './pages/NoMatch'
 import { Menu } from 'antd';
 import {AnalyticsPage} from './pages/Analytics';
-import Barchart from './components/BarChart/index';
+import {EvolutionPage} from './pages/Evolution';
 const { Header, Content} = Layout;
 const { Title} = Typography;
 
@@ -39,10 +39,10 @@ function App() {
 							<Link to="/circle/1/kpis/kpi___id/add-value">Add Value (will be moved)</Link>
 						</Menu.Item>
 						<Menu.Item>
-							<Link to="circle/${circle_id}/kpis">GateKeeper KPIs List (will be moved)</Link>
+							<Link to="circle/circle_id/kpis">GateKeeper KPIs List (will be moved)</Link>
 						</Menu.Item>
 						<Menu.Item>
-							<Link to="circle/${circle_id}/barchart">Barchart (will be moved)</Link>
+							<Link to="circle/circle_id/evolution">Barchart (will be moved)</Link>
 						</Menu.Item>
 					</Menu>
 				</div>
@@ -54,7 +54,7 @@ function App() {
 					<Route path="circle/:id/kpis/:id/add-value" element={<AddKpiValueFormPage />}/>
 					<Route path="circle/:id/kpis" element={<DefinedKpisListPage />}/>
 					<Route path="circle/:id/analytics" element={<AnalyticsPage />}/>
-					<Route path="circle/:id/barchart" element={<Barchart/>}/>
+					<Route path="circle/:id/evolution" element={<EvolutionPage/>}/>
 
 					<Route path="*" element={<NoMatchPage />}/>
 				</Route>
