@@ -27,6 +27,47 @@ export class MiscCirclesKpisController {
 	getPhoneCallsRpcPlSql() {
 		return this.service.fetchPhoneCallsRpcPlSql();
 	}
+	@Get('evolution1')
+	getEvolution() {
+		return [
+			{
+				name: "Jan",
+				uv: 6000,
+				pv: 2400,
+				amt: 2000
+			},
+			{
+				name: "Feb",
+				uv: 4000,
+				pv: 2000,
+				amt : 1800
+			},
+			{
+				name : "Mar",
+				uv : 3000,
+				pv : 1200,
+				amt : 1600
+			},
+			{
+				name: "Apr",
+				uv: 4200,
+				pv: 1400,
+				amt: 1000
+			},
+			{
+				name: "May",
+				uv: 5000,
+				pv: 2200,
+				amt : 1200
+			},
+			{
+				name : "Jun",
+				uv : 1000,
+				pv : 2200,
+				amt : 2600
+			}
+		];
+	}
 	@Get('phone-calls-rpc')
 	getPhoneCallsRpc() {
 		return this.service.fetchPhoneCallsRpc();

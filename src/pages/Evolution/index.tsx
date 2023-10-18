@@ -6,6 +6,7 @@ import Barchart from "../../components/dataviz/Barchart";
 import Linechart from "../../components/dataviz/Linechart";
 
 const {Title} = Typography;
+// endpoint for test: http://localhost:3200/misc-circles-kpis/evolution1
 
 export const EvolutionPage = ()=>(
 	<Content style={{margin: '3rem', overflow: 'initial'}}>
