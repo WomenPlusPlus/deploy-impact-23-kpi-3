@@ -62,11 +62,9 @@ export class KpiService {
     }
   }
 
-  async getUnitConstraints(
-    kpiId: number,
-  ): Promise<{ min: number; max: number } | PostgrestError> {
+  async getKpiDetailsWithConstraints(kpiId: number): Promise<any> {
     const { data, error } = await this.service.db.rpc(
-      'get_unit_constraints_for_kpi',
+      'get_kpi_and_constraints',
       {
         p_kpi_id: kpiId,
       },
@@ -74,11 +72,13 @@ export class KpiService {
 
     if (error) {
       console.error(
-        'Error fetching unit constraints:',
+        'Error fetching KPI details and unit constraints:',
         JSON.stringify(error, null, 2),
       );
       throw new Error(
-        `Error fetching unit constraints: ${JSON.stringify(error)}`,
+        `Error fetching KPI details and unit constraints: ${JSON.stringify(
+          error,
+        )}`,
       );
     }
 

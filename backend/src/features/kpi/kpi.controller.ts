@@ -57,17 +57,19 @@ export class KpiController {
     return this.kpiService.fetchKpis(economistId, 'economist');
   }
 
-  // To fetch constraints for KPI
-  @Get(':id/unit-constraints')
-  async getUnitConstraints(@Param('id') kpiId: number) {
-    const constraints = await this.kpiService.getUnitConstraints(kpiId);
+  // To fetch details and constraints for a KPI
+  @Get(':id/constraints')
+  async getKpiDetailsWithConstraints(@Param('id') kpiId: number) {
+    const kpiDetails = await this.kpiService.getKpiDetailsWithConstraints(
+      kpiId,
+    );
 
-    if (!constraints) {
+    if (!kpiDetails) {
       throw new NotFoundException(
-        `Constraints for KPI with id ${kpiId} not found`,
+        `Details and constraints for KPI with id ${kpiId} not found`,
       );
     }
 
-    return constraints;
+    return kpiDetails;
   }
 }
