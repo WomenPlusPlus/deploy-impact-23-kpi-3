@@ -1,7 +1,6 @@
 import React from 'react';
 import {Button, DatePicker, Spin, InputNumber, Form} from 'antd';
 import {SFormItemLabel, SFormItem, SCardForm, SSpace} from './styled'
-import {PickerProps} from 'antd/es/calendar/generateCalendar';
 
 export interface AddValueFormDataProps {
 	periodicity: 'DAILY' | 'WEEKLY' | 'MONTHLY' | 'QUARTERLY' | 'YEARLY',

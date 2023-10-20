@@ -63,13 +63,20 @@ export class KpiController {
     const kpiDetails = await this.kpiService.getKpiDetailsWithConstraints(
       kpiId,
     );
-
     if (!kpiDetails) {
       throw new NotFoundException(
         `Details and constraints for KPI with id ${kpiId} not found`,
       );
     }
-
-    return kpiDetails;
+    return {
+      id: kpiDetails.kpi_id,
+      name: kpiDetails.kpi_name,
+      periodicity: kpiDetails.kpi_periodicity,
+      unit: kpiDetails.kpi_unit,
+      unitMin: ['Infinity', '-Infinity'].includes(kpiDetails.min_value) ? null : kpiDetails.min_value.toString(),
+      unitMax: ['Infinity', '-Infinity'].includes(kpiDetails.max_value) ? null : kpiDetails.max_value.toString(),
+      target: kpiDetails.kpi_target?.toString(),
+      value: kpiDetails.latest_filled_value?.toString(),
+    };
   }
 }

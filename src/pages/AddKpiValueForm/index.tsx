@@ -1,14 +1,18 @@
-import {DefineKpiForm, DefineKpiFormDataProps} from '../../components/DefineKpiForm';
+import { AddValueFormDataProps} from '../../components/AddValueForm/';
 import {Content} from 'antd/es/layout/layout';
 import { Typography } from 'antd';
 import {useEffect, useState} from 'react';
 import {AddValueForm} from '../../components/AddValueForm';
+import {useLocation} from 'react-router-dom';
 
 const { Title } = Typography;
 export const AddKpiValueFormPage = () => {
+	const { pathname} = useLocation();
+	const kpiId = pathname.split('/').at(-2);
+
 	const [state, setState] = useState<{
 		error: string | null,
-		data: DefineKpiFormDataProps | null,
+		data: AddValueFormDataProps | null,
 		loading: boolean,
 	}>({
 		error: null,
@@ -56,7 +60,7 @@ export const AddKpiValueFormPage = () => {
 	useEffect(() => {
 		const getValues = async () => {
 			try {
-				const valuesToFetch = ['circles', 'periodicities', 'units'];
+				const valuesToFetch = [`kpi/${kpiId}/constraints`];
 				const data = await Promise.all(
 					valuesToFetch.map(v => fetch(
 							`http://localhost:3200/${v}`
@@ -67,11 +71,7 @@ export const AddKpiValueFormPage = () => {
 				);
 				setState({
 					...state,
-					data: {
-						circles: data[0].map((c: {name: string,id: string }) => ({label: c.name, value: c.id})),
-						frequencies: data[1].map((f: string) => ({label: f, value: f})),
-						units: data[2].map((u: {unit: string}) => ({label: u.unit.toUpperCase(), value: u.unit})),
-					},
+					data: data[0] as unknown as AddValueFormDataProps,
 					loading: false,
 				})
 
@@ -92,14 +92,7 @@ export const AddKpiValueFormPage = () => {
 			</div>
 			<AddValueForm
 				loading={state.loading || submissionState.loading}
-				data={{
-					periodicity: 'YEARLY',
-					unit: 'Count',
-					unitMin: '0',
-					unitMax: null,
-					target: '100',
-					value: '52'
-				}}
+				data={state.data}
 				onSubmit={() => {}}
 			/>
 		</Content>

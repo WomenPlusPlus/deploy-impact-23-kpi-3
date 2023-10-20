@@ -53,30 +53,30 @@ export const AnalyticsPage = () => {
 				columns={[
 					{
 						title: 'KPI Title',
-						dataIndex: 'kpi_title',
-						key: 'kpi_title',
+						dataIndex: 'name',
+						key: 'name',
 					},
 					{
-						title: 'Progress',
-						dataIndex: 'kpi_value',
-						key: 'kpi_value',
+						title: 'Periodicity',
+						dataIndex: 'periodicity',
+						key: 'periodicity',
 					},
 					{
-						title: 'Last Entry Date',
-						dataIndex: 'last_entry_date',
-						key: 'last_entry_date',
+						title: 'Unit',
+						dataIndex: 'unit',
+						key: 'unit',
 					},
 					{
 						title: '',
-						dataIndex: 'kpi_id',
-						key: 'custom_id',
-						render: (_, kpi_id: string) => (
-							<Link to={`circle/${kpi_id}/kpis`}>
+						dataIndex: 'id',
+						key: 'id',
+						render: (_, {id}) => {
+							return (<Link to={`/circle/1/kpis/${id}/add-value`}>
 								<Button type="primary">
 									Add Value
 								</Button>
-							</Link>
-						),
+							</Link>)
+						},
 					},
 				]}
 				loading={state.loading}

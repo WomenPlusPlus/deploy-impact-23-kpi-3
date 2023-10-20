@@ -39,7 +39,7 @@ export class KpiService {
     try {
       const rpcMethodDict = {
         gatekeeper: 'fetch_gatekeeper_kpis',
-        economist: 'fetch_economist_kpis',
+        economist: 'fetch_economist_kpis2',
       };
       const { data, error } = await this.service.db.rpc(
         rpcMethodDict[userType],
