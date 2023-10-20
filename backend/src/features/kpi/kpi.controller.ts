@@ -8,6 +8,8 @@ import {
   ValidationPipe,
   HttpException,
   HttpStatus,
+  NotFoundException,
+  Param,
 } from '@nestjs/common';
 import { KpiService } from './kpi.service';
 import { KpiDto } from './kpi.dto';
@@ -53,5 +55,21 @@ export class KpiController {
   @Get('/:id')
   fetchSngleKpi(@Query('economistId') economistId: number = 2) {
     return this.kpiService.fetchKpis(economistId, 'economist');
+  }
+
+  // To fetch details and constraints for a KPI
+  @Get(':id/constraints')
+  async getKpiDetailsWithConstraints(@Param('id') kpiId: number) {
+    const kpiDetails = await this.kpiService.getKpiDetailsWithConstraints(
+      kpiId,
+    );
+
+    if (!kpiDetails) {
+      throw new NotFoundException(
+        `Details and constraints for KPI with id ${kpiId} not found`,
+      );
+    }
+
+    return kpiDetails;
   }
 }
