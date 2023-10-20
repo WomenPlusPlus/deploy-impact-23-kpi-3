@@ -50,4 +50,8 @@ export class KpiController {
   fetchEconomistIdKpis(@Query('economistId') economistId: number = 2) {
     return this.kpiService.fetchKpis(economistId, 'economist');
   }
+  @Get('/:id')
+  fetchSngleKpi(@Query('economistId') economistId: number = 2) {
+    return this.kpiService.fetchKpis(economistId, 'economist');
+  }
 }

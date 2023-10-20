@@ -11,7 +11,7 @@ export class KpiService {
 	async createKpi(
 		kpiData: KpiCreationDto,
 	): Promise<{ success: boolean; kpiId?: number; error?: any }> {
-		const {circles, title, periodicity, unit, archived_at, closed_at} =
+		const {circles, title, periodicity, unit, archived_at, closed_at, target_year} =
 			kpiData;
 
 		// Call the RPC function to create a new KPI entry
@@ -22,6 +22,7 @@ export class KpiService {
 			kpi_archived_at: archived_at,
 			kpi_closed_at: closed_at,
 			circle_ids: circles,
+			target_year: target_year,
 		});
 
 		if (error) {
