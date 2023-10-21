@@ -3,6 +3,7 @@ import { KpiDto } from './kpi.dto';
 import { DbConnectionService } from '../../core/db-connection/db-connection.service';
 import { KpiCreationDto } from '../../common/dto/kpi-creation.dto';
 import { PostgrestError } from '@supabase/postgrest-js';
+import { AddValueDto } from '../../common/dto/add-value.dto';
 
 @Injectable()
 export class KpiService {
@@ -83,5 +84,36 @@ export class KpiService {
     }
 
     return data[0];
+  }
+
+  async addKpiValue(
+    kpiId: number,
+    userId: number,
+    kpiValueDto: AddValueDto,
+  ): Promise<any> {
+    try {
+      const { value, date } = kpiValueDto;
+
+      const { data: response, error } = await this.service.db.rpc(
+        'add_kpi_value',
+        {
+          kpi_date: date,
+          kpi_value: value,
+          p_kpi_id: kpiId,
+          p_user_id: userId,
+          updated_by: userId,
+        },
+      );
+
+      if (error) {
+        console.error('Error:', JSON.stringify(error, null, 2));
+        throw new Error(`Error adding KPI value: ${JSON.stringify(error)}`);
+      }
+
+      return response;
+    } catch (err) {
+      console.error('An error occurred adding KPI value:', err);
+      throw err;
+    }
   }
 }
