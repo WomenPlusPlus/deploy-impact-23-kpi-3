@@ -98,7 +98,9 @@ export class KpiController {
         {
           status: HttpStatus.INTERNAL_SERVER_ERROR,
           error:
-            result.error?.message || 'There was an error adding the KPI value',
+            result && result.error
+              ? result.error.message
+              : 'There was an error adding the KPI value',
         },
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
