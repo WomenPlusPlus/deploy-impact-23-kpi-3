@@ -1,5 +1,5 @@
 import type { Preview } from "@storybook/react";
-import {reactRouterOutlet, reactRouterParameters, withRouter} from 'storybook-addon-react-router-v6';
+import {withRouter} from 'storybook-addon-react-router-v6';
 
 const preview: Preview = {
   decorators: [withRouter],
@@ -13,6 +13,13 @@ const preview: Preview = {
     },
     reactRouter: {
       reactPath: '/myroute',
+    },
+    customizeAntdTheme: {
+      modifyVars: {
+        colorPrimary: '#fecc33',
+        colorWhite: '#000000',
+        borderRadius: 2,
+      },
     },
   },
 };

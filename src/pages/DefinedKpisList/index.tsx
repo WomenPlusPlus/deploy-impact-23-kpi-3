@@ -1,376 +1,99 @@
-import {Avatar, Button, Card, Checkbox, Form, Input, List} from 'antd';
 import {Content} from 'antd/es/layout/layout';
-import './style.scss';
-import {Typography} from 'antd';
+import {Button, Typography} from 'antd';
+import {KpisTable} from '../../components/KpisTable';
+import {Link} from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
 
-const {Text} = Typography;
+const {Title} = Typography;
 
-const data = [
-	{
-		'circle': 'HR',
-		'kpi': 'share of teams constituted as circles',
-		'periodicity': 'month',
-		'range': '0 <= % <= 100',
-		'period_year': 2023,
-		'period_month': 1,
-		'value': 35,
-	},
-	{
-		'circle': 'HR',
-		'kpi': 'share of teams constituted as circles',
-		'periodicity': 'month',
-		'range': '0 <= % <= 100',
-		'period_year': 2023,
-		'period_month': 2,
-		'value': 50,
-	},
-	{
-		'circle': 'HR',
-		'kpi': 'share of teams constituted as circles',
-		'periodicity': 'month',
-		'range': '0 <= % <= 100',
-		'period_year': 2023,
-		'period_month': 3,
-		'value': 50,
-	},
-	{
-		'circle': 'HR',
-		'kpi': 'share of teams constituted as circles',
-		'periodicity': 'month',
-		'range': '0 <= % <= 100',
-		'period_year': 2023,
-		'period_month': 4,
-		'value': 55,
-	},
-	{
-		'circle': 'HR',
-		'kpi': 'share of teams constituted as circles',
-		'periodicity': 'month',
-		'range': '0 <= % <= 100',
-		'period_year': 2023,
-		'period_month': 5,
-		'value': 70,
-	},
-	{
-		'circle': 'HR',
-		'kpi': 'share of teams constituted as circles',
-		'periodicity': 'month',
-		'range': '0 <= % <= 100',
-		'period_year': 2023,
-		'period_month': 6,
-		'value': 80,
-	},
-	{
-		'circle': 'HR',
-		'kpi': 'share of teams constituted as circles',
-		'periodicity': 'month',
-		'range': '0 <= % <= 100',
-		'period_year': 2023,
-		'period_month': 7,
-		'value': 85,
-	},
-	{
-		'circle': 'HR',
-		'kpi': 'share of teams constituted as circles',
-		'periodicity': 'month',
-		'range': '0 <= % <= 100',
-		'period_year': 2023,
-		'period_month': 8,
-		'value': 90,
-	},
-	{
-		'circle': 'HR',
-		'kpi': 'share of teams constituted as circles',
-		'periodicity': 'month',
-		'range': '0 <= % <= 100',
-		'period_year': 2023,
-		'period_month': 9,
-		'value': '',
-	},
-	{
-		'circle': 'HR',
-		'kpi': 'share of teams constituted as circles',
-		'periodicity': 'month',
-		'range': '0 <= % <= 100',
-		'period_year': 2023,
-		'period_month': 10,
-		'value': '',
-	},
-	{
-		'circle': 'HR',
-		'kpi': 'share of teams constituted as circles',
-		'periodicity': 'month',
-		'range': '0 <= % <= 100',
-		'period_year': 2023,
-		'period_month': 11,
-		'value': '',
-	},
-	{
-		'circle': 'HR',
-		'kpi': 'share of teams constituted as circles',
-		'periodicity': 'month',
-		'range': '0 <= % <= 100',
-		'period_year': 2023,
-		'period_month': 12,
-		'value': '',
-	},
-	{
-		'circle': 'HR',
-		'kpi': 'share short tern leave',
-		'periodicity': 'month',
-		'range': '0 <= % <= 100',
-		'period_year': 2023,
-		'period_month': 1,
-		'value': 2.04,
-	},
-	{
-		'circle': 'HR',
-		'kpi': 'share short tern leave',
-		'periodicity': 'month',
-		'range': '0 <= % <= 100',
-		'period_year': 2023,
-		'period_month': 2,
-		'value': 2.2,
-	},
-	{
-		'circle': 'HR',
-		'kpi': 'share short tern leave',
-		'periodicity': 'month',
-		'range': '0 <= % <= 100',
-		'period_year': 2023,
-		'period_month': 3,
-		'value': 2.54,
-	},
-	{
-		'circle': 'HR',
-		'kpi': 'share short tern leave',
-		'periodicity': 'month',
-		'range': '0 <= % <= 100',
-		'period_year': 2023,
-		'period_month': 4,
-		'value': 2.17,
-	},
-	{
-		'circle': 'HR',
-		'kpi': 'share short tern leave',
-		'periodicity': 'month',
-		'range': '0 <= % <= 100',
-		'period_year': 2023,
-		'period_month': 5,
-		'value': 3.3,
-	},
-	{
-		'circle': 'HR',
-		'kpi': 'share short tern leave',
-		'periodicity': 'month',
-		'range': '0 <= % <= 100',
-		'period_year': 2023,
-		'period_month': 6,
-		'value': 2.58,
-	},
-	{
-		'circle': 'HR',
-		'kpi': 'share short tern leave',
-		'periodicity': 'month',
-		'range': '0 <= % <= 100',
-		'period_year': 2023,
-		'period_month': 7,
-		'value': 2.04,
-	},
-	{
-		'circle': 'HR',
-		'kpi': 'share short tern leave',
-		'periodicity': 'month',
-		'range': '0 <= % <= 100',
-		'period_year': 2023,
-		'period_month': 8,
-		'value': 0.93,
-	},
-	{
-		'circle': 'HR',
-		'kpi': 'share short tern leave',
-		'periodicity': 'month',
-		'range': '0 <= % <= 100',
-		'period_year': 2023,
-		'period_month': 9,
-		'value': '',
-	},
-	{
-		'circle': 'HR',
-		'kpi': 'share short tern leave',
-		'periodicity': 'month',
-		'range': '0 <= % <= 100',
-		'period_year': 2023,
-		'period_month': 10,
-		'value': '',
-	},
-	{
-		'circle': 'HR',
-		'kpi': 'share short tern leave',
-		'periodicity': 'month',
-		'range': '0 <= % <= 100',
-		'period_year': 2023,
-		'period_month': 11,
-		'value': '',
-	},
-	{
-		'circle': 'HR',
-		'kpi': 'share short tern leave',
-		'periodicity': 'month',
-		'range': '0 <= % <= 100',
-		'period_year': 2023,
-		'period_month': 12,
-		'value': '',
-	},
-	{
-		'circle': 'HR',
-		'kpi': 'involuntary headcount change (FTE)',
-		'periodicity': 'month',
-		'range': '0 <= % <= 100',
-		'period_year': 2023,
-		'period_month': 1,
-		'value': 2.26,
-	},
-	{
-		'circle': 'HR',
-		'kpi': 'involuntary headcount change (FTE)',
-		'periodicity': 'month',
-		'range': '0 <= % <= 100',
-		'period_year': 2023,
-		'period_month': 2,
-		'value': 0.98,
-	},
-	{
-		'circle': 'HR',
-		'kpi': 'involuntary headcount change (FTE)',
-		'periodicity': 'month',
-		'range': '0 <= % <= 100',
-		'period_year': 2023,
-		'period_month': 3,
-		'value': 1.47,
-	},
-	{
-		'circle': 'HR',
-		'kpi': 'involuntary headcount change (FTE)',
-		'periodicity': 'month',
-		'range': '0 <= % <= 100',
-		'period_year': 2023,
-		'period_month': 4,
-		'value': 1.46,
-	},
-	{
-		'circle': 'HR',
-		'kpi': 'involuntary headcount change (FTE)',
-		'periodicity': 'month',
-		'range': '0 <= % <= 100',
-		'period_year': 2023,
-		'period_month': 5,
-		'value': 0,
-	},
-	{
-		'circle': 'HR',
-		'kpi': 'involuntary headcount change (FTE)',
-		'periodicity': 'month',
-		'range': '0 <= % <= 100',
-		'period_year': 2023,
-		'period_month': 6,
-		'value': 0,
-	},
-	{
-		'circle': 'HR',
-		'kpi': 'involuntary headcount change (FTE)',
-		'periodicity': 'month',
-		'range': '0 <= % <= 100',
-		'period_year': 2023,
-		'period_month': 7,
-		'value': 0.51,
-	},
-	{
-		'circle': 'HR',
-		'kpi': 'involuntary headcount change (FTE)',
-		'periodicity': 'month',
-		'range': '0 <= % <= 100',
-		'period_year': 2023,
-		'period_month': 8,
-		'value': 1.01,
-	},
-	{
-		'circle': 'HR',
-		'kpi': 'involuntary headcount change (FTE)',
-		'periodicity': 'month',
-		'range': '0 <= % <= 100',
-		'period_year': 2023,
-		'period_month': 9,
-		'value': '',
-	},
-	{
-		'circle': 'HR',
-		'kpi': 'involuntary headcount change (FTE)',
-		'periodicity': 'month',
-		'range': '0 <= % <= 100',
-		'period_year': 2023,
-		'period_month': 10,
-		'value': '',
-	},
-	{
-		'circle': 'HR',
-		'kpi': 'involuntary headcount change (FTE)',
-		'periodicity': 'month',
-		'range': '0 <= % <= 100',
-		'period_year': 2023,
-		'period_month': 11,
-		'value': '',
-	},
-	{
-		'circle': 'HR',
-		'kpi': 'involuntary headcount change (FTE)',
-		'periodicity': 'month',
-		'range': '0 <= % <= 100',
-		'period_year': 2023,
-		'period_month': 12,
-		'value': '',
-	},
-]
 
 export const DefinedKpisListPage = () => {
-	const onFinish = (values: any) => {
-		console.log('Success:', values);
-	};
+	const [state, setState] = useState<{
+		error: string | null,
+		data: Array<any> | null,
+		loading: boolean,
+	}>({
+		error: null,
+		data: null,
+		loading: true,
+	});
+	useEffect(() => {
+		const getValues = async () => {
+			try {
+				const response = await fetch(
+					'http://localhost:3200/kpi/gatekeeper-list?gatekeeperId=3'
+					// 'https://7923-2001-861-5e61-e390-309d-9494-a058-10c9.ngrok-free.app/kpi/gatekeeper-list?gatekeeperId=3'
+				);
+				const rows = await response.json();
+				setState({
+					...state,
+					data: rows,
+					loading: false,
+				})
 
-	const onFinishFailed = (errorInfo: any) => {
-		console.log('Failed:', errorInfo);
-	};
+			} catch (e: any) {
+				setState({
+					...state,
+					loading: false,
+					error: e,
+				})
+			}
+		}
+		getValues();
+	}, []);
 
-	type FieldType = {
-		username?: string;
-		password?: string;
-		remember?: string;
-	};
 
 	return (
 		<Content style={{margin: '3rem', overflow: 'initial'}}>
-			<div className="kpi-def-container">
-				<div className="exiting-kpis-list">
-					<h2>Existing KPIs</h2>
-					<List
-						dataSource={data}
-						renderItem={(item) => (
-							<List.Item>
-								<Card
-									title={item.kpi}
-									extra={
-										<Text italic>
-											{new Date(`${item.period_year}-${item.period_month}`).toLocaleString('default', {month: 'long'})}
-											&nbsp;
-											{item.period_year}
-										</Text>
-									}></Card>
-							</List.Item>
-						)}
-					>
-					</List>
-				</div>
+			<div>
+				<Title level={2}>KPIs Database</Title>
 			</div>
+			<Link to={`create`}>
+				<Button type="primary">
+					Add New KPI
+				</Button>
+			</Link>
+			<div style={{ height: 100 }} className="to_be_removed">
+				&nbsp;
+			</div>
+			<KpisTable
+				columns={[
+					{
+						title: 'KPI Title',
+						dataIndex: 'kpi_title',
+						key: 'kpi_title',
+					},
+					{
+						title: 'Assigned Circles',
+						dataIndex: 'assigned_circles',
+						key: 'assigned_circles',
+					},
+					{
+						title: 'Economist',
+						dataIndex: 'economist_names',
+						key: 'economist_names',
+					},
+					{
+						title: 'Last Entry Date',
+						dataIndex: 'last_entry_date',
+						key: 'last_entry_date',
+					},
+					{
+						title: '',
+						dataIndex: 'kpi_id',
+						key: 'kpi_id',
+						render: (_, kpi_id: string) => (
+							<Link to={`circle/${kpi_id}/kpis`}>
+								<Button type="primary">
+									Edit KPI
+								</Button>
+							</Link>
+						),
+					},
+				]}
+				loading={state.loading}
+				rows={state.data}
+			></KpisTable>
 		</Content>
 	)
 }

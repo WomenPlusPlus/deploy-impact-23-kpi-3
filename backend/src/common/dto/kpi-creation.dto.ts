@@ -30,4 +30,7 @@ export class KpiCreationDto {
   @IsOptional()
   @IsString()
   closed_at?: string;
+
+  @IsNotEmpty()
+  target_year: number;
 }

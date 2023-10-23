@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/react';
 import {CircleCard} from '../components/CircleCard';
+import {Meta, StoryObj} from '@storybook/react';
 
 const meta = {
 	title: 'Example/CircleCard',
@@ -9,11 +9,10 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
 export const Default: Story = {
 	args: {
-		circle_id: 'id',
-		circle_description: 'description for children KPI',
-		circle_name: 'Childhood KPI',
-	},
+		circle_id: 'circle_key',
+		circle_name: 'HR',
+		updated_at: '2022-05-01 17:55',
+	}
 };

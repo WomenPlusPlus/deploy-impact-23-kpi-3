@@ -17,6 +17,7 @@ export const LandingPage = () => {
 		const getCircles = async () => {
 			try {
 				const response = await fetch('http://localhost:3200/circles')
+				// const response = await fetch('https://7923-2001-861-5e61-e390-309d-9494-a058-10c9.ngrok-free.app/circles')
 				const data = await response.json();
 				if(response.ok) {
 					setState({
@@ -46,10 +47,10 @@ export const LandingPage = () => {
 				{
 					state.data && state.data.map((c: any) => (
 						<CircleCard
-							key={c.circle_id}
-							circle_id={c.circle_id}
-							circle_description={c.description}
+							key={c.id}
+							circle_id={c.id}
 							circle_name={c.name}
+							updated_at={c.updated_at}
 						></CircleCard>
 					))
 				}

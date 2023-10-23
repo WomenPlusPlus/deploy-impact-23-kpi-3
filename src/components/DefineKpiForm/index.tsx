@@ -49,7 +49,7 @@ export const DefineKpiForm = ({
 					</SSpace>
 				)
 			}
-			{data && (
+			{data && !loading && (
 				<Form
 					name="define-kpi"
 					labelCol={{span: 4}}
