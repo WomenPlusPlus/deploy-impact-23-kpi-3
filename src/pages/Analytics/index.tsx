@@ -25,7 +25,7 @@ export const AnalyticsPage = () => {
 				const rows = await response.json();
 				setState({
 					...state,
-					data: rows.map((r: {key: string}, i: number) => ({...r, key: `${r.key}-${i}`})),
+					data: rows.map((r: {kpi_key: string}, i: number) => ({...r, key: r.kpi_key})),
 					loading: false,
 				})
 
@@ -53,30 +53,30 @@ export const AnalyticsPage = () => {
 				columns={[
 					{
 						title: 'KPI Title',
-						dataIndex: 'name',
-						key: 'name',
+						dataIndex: 'kpi_title',
+						key: 'kpi_title',
 					},
 					{
-						title: 'Periodicity',
-						dataIndex: 'periodicity',
-						key: 'periodicity',
+						title: 'Progress',
+						dataIndex: 'kpi_value',
+						key: 'kpi_value',
 					},
 					{
-						title: 'Unit',
-						dataIndex: 'unit',
-						key: 'unit',
+						title: 'Last Entry Date',
+						dataIndex: 'last_entry_date',
+						key: 'last_entry_date',
 					},
 					{
 						title: '',
-						dataIndex: 'id',
-						key: 'id',
-						render: (_, {id}) => {
-							return (<Link to={`/circle/1/kpis/${id}/add-value`}>
+						dataIndex: 'kpi_id',
+						key: 'kpi_id',
+						render: (_, {kpi_id}) => (
+							<Link to={`/circle/1/kpis/${kpi_id}/add-value`}>
 								<Button type="primary">
 									Add Value
 								</Button>
-							</Link>)
-						},
+							</Link>
+						),
 					},
 				]}
 				loading={state.loading}

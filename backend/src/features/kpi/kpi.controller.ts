@@ -77,6 +77,7 @@ export class KpiController {
       unitMax: ['Infinity', '-Infinity'].includes(kpiDetails.max_value) ? null : kpiDetails.max_value.toString(),
       target: kpiDetails.kpi_target?.toString(),
       value: kpiDetails.latest_filled_value?.toString(),
+      kpi_date: kpiDetails.kpi_date
     };
   }
 }
