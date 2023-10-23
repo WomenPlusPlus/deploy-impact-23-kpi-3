@@ -46,8 +46,8 @@ export const LandingPage = () => {
 				{
 					state.data && state.data.map((c: any) => (
 						<CircleCard
-							key={c.circle_id}
-							circle_id={c.circle_id}
+							key={c.id}
+							circle_id={c.id}
 							circle_description={c.description}
 							circle_name={c.name}
 						></CircleCard>

@@ -39,10 +39,7 @@ function App() {
 							<Link to="/">Home</Link>
 						</Menu.Item>
 						<Menu.Item>
-							<Link to="/circle/342ccc06-2984-441f-ab1d-42bfcc32f665/kpis/create">Define KPI (will be moved)</Link>
-						</Menu.Item>
-						<Menu.Item>
-							<Link to="/circle/342ccc06-2984-441f-ab1d-42bfcc32f665/kpis/kpi___id/add-value">Add Value (will be moved)</Link>
+							<Link to="/circle/1/kpis/kpi___id/add-value">Add Value (will be moved)</Link>
 						</Menu.Item>
 					</Menu>
 				</div>
