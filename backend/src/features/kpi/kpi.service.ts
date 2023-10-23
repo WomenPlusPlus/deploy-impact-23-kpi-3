@@ -87,6 +87,30 @@ export class KpiService {
     return data[0];
   }
 
+  async fetchKpiEvolution(kpiId: number, circleId): Promise<any> {
+    const { data, error } = await this.service.db.rpc(
+      'get_kpi_data',
+      {
+        _circle_id: circleId,
+        _kpi_id: kpiId,
+      },
+    );
+
+    if (error) {
+      console.error(
+        'Error fetching KPI evolution details:',
+        JSON.stringify(error, null, 2),
+      );
+      throw new Error(
+        `Error fetching KPI evolution: ${JSON.stringify(
+          error,
+        )}`,
+      );
+    }
+
+    return data;
+  }
+
   async addKpiValue(
     kpiId: number,
     userId: number,
