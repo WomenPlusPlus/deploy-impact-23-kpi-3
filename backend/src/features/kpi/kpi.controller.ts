@@ -56,6 +56,10 @@ export class KpiController {
   fetchSngleKpi(@Query('economistId') economistId: number = 2) {
     return this.kpiService.fetchKpis(economistId, 'economist');
   }
+  @Get(':id/evolution')
+  fetchKpiEvolution(@Param('id') id: number = 2, @Query('circleId') circleId: number) {
+    return this.kpiService.fetchKpiEvolution(id, circleId);
+  }
 
   // To fetch details and constraints for a KPI
   @Get(':id/constraints')

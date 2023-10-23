@@ -1,9 +1,10 @@
 import {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer} from 'recharts';
 
-interface BarchartChartProps {
+export interface LineChartProps {
 	data: any;
 	xKey: string;
 	leftYKey: string;
+	target: string;
 	leftYColor: string;
 	width: number,
 	height: number,
@@ -11,14 +12,15 @@ interface BarchartChartProps {
 }
 
 export default function Linechart({
-																				 data,
-																				 xKey,
-																				 leftYKey,
-																				 width = 500,
-																				 height = 500,
-																				 leftYColor,
-																				 chartStyle,
-																			 }: BarchartChartProps) {
+																		data,
+																		xKey,
+																		leftYKey,
+																		target,
+																		width = 500,
+																		height = 500,
+																		leftYColor,
+																		chartStyle,
+																	}: LineChartProps) {
 
 	return (
 		<LineChart
@@ -33,12 +35,12 @@ export default function Linechart({
 			}}
 		>
 			<CartesianGrid strokeDasharray="3 3"/>
-			<XAxis dataKey="name"/>
-			<YAxis/>
+			<XAxis dataKey={xKey}/>
+			<YAxis dataKey={target}/>
 			<Tooltip/>
 			<Legend/>
-			<Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{r: 8}}/>
-			<Line type="monotone" dataKey="uv" stroke="#82ca9d"/>
+			<Line type="monotone" dataKey={leftYKey} stroke="#8884d8" activeDot={{r: 8}}/>
+			<Line type="monotone" dataKey={target} stroke="#82ca9d"/>
 		</LineChart>
 	);
 }
