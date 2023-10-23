@@ -13,6 +13,7 @@ type Story = StoryObj<typeof meta>;
 export const MonthlyPercentage: Story = {
 	args: {
 		data: {
+			id: 3,
 			periodicity: 'MONTHLY',
 			unit: 'Percentage',
 			unitMin: '0',
@@ -25,6 +26,7 @@ export const MonthlyPercentage: Story = {
 export const YearlyCount: Story = {
 	args: {
 		data: {
+			id: 4,
 			periodicity: 'YEARLY',
 			unit: 'Count',
 			unitMin: '0',

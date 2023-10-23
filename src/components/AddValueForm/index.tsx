@@ -3,15 +3,18 @@ import {Button, DatePicker, Spin, InputNumber, Form} from 'antd';
 import {SFormItemLabel, SFormItem, SCardForm, SSpace} from './styled'
 
 export interface AddValueFormDataProps {
-	periodicity: 'DAILY' | 'WEEKLY' | 'MONTHLY' | 'QUARTERLY' | 'YEARLY',
+	id: number,
+	periodicity: 'MONTHLY' | 'QUARTERLY' | 'YEARLY',
 	unit: string,
 	unitMin: string | null,
 	unitMax: string | null,
 	target?: string | null,
 	value?: string | null,
 }
+
 export interface AddValueFormProps {
 	data: AddValueFormDataProps | null,
+	initialValues?: Record<string, string>,
 	loading?: boolean,
 	onSubmit: (values: any) => void,
 }
@@ -30,17 +33,16 @@ const periodFields = {
 }
 
 export const AddValueForm = ({
-																loading,
-																data,
-																onSubmit,
-															}: AddValueFormProps) => {
+															 initialValues = {},
+															 loading,
+															 data,
+															 onSubmit,
+														 }: AddValueFormProps) => {
 	const onFinish = (values: any) => {
-
-		console.log({
-			p: values['period']?.format('YYYY-MM-DD HH:mm:ss'),
-			v: values['value'],
-		})
-		// onSubmit(formValues);
+		onSubmit({
+			date: values['period']?.format('YYYY-MM-DD'),
+			value: values['value'],
+		});
 	};
 
 	const onChange = (v: string | null) => {
@@ -51,12 +53,13 @@ export const AddValueForm = ({
 			{
 				loading && (
 					<SSpace size="large" align="center" direction="horizontal">
-						<Spin size="large" />
+						<Spin size="large"/>
 					</SSpace>
 				)
 			}
 			{data && !loading && (
 				<Form
+					initialValues={initialValues}
 					name="add-value-kpi"
 					labelCol={{span: 4}}
 					wrapperCol={{span: 16}}
@@ -71,7 +74,7 @@ export const AddValueForm = ({
 						<DatePicker
 							size="large"
 							style={{width: '100%'}}
-							picker={(periodFields[data?.periodicity]) as "week" | "month" | "quarter" | "year" | "time" | "date" | undefined}
+							picker={(periodFields[data?.periodicity]) as 'week' | 'month' | 'quarter' | 'year' | 'time' | 'date' | undefined}
 						/>
 					</SFormItem>
 
