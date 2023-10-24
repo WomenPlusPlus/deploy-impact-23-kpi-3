@@ -1,23 +1,28 @@
 # Database Documentation
-1.1 ER-Diagram	1
-1.1.1 Introduction	1
-1.1.2 Development Process	1
-1.1.3 Storyline	3
-1.2 Data Definition Language	4
-1.2.1 Special Data Types	4
-1.2.2 Tables	4
-1.3 SQL Script for populating database	7
-1.3.1 Introduction	7
-1.3.2 Block Description	7
-Block 1: Inserting users into the users table.	7
-Block 2: Inserting a circle into the circle table.	7
-Block 3: Associating an Economist user with a circle in the belongs_to table.	7
-Block 4: Inserting unit constraints into the unit_constraints table.	7
-Block 5: Inserting KPIs into the kpi table.	7
-Block 6: Inserting KPI values into the fills_in table.	8
-Block 7: Inserting target values for each KPI into the target table.	8
-1.4 Scenarios	8
 
+1. [ER-Diagram](#11-er-diagram)
+    1. Introduction
+    2. Development Process
+    3. Storyline
+2. Data Definition Language
+    1. Special Data Types
+    2. Tables
+3. SQL Script for populating database
+    1. Introduction
+    2. Block Description
+        1. Block 1: Inserting users into the users table.
+        2. Block 2: Inserting a circle into the circle table.
+        3. Block 3: Associating an Economist user with a circle in the belongs_to table.
+        4. Block 4: Inserting unit constraints into the unit_constraints table.
+        5. Block 5: Inserting KPIs into the kpi table.
+        6. Block 6: Inserting KPI values into the fills_in table.
+        7. Block 7: Inserting target values for each KPI into the target table.
+4. Scenarios
+
+1. First item
+2. Second item
+
+ [[_TOC_]]
 
 ## 1.1 ER-Diagram
 
@@ -39,7 +44,7 @@ The requirements for the database were gathered through meetings with the PO of 
 
 **Entities Identification**
 
-| **Entity** | **Description** |
+| ***Entity*** | ***Description*** |
 | --- | --- |
 | User | _Purpose:_ store the users of the Web App. |
 |      | _Attributes:_ ID ( **PK** ), Name, Email, Role, UpdatedBy, UpdatedOn. |
@@ -54,21 +59,21 @@ The requirements for the database were gathered through meetings with the PO of 
 
 **Relationship Identification**
 
-| **Relationships** | **Description** |
+| ***Relationships*** | ***Description*** |
 | --- | --- |
-| Belongs to | _Purpose:_ to show that a user belongs to a circle.
-| |_Relationship:_A user can belong to zero or more circles (i.e., only economists belong to circles) (0:M) and a circle can have zero or more users (i.e., users linked to the its circle) (0:M).
-_Derived entity:_ it should be documented which user belongs to which circle at which point in time, as well as who appointed a user to a circle, so this will be documented in the Belongs To table - a relationship that developed into a table. |
-| Creates | _Purpose:_ to show that a user creates a KPI.
-_Relationship:_A user can create zero or more KPIs (i.e., only gatekeepers create KPIs) (0:M), and a KPI can only be created once by one user (1:1). |
-| Tracks | _Purpose:_ to show that circles track their KPIs.
-_Relationship:_A circle will track zero or more KPIs (0:M), and a KPI can be tracked by zero or more circles (0:M).
-_Derived entity:_ it should be documented that each circle which tracks a certain KPI will set a target. This target will be set once but they do not have to. However, it should be the case that per combination of circle and KPI there can only be one target, so that is why the 'Tracks' relationship developed into a table. |
-| Fills In | _Purpose:_ to show that a user which belongs to a circle, will fill in data on the KPIs that the circle is tracking.
-_Relationship:_Per combination of user and circle, zero or more KPIs can be filled in (0:M). A KPI can be filled in by one or more combinations of user and circle (0:M).
-_Derived entity:_ it should be the case that each combination of user and circle can only fill in data on the same KPI once per period. This value should be stored along with the period to which this value belongs and when it was filled in and by who. This is why the 'fills in' relationship developed into a table. |
-| Has | _Purpose:_ to show that a KPI has a certain unit.
-_Relationship:_A KPI can only have one certain unit (1:1) but a unit can be used by zero or more KPIs (0:M). |
+| Belongs to | _Purpose:_ to show that a user belongs to a circle. | 
+|     | _Relationship:_ A user can belong to zero or more circles (i.e., only economists belong to circles) (0:M) and a circle can have zero or more users (i.e., users linked to the its circle) (0:M). |
+|     | _Derived entity:_ it should be documented which user belongs to which circle at which point in time, as well as who appointed a user to a circle, so this will be documented in the Belongs To table - a relationship that developed into a table. |
+| Creates | _Purpose:_ to show that a user creates a KPI. |
+|     | _Relationship:_ A user can create zero or more KPIs (i.e., only gatekeepers create KPIs) (0:M), and a KPI can only be created once by one user (1:1). |
+| Tracks | _Purpose:_ to show that circles track their KPIs. |
+|     | _Relationship:_ A circle will track zero or more KPIs (0:M), and a KPI can be tracked by zero or more circles (0:M). |
+|     | _Derived entity:_ it should be documented that each circle which tracks a certain KPI will set a target. This target will be set once but they do not have to. However, it should be the case that per combination of circle and KPI there can only be one target, so that is why the 'Tracks' relationship developed into a table. |
+| Fills In | _Purpose:_ to show that a user which belongs to a circle, will fill in data on the KPIs that the circle is tracking. |
+|     | _Relationship:_ Per combination of user and circle, zero or more KPIs can be filled in (0:M). A KPI can be filled in by one or more combinations of user and circle (0:M). |
+|     | _Derived entity:_ it should be the case that each combination of user and circle can only fill in data on the same KPI once per period. This value should be stored along with the period to which this value belongs and when it was filled in and by who. This is why the 'fills in' relationship developed into a table. |
+| Has | _Purpose:_ to show that a KPI has a certain unit. |
+|     | _Relationship:_ A KPI can only have one certain unit (1:1) but a unit can be used by zero or more KPIs (0:M). |
 
 ## 1.1.3 Storyline
 
