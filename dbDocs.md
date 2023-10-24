@@ -1,4 +1,23 @@
-# Chapter 1: Database Documentation (Marin)
+# Database Documentation
+1.1 ER-Diagram	1
+1.1.1 Introduction	1
+1.1.2 Development Process	1
+1.1.3 Storyline	3
+1.2 Data Definition Language	4
+1.2.1 Special Data Types	4
+1.2.2 Tables	4
+1.3 SQL Script for populating database	7
+1.3.1 Introduction	7
+1.3.2 Block Description	7
+Block 1: Inserting users into the users table.	7
+Block 2: Inserting a circle into the circle table.	7
+Block 3: Associating an Economist user with a circle in the belongs_to table.	7
+Block 4: Inserting unit constraints into the unit_constraints table.	7
+Block 5: Inserting KPIs into the kpi table.	7
+Block 6: Inserting KPI values into the fills_in table.	8
+Block 7: Inserting target values for each KPI into the target table.	8
+1.4 Scenarios	8
+
 
 ## 1.1 ER-Diagram
 
@@ -10,7 +29,7 @@ The development of the ER diagram helped in specifying the logical structure of 
 
 In essence, in this project the ER diagram functioned as a roadmap for creating databases and ensuring that data is stored efficiently and accurately, and that the user needs are met.
 
-![](RackMultipart20231024-1-uyqjxv_html_ac1eb75230c5fac2.png)
+![](ERDiagram.png)
 
 ## 1.1.2 Development Process
 
@@ -22,27 +41,23 @@ The requirements for the database were gathered through meetings with the PO of 
 
 | **Entity** | **Description** |
 | --- | --- |
-| User | _Purpose:_ store the users of the Web App.
-
-_Attributes:_ ID ( **PK** ), Name, Email, Role, UpdatedBy, UpdatedOn.
-_Notes:_ The 'role' attribute can only take a fixed value [ECONOMIST, GATEKEEPER, ADMIN, GUEST]. |
-| Circle | _Purpose:_ store the circles of Pro Juventute.
-
-_Attributes:_ ID ( **PK** ), Name, UpdatedBy, UpdatedOn. |
-| KPI | _Purpose:_ store the kpi's that are being tracked within Pro Juventute.
-
-_Attributes:_ ID ( **PK** ), Name, Description, Periodicity, Unit, GatekeeperID, UpdatedBy, UpdatedOn, ArchivedAt, ClosedAt.
-_Notes:_ the 'periodicity' variable can only take a fixed value [HOURLY, DAILY, MONTHLY, QUARTERLY, YEARLY]. The 'gatekeeperID' attribute comes from the 'id' in the 'user' table. |
-| UnitConstraints | _Purpose:_ store the units a kpi can have.
-
-_Attributes:_ Name ( **PK** ), Min, Max, UpdatedBy, UpdatedOn. |
+| User | _Purpose:_ store the users of the Web App. |
+|      | _Attributes:_ ID ( **PK** ), Name, Email, Role, UpdatedBy, UpdatedOn. |
+|      |_Notes:_ The 'role' attribute can only take a fixed value [ECONOMIST, GATEKEEPER, ADMIN, GUEST]. |
+| Circle | _Purpose:_ store the circles of Pro Juventute. |
+|      |_Attributes:_ ID ( **PK** ), Name, UpdatedBy, UpdatedOn. |
+| KPI | _Purpose:_ store the kpi's that are being tracked within Pro Juventute. |
+|     | _Attributes:_ ID ( **PK** ), Name, Description, Periodicity, Unit, GatekeeperID, UpdatedBy, UpdatedOn, ArchivedAt, ClosedAt. |
+|     | _Notes:_ the 'periodicity' variable can only take a fixed value [HOURLY, DAILY, MONTHLY, QUARTERLY, YEARLY]. The 'gatekeeperID' attribute comes from the 'id' in the 'user  table. |
+| UnitConstraints | _Purpose:_ store the units a kpi can have. |
+|     | _Attributes:_ Name ( **PK** ), Min, Max, UpdatedBy, UpdatedOn. |
 
 **Relationship Identification**
 
 | **Relationships** | **Description** |
 | --- | --- |
 | Belongs to | _Purpose:_ to show that a user belongs to a circle.
-_Relationship:_A user can belong to zero or more circles (i.e., only economists belong to circles) (0:M) and a circle can have zero or more users (i.e., users linked to the its circle) (0:M).
+| |_Relationship:_A user can belong to zero or more circles (i.e., only economists belong to circles) (0:M) and a circle can have zero or more users (i.e., users linked to the its circle) (0:M).
 _Derived entity:_ it should be documented which user belongs to which circle at which point in time, as well as who appointed a user to a circle, so this will be documented in the Belongs To table - a relationship that developed into a table. |
 | Creates | _Purpose:_ to show that a user creates a KPI.
 _Relationship:_A user can create zero or more KPIs (i.e., only gatekeepers create KPIs) (0:M), and a KPI can only be created once by one user (1:1). |
