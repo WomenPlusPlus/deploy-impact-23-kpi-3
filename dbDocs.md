@@ -1,32 +1,27 @@
 # Database Documentation
 
 1. [ER-Diagram](#11-er-diagram)
-    1. Introduction
-    2. Development Process
-    3. Storyline
-2. Data Definition Language
-    1. Special Data Types
-    2. Tables
-3. SQL Script for populating database
-    1. Introduction
-    2. Block Description
-        1. Block 1: Inserting users into the users table.
-        2. Block 2: Inserting a circle into the circle table.
-        3. Block 3: Associating an Economist user with a circle in the belongs_to table.
-        4. Block 4: Inserting unit constraints into the unit_constraints table.
-        5. Block 5: Inserting KPIs into the kpi table.
-        6. Block 6: Inserting KPI values into the fills_in table.
-        7. Block 7: Inserting target values for each KPI into the target table.
-4. Scenarios
+    - [1.1 Introduction](#111-introduction)
+    - [1.2 Development Process]()
+    - [1.3 Storyline]()
+2. [Data Definition Language]()
+    - [2.1 Special Data Types]()
+    - [2.2 Tables]()
+3. [SQL Script for populating database]()
+    - [3.1 Introduction]()
+    - [3.1 Block Description]()
+        - [Block 1: Inserting users into the users table.]()
+        - [Block 2: Inserting a circle into the circle table.]()
+        - [Block 3: Associating an Economist user with a circle in the belongs_to table.]()
+        - [Block 4: Inserting unit constraints into the unit_constraints table.]()
+        - [Block 5: Inserting KPIs into the kpi table.]()
+        - [Block 6: Inserting KPI values into the fills_in table.]()
+        - [Block 7: Inserting target values for each KPI into the target table.]()
+4. [Scenarios]()
 
-1. First item
-2. Second item
+## 1. ER-Diagram
 
- [[_TOC_]]
-
-## 1.1 ER-Diagram
-
-## 1.1.1 Introduction
+## 1.1 Introduction
 
 The purpose of the ER diagram is to provide a graphical representation of the database. The ER diagram provides a clear visual representation of the layout of the database.
 
@@ -36,7 +31,7 @@ In essence, in this project the ER diagram functioned as a roadmap for creating 
 
 ![](ERDiagram.png)
 
-## 1.1.2 Development Process
+## 1.2 Development Process
 
 **Requirement Gathering**
 
@@ -75,7 +70,7 @@ The requirements for the database were gathered through meetings with the PO of 
 | Has | _Purpose:_ to show that a KPI has a certain unit. |
 |     | _Relationship:_ A KPI can only have one certain unit (1:1) but a unit can be used by zero or more KPIs (0:M). |
 
-## 1.1.3 Storyline
+## 1.3 Storyline
 
 The narrative of the ER diagram is as follows:
 
@@ -84,93 +79,86 @@ The narrative of the ER diagram is as follows:
 - Once an economist belongs to a circle, it is able to fill in data for the kpi's each period, for the kpi's the circle is tracking. The value it fills in for the kpi has to adhere to the unit constraints of the unit that the KPI is supposed to be in.
 - A user which is an economist can belong to multiple circles and is therefore able to fill in kpi values for more than one circle. But he/she can only fill it in once per period per circle.
 
-## 1.2 Data Definition Language
+## 2 Data Definition Language
 
 The DDL was used to refine and manage the structure of the database that has been discussed in the previous section.
 
-## 1.2.1 Special Data Types
+## 2.1 Special Data Types
 
 | **Data Types** | **Description** |
 | --- | --- |
-| ENUM | This datatype is a user-defined type in databases that allows a column to be restricted to a specific set of string values.
- The primary purpose of ENUM is to ensure data integrity by limiting the possible values for a column. |
-| SERIAL | This datatype is used to automatically generate a unique integer value for a column.
- It's commonly used for primary key columns where you want the database to auto-increment the value for each new row. |
+| ENUM | This datatype is a user-defined type in databases that allows a column to be restricted to a specific set of string values. |
+|  | The primary purpose of ENUM is to ensure data integrity by limiting the possible values for a column. |
+| SERIAL | This datatype is used to automatically generate a unique integer value for a column. |
+|  | It's commonly used for primary key columns where you want the database to auto-increment the value for each new row. |
 
-## 1.2.2 Tables
+## 2.2 Tables
 
 | **Tables** | **Description** |
 | --- | --- |
-| public.users | _PK:_ id
-_Variables:_
-- id → serial because it needs to be created automatically
-- name → varchar to allow for string
-- email → varchar to allow for string
-- role → enum to restrict input
-- updated\_at → timestamp to log the exact time and date
-- updated\_by → varchar to allow for string
- |
-| public.circle | _PK:_ id_FK:_ updated\_by (public.users)
-_Variables:_
-- id → serial because it needs to be created automatically
-- name → varchar to allow for string
-- updated\_at → timestamp to log the exact time and date
-- updated\_by → integer to reference to user
- |
+| public.users | _PK:_ id |
+|  | _Variables:_ |
+|  | - id → serial because it needs to be created automatically |
+|  | - name → varchar to allow for string |
+|  | - email → varchar to allow for string |
+|  | - role → enum to restrict input |
+|  | - updated\_at → timestamp to log the exact time and date |
+|  | - updated\_by → varchar to allow for string |
+| public.circle | _PK:_ id_FK:_ updated\_by (public.users) |
+|  | _Variables:_ |
+|  | - id → serial because it needs to be created automatically |
+|  | - name → varchar to allow for string |
+|  | - updated\_at → timestamp to log the exact time and date |
+|  | - updated\_by → integer to reference to user |
 | public.belongs\_to | _PK:_ (user\_id, circle\_id)_FK:_ user\_id (public.user), circle\_id (public.circle), updated\_by (public.users)
-_Variables:_
-- user\_id → integer to reference to user
-- circle\_id → integer to reference to circle
-- updated\_at → timestamp to log the exact time and date
-- updated\_by → integer to reference to user
- |
+|  | _Variables:_
+|  | - user\_id → integer to reference to user
+|  | - circle\_id → integer to reference to circle
+|  | - updated\_at → timestamp to log the exact time and date
+|  | - updated\_by → integer to reference to user|
 | public.unit\_constraints | _PK:_ unit_FK:_ updated\_by (public.users)
-_Variables:_
-- unit → varchar to allow for string
-- min → float to allow for decimals
-- max → to allow for decimals
-- updated\_at → timestamp to log the exact time and date
-- updated\_by → integer to reference to user
- |
-| public.kpi | _PK:_ id_FK:_ unit (public.unit\_constraints), gatekeeper\_id (public.users), updated\_by (public.users)
-_Variables:_
-- id → serial because it needs to be created automatically
-- name → varchar to allow for string
-- description → varchar to allow for text
-- periodicity → enum to restrict input
-- unit → varchar to reference to unit
-- gatekeeper\_id → integer to reference to user
-- updated\_at → timestamp to log the exact time and date
-- updated\_by → integer to reference to user
-- archived\_on → timestamp to log the exact date and time of archive
-- closed\_on → timestamp to log the exact date and time of closure
- |
-| public.fills\_in | _PK:_ (user\_id, circle\_id, kpi\_id, kpi\_date)_FK:_ (user\_id, circle\_id) respectively (public.users, public.circle)
-_Variables:_
-- user\_id → integer to reference to user
-- circle\_id → integer to reference to circle
-- kpi\_id → integer to reference to kpi
-- kpi\_date → varchar to allow for hour, day, month, quarter or year.
-- kpi\_value → varchar to allow for different types of input
-- updated\_at → timestamp to log the exact time and date
-- updated\_by → integer to reference to user
- |
-| public.target | _PK:_ (circle\_id, kpi\_id)_FK:_ (circle\_id, kpi\_id) respectively (public.circle, public.kpi)
-_Variables:_
-- circle\_id → integer to reference to circle
-- kpi\_id → integer to reference to kpi
-- target → varchar to allow for different types of input
-- updated\_at → timestamp to log the exact time and date
-- updated\_by → integer to reference to user
- |
+|  | _Variables:_
+|  | - unit → varchar to allow for string
+|  | - min → float to allow for decimals
+|  | - max → to allow for decimals
+|  | - updated\_at → timestamp to log the exact time and date
+|  | - updated\_by → integer to reference to user |
+| public.kpi | _PK:_ id_FK:_ unit (public.unit\_constraints), gatekeeper\_id (public.users), updated\_by (public.users) |
+|  | _Variables:_ |
+|  | - id → serial because it needs to be created automatically |
+|  | - name → varchar to allow for string |
+|  | - description → varchar to allow for text |
+|  | - periodicity → enum to restrict input |
+|  | - unit → varchar to reference to unit |
+|  | - gatekeeper\_id → integer to reference to user |
+|  | - updated\_at → timestamp to log the exact time and date |
+|  | - updated\_by → integer to reference to user |
+|  | - archived\_on → timestamp to log the exact date and time of archive |
+|  | - closed\_on → timestamp to log the exact date and time of closure |
+| public.fills\_in | _PK:_ (user\_id, circle\_id, kpi\_id, kpi\_date)_FK:_ (user\_id, circle\_id) respectively (public.users, public.circle) |
+|  | _Variables:_ |
+|  | - user\_id → integer to reference to user |
+|  | - circle\_id → integer to reference to circle |
+|  | - kpi\_id → integer to reference to kpi |
+|  | - kpi\_date → varchar to allow for hour, day, month, quarter or year. |
+|  | - kpi\_value → varchar to allow for different types of input |
+|  | - updated\_at → timestamp to log the exact time and date |
+|  | - updated\_by → integer to reference to user |
+| public.target | _PK:_ (circle\_id, kpi\_id)_FK:_ (circle\_id, kpi\_id) respectively (public.circle, public.kpi) |
+|  | _Variables:_ |
+|  | - circle\_id → integer to reference to circle |
+|  | - kpi\_id → integer to reference to kpi |
+|  | - target → varchar to allow for different types of input |
+|  | - updated\_at → timestamp to log the exact time and date |
+|  | - updated\_by → integer to reference to user |
 
-## 1.3 SQL Script for populating database
+## 3 SQL Script for populating database
 
-## 1.3.1 Introduction
+## 3.1 Introduction
 
 The purpose of this SQL script was to populate the database with some fake data. This way we could continue developing the frontend and backend and figure out how to retrieve data from the data and display it in our application.
 
-## 1.3.2 Block Description
+## 3.2 Block Description
 
 ### Block 1: Inserting users into the users table.
 
@@ -228,7 +216,7 @@ The purpose of this SQL script was to populate the database with some fake data.
 
 **Dependencies:** Depends on the circle and kpi tables.
 
-## 1.4 Scenarios
+## 4 Scenarios
 
 - An economist fills in kpi's and the data it fills in needs to end up in the public.fills\_in table.
   - user\_id: id of the economist
