@@ -6,7 +6,7 @@
 * **Product code name:**
 * **Brief product description:**
 * **[Figma Prototype](link)**
-* **[Database Documentation](dbDoc.md):**
+* **[Database Documentation](/dbDoc.md):**
 * **API Documentation:**
 * **Other product documents:**
 
