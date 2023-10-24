@@ -5,7 +5,7 @@
 * **Product name:**
 * **Product code name:**
 * **Brief product description:**
-* **[Figma Prototype](link)**
+* **[Figma Prototype](https://www.figma.com/file/qWHQU2wVaihXIyPaEp02ow/Add-Value-Mockup?type=design&node-id=48-1425&mode=design&t=qF1HRQ5HWT8nJjmp-0)**
 * **[Database Documentation](/dbDocs.md):**
 * **API Documentation:**
 * **Other product documents:**
