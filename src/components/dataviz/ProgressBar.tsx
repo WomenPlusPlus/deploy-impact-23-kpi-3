@@ -1,11 +1,12 @@
- import { Progress } from 'antd';
+import React from 'react';
+import { Progress, Typography } from 'antd';
 
 interface ProgressBarProps {
   percent: number;
-  data?: any;  
+  data?: string;
   strokeColor?: string;
   showPercentage?: boolean;
-  progressBarStyle?: React.CSSProperties
+  progressBarStyle?: React.CSSProperties;
 }
 
 export default function ProgressBarComponent({
@@ -13,14 +14,13 @@ export default function ProgressBarComponent({
   data,
   strokeColor = '#FACC48',
   showPercentage = false,
-  progressBarStyle 
-   
+  progressBarStyle,
 }: ProgressBarProps) {
   return (
-    <> 
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <Progress percent={percent} showInfo={showPercentage} strokeColor={strokeColor} style={progressBarStyle} />
-      {data && <h5 style={{ textAlign: 'center', marginTop: 8, marginRight: 160, fontWeight: 'normal' }} >{data}</h5>}
-    </>
+      {data && <Typography.Text>{data}</Typography.Text>}
+    </div>
   );
 }
 
