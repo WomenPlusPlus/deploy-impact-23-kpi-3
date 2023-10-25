@@ -26,7 +26,7 @@ export const KpisTable = ({
 				)
 			}
 			{rows && (
-				<Table dataSource={rows} columns={columns} pagination={false} scroll={{ y: 'calc(100vh - 600px)' }} />
+				<Table dataSource={rows} columns={columns} pagination={false} scroll={{ y: '400px' }} />
 			)}
 		</SKpiTableCard>
 	)

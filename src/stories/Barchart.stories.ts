@@ -104,3 +104,26 @@ export const Color: Story = {
 		]
 	}
 };
+
+export const Shop: Story = {
+	args: {
+		width: 500,
+		height: 400,
+		xKey: "name",
+		leftYKey: "pv",
+		leftYColor: "#5451d2",
+		data: [
+			{
+
+				sale_date: "2023-10-01",
+				pv: 11599.77,
+			},
+			{
+
+				sale_date: "2023-10-02",
+				pv: 7399.84,
+			},
+
+		]
+	}
+};

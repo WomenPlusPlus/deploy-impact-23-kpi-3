@@ -10,6 +10,7 @@ import {NoMatchPage} from './pages/NoMatch'
 import { Menu } from 'antd';
 import {AnalyticsPage} from './pages/Analytics';
 import {EvolutionPage} from './pages/Evolution';
+import {ShopPage} from './pages/ShopPage'
 const { Header, Content} = Layout;
 const { Title} = Typography;
 
@@ -52,7 +53,7 @@ function App() {
 					<Route path="circle/:id/kpis" element={<DefinedKpisListPage />}/>
 					<Route path="circle/:id/analytics" element={<AnalyticsPage />}/>
 					<Route path="circle/:id/evolution" element={<EvolutionPage/>}/>
-
+					<Route path="shop/electronics-turnover" element={<ShopPage/>}/>
 					<Route path="*" element={<NoMatchPage />}/>
 				</Route>
 			</Routes>

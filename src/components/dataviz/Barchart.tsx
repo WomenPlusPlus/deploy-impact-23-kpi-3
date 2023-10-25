@@ -7,6 +7,7 @@ import {
   Tooltip,
   Legend, ResponsiveContainer,
 } from 'recharts';
+import React from "react";
 
   interface BarchartChartProps {
     data: any;
@@ -51,4 +52,8 @@ import {
       </BarChart>
     );
   }
+
+
+
+
   

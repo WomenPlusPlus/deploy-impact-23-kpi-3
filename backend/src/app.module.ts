@@ -8,6 +8,7 @@ import { CirclesModule } from './features/circles/circles.module';
 import { UnitsModule } from './features/units/units.module';
 import { PeriodicitiesModule } from './features/periodicities/periodicities.module';
 import {DbConnectionModule} from './core/db-connection/db-connection.module';
+import {ShopModule} from "./features/shop/shop.module";
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import {DbConnectionModule} from './core/db-connection/db-connection.module';
     CirclesModule,
     UnitsModule,
     PeriodicitiesModule,
+    ShopModule,
   ],
   controllers: [AppController],
   providers: [AppService],
