@@ -116,4 +116,19 @@ export class KpiService {
       throw err;
     }
   }
+
+  // For lunch learning session
+
+  async getElectronicsTurnover(): Promise<any[]> {
+    const { data, error } = await this.service.db.rpc(
+      'get_electronics_turnover',
+    );
+
+    if (error) {
+      console.error('RPC Error:', error);
+      throw new Error('Error fetching electronics turnover data.');
+    }
+
+    return data;
+  }
 }
