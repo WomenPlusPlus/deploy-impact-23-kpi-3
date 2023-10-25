@@ -3,6 +3,7 @@ import {Button, Typography} from 'antd';
 import {KpisTable} from '../../components/KpisTable';
 import {Link} from 'react-router-dom';
 import React, {useEffect, useState} from 'react';
+import ProgressBarComponent from '../../components/dataviz/ProgressBar';
 
 const {Title} = Typography;
 
@@ -17,6 +18,17 @@ export const AnalyticsPage = () => {
 		data: null,
 		loading: true,
 	});
+
+	function calculateMonthSum(data: Array<any> | null) {
+		if (!data || !Array.isArray(data)) {
+			return 0;
+		}
+		const monthSum = data.reduce((total, entry) => total + entry.kpi_value, 0);
+
+		return monthSum;
+	}
+
+
 	useEffect(() => {
 		const getValues = async () => {
 			try {
@@ -25,7 +37,7 @@ export const AnalyticsPage = () => {
 				const rows = await response.json();
 				setState({
 					...state,
-					data: rows.map((r: {kpi_key: string}, i: number) => ({...r, key: r.kpi_key})),
+					data: rows.map((r: { kpi_key: string }, i: number) => ({...r, key: r.kpi_key})),
 					loading: false,
 				})
 
@@ -46,7 +58,7 @@ export const AnalyticsPage = () => {
 			<div>
 				<Title level={2}>Circle Name here</Title>
 			</div>
-			<div style={{ height: 100 }} className="to_be_removed">
+			<div style={{height: 100}} className="to_be_removed">
 				&nbsp;
 			</div>
 			<KpisTable
@@ -58,8 +70,19 @@ export const AnalyticsPage = () => {
 					},
 					{
 						title: 'Progress',
-						dataIndex: 'kpi_value',
-						key: 'kpi_value',
+						dataIndex: 'progress',
+						key: 'progress',
+						render: () => {
+							const monthSum = calculateMonthSum(state.data);
+							const text = ` Progress: ${monthSum}`;
+
+							return (
+								<ProgressBarComponent
+									percent={monthSum}
+									data={text}
+								/>
+							);
+						},
 					},
 					{
 						title: 'Last Entry Date',
