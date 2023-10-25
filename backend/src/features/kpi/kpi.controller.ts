@@ -15,6 +15,7 @@ import { KpiService } from './kpi.service';
 import { KpiCreationDto } from '../../common/dto/kpi-creation.dto';
 import { AddValueDto } from '../../common/dto/add-value.dto';
 
+// This controller manages all endpoints related to KPIs.
 @Controller('kpi')
 export class KpiController {
   constructor(private readonly kpiService: KpiService) {}
@@ -112,5 +113,20 @@ export class KpiController {
     }
 
     return result;
+  }
+
+  // FOR LUNCH SESSION: Endpoint to fetch turnover data for electronic products by date.
+  // Returns aggregated turnover or throws an error if unsuccessful.
+
+  @Get('electronics-turnover')
+  async getElectronicsTurnover() {
+    try {
+      return await this.kpiService.getElectronicsTurnover();
+    } catch (err) {
+      throw new HttpException(
+        'Failed to fetch electronics turnover by date.',
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
   }
 }
