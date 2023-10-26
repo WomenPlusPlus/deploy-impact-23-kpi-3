@@ -12,7 +12,7 @@ import {
     data: any;
     xKey: string;
     leftYKey: string;
-    leftYColor: string;
+    leftYColor?: string;
     width: number,
     height: number,
     chartStyle?: React.CSSProperties
