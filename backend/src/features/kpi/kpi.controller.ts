@@ -8,6 +8,8 @@ import {
   ValidationPipe,
   HttpException,
   HttpStatus,
+  NotFoundException,
+  Param,
 } from '@nestjs/common';
 import { KpiService } from './kpi.service';
 import { KpiDto } from './kpi.dto';
@@ -49,5 +51,32 @@ export class KpiController {
   @Get('economist-list')
   fetchEconomistIdKpis(@Query('economistId') economistId: number = 2) {
     return this.kpiService.fetchKpis(economistId, 'economist');
+  }
+  @Get('/:id')
+  fetchSngleKpi(@Query('economistId') economistId: number = 2) {
+    return this.kpiService.fetchKpis(economistId, 'economist');
+  }
+
+  // To fetch details and constraints for a KPI
+  @Get(':id/constraints')
+  async getKpiDetailsWithConstraints(@Param('id') kpiId: number) {
+    const kpiDetails = await this.kpiService.getKpiDetailsWithConstraints(
+      kpiId,
+    );
+    if (!kpiDetails) {
+      throw new NotFoundException(
+        `Details and constraints for KPI with id ${kpiId} not found`,
+      );
+    }
+    return {
+      id: kpiDetails.kpi_id,
+      name: kpiDetails.kpi_name,
+      periodicity: kpiDetails.kpi_periodicity,
+      unit: kpiDetails.kpi_unit,
+      unitMin: ['Infinity', '-Infinity'].includes(kpiDetails.min_value) ? null : kpiDetails.min_value.toString(),
+      unitMax: ['Infinity', '-Infinity'].includes(kpiDetails.max_value) ? null : kpiDetails.max_value.toString(),
+      target: kpiDetails.kpi_target?.toString(),
+      value: kpiDetails.latest_filled_value?.toString(),
+    };
   }
 }

@@ -19,7 +19,7 @@ export class CirclesService {
 		const { data, error } = await this.service.db
 			.from('circle')
 			.select('*')
-			.eq('circle_id', id);
+			.eq('id', id);
 		return error || data;
 	}
 
@@ -38,9 +38,9 @@ export class CirclesService {
 
 	async removeCircle(id) {
 		const { error } = await this.service.db
-			.from('yk_okt6_circle')
+			.from('circle')
 			.delete()
-			.eq('circle_id', id)
+			.eq('id', id)
 		if(error) {
 			return error
 		}

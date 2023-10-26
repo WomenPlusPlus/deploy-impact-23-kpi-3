@@ -20,7 +20,10 @@ export const DefinedKpisListPage = () => {
 	useEffect(() => {
 		const getValues = async () => {
 			try {
-				const response = await fetch('http://localhost:3200/kpi/gatekeeper-list?gatekeeperId=3');
+				const response = await fetch(
+					'http://localhost:3200/kpi/gatekeeper-list?gatekeeperId=3'
+					// 'https://7923-2001-861-5e61-e390-309d-9494-a058-10c9.ngrok-free.app/kpi/gatekeeper-list?gatekeeperId=3'
+				);
 				const rows = await response.json();
 				setState({
 					...state,
@@ -46,7 +49,7 @@ export const DefinedKpisListPage = () => {
 				<Title level={2}>KPIs Database</Title>
 			</div>
 			<Link to={`create`}>
-				<Button type="primary" style={{ borderRadius: 0, fontWeight: 600 }}>
+				<Button type="primary">
 					Add New KPI
 				</Button>
 			</Link>
@@ -81,7 +84,7 @@ export const DefinedKpisListPage = () => {
 						key: 'kpi_id',
 						render: (_, kpi_id: string) => (
 							<Link to={`circle/${kpi_id}/kpis`}>
-								<Button type="primary" style={{ borderRadius: 0, fontWeight: 600 }}>
+								<Button type="primary">
 									Edit KPI
 								</Button>
 							</Link>

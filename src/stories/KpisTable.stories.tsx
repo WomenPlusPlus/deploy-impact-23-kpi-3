@@ -69,7 +69,7 @@ export const Default: Story = {
 				key: 'edit_kpi_id',
 				render: (_, edit_kpi_id: string) => (
 					<Link to={`circle/${edit_kpi_id}/kpis`}>
-						<Button type="primary" style={{ backgroundColor: '#fecc33', color: '#000', borderRadius: 0, fontWeight: 600 }}>
+						<Button type="primary">
 							Edit KPI
 						</Button>
 					</Link>

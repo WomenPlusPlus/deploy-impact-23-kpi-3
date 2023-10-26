@@ -20,11 +20,12 @@ export const AnalyticsPage = () => {
 	useEffect(() => {
 		const getValues = async () => {
 			try {
+				// const response = await fetch('https://7923-2001-861-5e61-e390-309d-9494-a058-10c9.ngrok-free.app/kpi/economist-list?economistId=2');
 				const response = await fetch('http://localhost:3200/kpi/economist-list?economistId=2');
 				const rows = await response.json();
 				setState({
 					...state,
-					data: rows,
+					data: rows.map((r: {key: string}, i: number) => ({...r, key: `${r.key}-${i}`})),
 					loading: false,
 				})
 
@@ -52,30 +53,30 @@ export const AnalyticsPage = () => {
 				columns={[
 					{
 						title: 'KPI Title',
-						dataIndex: 'kpi_title',
-						key: 'kpi_title',
+						dataIndex: 'name',
+						key: 'name',
 					},
 					{
-						title: 'Progress',
-						dataIndex: 'kpi_value',
-						key: 'kpi_value',
+						title: 'Periodicity',
+						dataIndex: 'periodicity',
+						key: 'periodicity',
 					},
 					{
-						title: 'Last Entry Date',
-						dataIndex: 'last_entry_date',
-						key: 'last_entry_date',
+						title: 'Unit',
+						dataIndex: 'unit',
+						key: 'unit',
 					},
 					{
 						title: '',
-						dataIndex: 'kpi_id',
-						key: 'kpi_id',
-						render: (_, kpi_id: string) => (
-							<Link to={`circle/${kpi_id}/kpis`}>
-								<Button type="primary" style={{ borderRadius: 0, fontWeight: 600 }}>
+						dataIndex: 'id',
+						key: 'id',
+						render: (_, {id}) => {
+							return (<Link to={`/circle/1/kpis/${id}/add-value`}>
+								<Button type="primary">
 									Add Value
 								</Button>
-							</Link>
-						),
+							</Link>)
+						},
 					},
 				]}
 				loading={state.loading}

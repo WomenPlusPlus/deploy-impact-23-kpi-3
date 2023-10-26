@@ -11,6 +11,22 @@ const root = ReactDOM.createRoot(
 );
 root.render(
 	<BrowserRouter>
+		<ConfigProvider
+			theme={{
+				token: {
+					colorPrimary: '#fecc33',
+				},
+				components: {
+					Button: {
+						colorPrimary: '#fecc33',
+						colorWhite: '#000000',
+						algorithm: true,
+						borderRadius: 0,
+						fontWeight: 600
+					},
+				},
+			}}
+		>
 			<App/>
 
 	</BrowserRouter>,

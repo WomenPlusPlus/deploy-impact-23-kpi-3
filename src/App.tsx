@@ -9,10 +9,7 @@ import {LandingPage} from './pages/Landing'
 import {NoMatchPage} from './pages/NoMatch'
 import { Menu } from 'antd';
 import {AnalyticsPage} from './pages/Analytics';
-import Form from './form/Form';
-import { KpiTableCard } from './components/KpiTableCard';
-import KpiTable from './pages/KpiTable';
-
+import {EvolutionPage} from './pages/Evolution';
 const { Header, Content} = Layout;
 const { Title} = Typography;
 
@@ -41,6 +38,12 @@ function App() {
 						<Menu.Item>
 							<Link to="/circle/1/kpis/kpi___id/add-value">Add Value (will be moved)</Link>
 						</Menu.Item>
+						<Menu.Item>
+							<Link to="circle/circle_id/kpis">GateKeeper KPIs List (will be moved)</Link>
+						</Menu.Item>
+						<Menu.Item>
+							<Link to="circle/circle_id/evolution">Barchart (will be moved)</Link>
+						</Menu.Item>
 					</Menu>
 				</div>
 			</Header>
@@ -52,8 +55,9 @@ function App() {
 					<Route path="circle/:id/kpis/:id/add-value" element={<AddKpiValueFormPage />}/>
 					<Route path="circle/:id/kpis" element={<DefinedKpisListPage />}/>
 					<Route path="circle/:id/analytics" element={<AnalyticsPage />}/>
-				
-				
+					<Route path="circle/:id/evolution" element={<EvolutionPage/>}/>
+
+					<Route path="*" element={<NoMatchPage />}/>
 				</Route>
 			</Routes>
 			
