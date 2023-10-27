@@ -19,7 +19,6 @@ export const EvolutionPage = () => {
 	});
 
 
-
 	useEffect(() => {
 		const fetchBarLinechartData = async () => {
 			try {
@@ -64,20 +63,22 @@ export const EvolutionPage = () => {
 						showIcon
 					/>
 				) : (
-			  <BarLineChart
-				width={200}
-				height={400}
- 				data={barlinechartData.data}
-				xKey="formatted_date"
-				leftYKey="target"
-				leftYColor="#54BC84"
-				barDataKey="kpi_value"  
-				barSize={50}  
-				barFill="#FACC48" 
- 				/>
+					<div style={{ width: '40%' }}>
+						<BarLineChart
+							width={200}
+							height={400}
+							data={barlinechartData.data}
+							xKey="formatted_date"
+							leftYKey="target"
+							leftYColor="#54BC84"
+							barDataKey="kpi_value"
+							barSize={50}
+							barFill="#FACC48"
+						/>
+					</div>
 				)}
 			</SCardViz>
-			 
+
 		</Content>
 	);
 };
