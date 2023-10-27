@@ -3,8 +3,9 @@ import { Card } from 'antd';
 
 export const SCardViz = styled(Card)`
 	min-height: 30rem;
-	max-width: 100%;
-	padding: 3rem;
+	min-width: 60%;
+	max-width: 60%;
+	padding: 0 1rem;
 	margin-bottom: 1.5rem;
 `
 

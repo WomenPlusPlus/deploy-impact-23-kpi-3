@@ -1,11 +1,29 @@
 import {Content} from 'antd/es/layout/layout';
 import {useEffect, useState} from 'react';
-import {Alert, Spin, Typography} from 'antd';
+import {Alert, Button, Dropdown, MenuProps, Spin, Steps, Typography} from 'antd';
+import { MoreOutlined } from '@ant-design/icons';
 import {SCardViz, SpinnerViz} from './styled';
 import BarLineChart from '../../components/dataviz/BarLineChart';
 
 const {Title} = Typography;
-
+const items: MenuProps['items'] = [
+	{
+		key: '1',
+		label: 'Download',
+	},
+	{
+		key: '2',
+		label: 'Edit',
+	},
+	{
+		key: '3',
+		label: 'Compare',
+	},
+	{
+		key: '4',
+		label: 'Change',
+	},
+];
 export const EvolutionPage = () => {
 
 	const [barlinechartData, setBarLinechartData] = useState<{
@@ -48,22 +66,27 @@ export const EvolutionPage = () => {
 			<div>
 				<Title level={2}>Evolution of Values</Title>
 			</div>
-			<SCardViz bordered>
-				{barlinechartData.loading ? (
-					<SpinnerViz>
-						<Spin size="large"/>
-					</SpinnerViz>
-				) : barlinechartData.error ? (
-					<Alert
-						style={{width: '300px', height: '250px', fontSize: '20px'}}
-						message="Error"
-						description={`ERROR! We couldn't fetch the data. 
-						  Refresh the page or try again later`}
-						type="error"
-						showIcon
-					/>
-				) : (
-					<div style={{ width: '40%' }}>
+			<div style={{width: '100%', display: 'flex'}}>
+				<SCardViz bordered extra={
+					<Dropdown menu={{items}} placement="bottomRight" arrow={{pointAtCenter: true}}>
+						<Button icon={<MoreOutlined />}></Button>
+					</Dropdown>
+				}
+				>
+					{barlinechartData.loading ? (
+						<SpinnerViz>
+							<Spin size="large"/>
+						</SpinnerViz>
+					) : barlinechartData.error ? (
+						<Alert
+							style={{width: '300px', height: '250px', fontSize: '20px'}}
+							message="Error"
+							description={`ERROR! We couldn't fetch the data. 
+								Refresh the page or try again later`}
+							type="error"
+							showIcon
+						/>
+					) : (
 						<BarLineChart
 							width={200}
 							height={400}
@@ -75,9 +98,51 @@ export const EvolutionPage = () => {
 							barSize={50}
 							barFill="#FACC48"
 						/>
+					)}
+				</SCardViz>
+				<div style={{
+					marginLeft: '5rem',
+					display: 'flex',
+					flexDirection: 'column',
+					justifyContent: 'space-between',
+					marginBottom: '1.5rem',
+				}}>
+					<Steps
+						progressDot
+						direction="vertical"
+						items={[
+							{
+								title: 'Coming soon',
+								description: 'Next sprint',
+							},
+							{
+								title: 'Simon updated the data for December: 100000',
+								description: '02/01/023',
+							},
+							{
+								title: 'Simon updated the data for November: 100000',
+								description: '02/01/023',
+							},
+							{
+								title: 'Simon updated the data for October: 100000',
+								description: '02/01/023',
+							},
+							{
+								title: 'Simon updated the data for September: 100000',
+								description: '02/01/023',
+							},
+							{
+								title: 'Simon updated the data for February: 345000',
+								description: '02/01/023',
+							},
+						]}
+					/>
+					<div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
+						<Button style={{marginBottom: '0.5rem'}}>Edit Data</Button>
+						<Button type="primary">Share Progress</Button>
 					</div>
-				)}
-			</SCardViz>
+				</div>
+			</div>
 
 		</Content>
 	);
