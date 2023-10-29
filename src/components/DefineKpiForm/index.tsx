@@ -19,8 +19,8 @@ type FieldType = {
 	title?: string;
 	periodicity?: string;
 	unit?: string;
-	archived_at: string;
-	closed_at: string;
+	//archived_at: string;
+	//closed_at: string;
 };
 
 
@@ -34,7 +34,7 @@ export const DefineKpiForm = ({
 	const onFinish = (values: any) => {
 		const formValues = {
 			...values,
-			archived_at: values['archived_at']?.format('YYYY-MM-DD HH:mm:ss') || null,
+			//archived_at: values['archived_at']?.format('YYYY-MM-DD HH:mm:ss') || null,
 			closed_at: values['closed_at']?.format('YYYY-MM-DD HH:mm:ss') || null,
 		};
 		onSubmit(formValues);
@@ -112,31 +112,9 @@ export const DefineKpiForm = ({
 							options={data.units}
 						/>
 					</SFormItem>
-
-					<SFormItem<FieldType>
-						label={<SFormItemLabel>Archived At</SFormItemLabel>}
-						name="archived_at"
-					>
-						<DatePicker
-							size="large"
-							showTime={{format: 'HH:mm'}}
-							format="YYYY-MM-DD HH:mm"
-							style={{width: '100%'}}
-						/>
-					</SFormItem>
-
-					<SFormItem<FieldType>
-						label={<SFormItemLabel>Closed At</SFormItemLabel>}
-						name="closed_at"
-					>
-						<DatePicker
-							size="large"
-							showTime={{format: 'HH:mm'}}
-							format="YYYY-MM-DD HH:mm"
-							style={{width: '100%'}}
-						/>
-					</SFormItem>
-
+					
+					
+	
 					<SFormItem wrapperCol={{offset: 18}}>
 						<Button type="primary" htmlType="submit" size="large">
 							Submit

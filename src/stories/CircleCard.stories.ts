@@ -13,6 +13,6 @@ export const Default: Story = {
 	args: {
 		circle_id: 'circle_key',
 		circle_name: 'HR',
-		updated_at: '2022-05-01 17:55',
+		//updated_at: '2022-05-01 17:55',
 	}
 };

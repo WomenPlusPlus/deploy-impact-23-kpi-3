@@ -28,7 +28,7 @@ root.render(
 			}}
 		>
 			<App/>
-
+</ConfigProvider>
 	</BrowserRouter>,
 );
 
