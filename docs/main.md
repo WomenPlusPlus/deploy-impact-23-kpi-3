@@ -1,49 +1,29 @@
+# Product name: _Golden Keys - KPI APP for Pro Juventute_
+
 ## Project overview
 
-*Some basic details about the project:*
-
-* **Product name:**
-* **Product code name:**
 * **[Brief product description:](/docs/brief.md)**
-* **[Figma Prototype](https://www.figma.com/file/yxgEBLZ5hgLQemD0EdGPCB/Golden-Keys?type=design&node-id=1%3A1711&mode=design&t=Dp7Fs9p5iKbPeND9-1)**
+* **[Design decisions:](/docs/design.md)**
 * **[Database Documentation:](/docs/dbDocs.md)**
 * **[API Documentation:](/docs/apiDocs.md)**
-* **Other product documents:**
 
 ## Product team
 
 *Key contacts on the product team:*
 
-* **Product manager:**
-* **Project manager:**
-* **Scrum master:**
+* **Product manager:** _Martin Seifer_ [martin.seifert@projuventute.ch](mailto:martin.seifert@projuventute.ch)
+* **Project manager:** _Dasa Vasilova_ [vasilova.dasa@gmail.com](mailto:vasilova.dasa@gmail.com)
+* **Scrum master:** _Kuts Yuliia_ [yuliiakuts@gmail.com](mailto:yuliiakuts@gmail.com)
+* **UX/UI designer:** _Jiani Wang_ [1600018113wjn@gmail.com](mailto:1600018113wjn@gmail.com)
 * **Software developers:**
-* **Team satellite:**
-* **Team mentor:**
 
-## Target users
+    - Tech Lead: _Abdelaziz Maalej_ [abdelaziz.maalej@gmail.com](mailto:abdelaziz.maalej@gmail.com)
+    - Data scientist: _Marin Mes_ [marin@kampmes.nl](mailto:marin@kampmes.nl)
+    - Frontend: _Bianca Mainella_ [biancamainella@gmail.com](mailto:biancamainella@gmail.com)
+    - Frontend junior: _Neha Shrikant_ [neha29.shrikant@gmail.com](mailto:neha29.shrikant@gmail.com)
+    - Backend: _Daria Onishchuk_ [ms.onishchuk@gmail.com](mailto:ms.onishchuk@gmail.com)
 
-*Who the target users are:*
+* **Team satellite:** _Maria Giakoumelou_ [mg.giakoumelou@gmail.com](mailto:mg.giakoumelou@gmail.com)
+* **Team mentor:** _Yee Ling Gröschel_ [Yeeling.han@gmail.com](mailto:Yeeling.han@gmail.com)
 
-## Issue tracking
 
-*How the team tracks issues related to this product:*
-
-* **Ticketing systems:**
-
-## Release timelines
-
-*When the product is being released:*
-
-* **Product announce date:**
-* **Beta release date:**
-* **General launch date:**
-
-## Project information sources
-
-*How information flows within your team. This helps us stay in the loop.*
-
-* **Team meetings related to this project:**
-* **Team sprints:**
-* **Scrum master:**
-* **Email lists:**
