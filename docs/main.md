@@ -8,6 +8,8 @@ Our primary goal is to provide efficient KPI tracking, with advanced analytics a
 ## Project overview
 
 * **[Brief product description:](/docs/brief.md)**
+* **[Main libraries frontend:](/docs/frontend.md)**
+* **[Main libraries frontend:](/docs/backend.md)**
 * **[Design decisions:](/docs/design.md)**
 * **[Database Documentation:](/docs/dbDocs.md)**
 * **[API Documentation:](/docs/apiDocs.md)**
