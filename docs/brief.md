@@ -22,11 +22,11 @@ So, the main goal of the project is to create an app for team/circle members to 
 
 *Our main challenges:*
 
-![Chellanges](/assets/challenges.png)
+![Chellanges](/docs/assets/challenges.png)
 
 ## 4. Target users
 
 *Our target users are:*
 
-![Target users](/assets/users.png)
+![Target users](/docs/assets/users.png)
 

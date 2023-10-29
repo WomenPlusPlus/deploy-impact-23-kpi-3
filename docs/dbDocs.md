@@ -17,7 +17,7 @@
         - [Block 5: Inserting KPIs into the kpi table.](#block-5--inserting-kpis-into-the-kpi-table)
         - [Block 6: Inserting KPI values into the fills_in table.](#block-6--inserting-kpi-values-into-the-fillsin-table)
         - [Block 7: Inserting target values for each KPI into the target table.](#block-7--inserting-target-values-for-each-kpi-into-the-target-table)
-4. [Scenarios](#4-scenatios)
+4. [Scenarios](#4-scenarios)
 
 ## 1. ER-Diagram
 
@@ -29,7 +29,7 @@ The development of the ER diagram helped in specifying the logical structure of 
 
 In essence, in this project the ER diagram functioned as a roadmap for creating databases and ensuring that data is stored efficiently and accurately, and that the user needs are met.
 
-![ER Diagram](/assets/erdiagram.png)
+![ER Diagram](/docs/assets/erdiagram.png)
 
 ## 1.2 Development Process
 

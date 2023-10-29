@@ -36,7 +36,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ## Storybook
 
-1. `$ yarn dlx storybook@latest init`
+1. `$ yarn install`
 2. `$ yarn storybook`
 
 Storybook will run on port `http://localhost:6006/`
