@@ -38,4 +38,4 @@ lerna-debug.log*
 .idea
 
 # enviroment
-.env
+# .env

@@ -4,10 +4,10 @@
 
 * **Product name:**
 * **Product code name:**
-* **Brief product description:**
-* **[Figma Prototype](https://www.figma.com/file/qWHQU2wVaihXIyPaEp02ow/Add-Value-Mockup?type=design&node-id=48-1425&mode=design&t=qF1HRQ5HWT8nJjmp-0)**
-* **[Database Documentation](/docs/dbDocs.md):**
-* **API Documentation:**
+* **[Brief product description:](/docs/brief.md)**
+* **[Figma Prototype](https://www.figma.com/file/yxgEBLZ5hgLQemD0EdGPCB/Golden-Keys?type=design&node-id=1%3A1711&mode=design&t=Dp7Fs9p5iKbPeND9-1)**
+* **[Database Documentation:](/docs/dbDocs.md)**
+* **[API Documentation:](/docs/apiDocs.md)**
 * **Other product documents:**
 
 ## Product team
@@ -16,20 +16,14 @@
 
 * **Product manager:**
 * **Project manager:**
+* **Scrum master:**
 * **Software developers:**
-* **Quality assurance:**
-* **Marketing:**
-* **Developer Outreach:**
-* **Legal:**
+* **Team satellite:**
+* **Team mentor:**
 
 ## Target users
 
 *Who the target users are:*
-
-* **Managed developers:**
-* **Unmanaged developers:**
-* **End-users:**
-* **Other:**
 
 ## Issue tracking
 
