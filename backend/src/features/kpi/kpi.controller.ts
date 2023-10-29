@@ -12,9 +12,10 @@ import {
   Param,
 } from '@nestjs/common';
 import { KpiService } from './kpi.service';
-import { KpiDto } from './kpi.dto';
 import { KpiCreationDto } from '../../common/dto/kpi-creation.dto';
+import { AddValueDto } from '../../common/dto/add-value.dto';
 
+// This controller manages all endpoints related to KPIs.
 @Controller('kpi')
 export class KpiController {
   constructor(private readonly kpiService: KpiService) {}
@@ -56,6 +57,10 @@ export class KpiController {
   fetchSngleKpi(@Query('economistId') economistId: number = 2) {
     return this.kpiService.fetchKpis(economistId, 'economist');
   }
+  @Get(':id/evolution')
+  fetchKpiEvolution(@Param('id') id: number = 2, @Query('circleId') circleId: number) {
+    return this.kpiService.fetchKpiEvolution(id, circleId);
+  }
 
   // To fetch details and constraints for a KPI
   @Get(':id/constraints')
@@ -73,10 +78,55 @@ export class KpiController {
       name: kpiDetails.kpi_name,
       periodicity: kpiDetails.kpi_periodicity,
       unit: kpiDetails.kpi_unit,
-      unitMin: ['Infinity', '-Infinity'].includes(kpiDetails.min_value) ? null : kpiDetails.min_value.toString(),
-      unitMax: ['Infinity', '-Infinity'].includes(kpiDetails.max_value) ? null : kpiDetails.max_value.toString(),
+      unitMin: ['Infinity', '-Infinity'].includes(kpiDetails.min_value)
+        ? null
+        : kpiDetails.min_value.toString(),
+      unitMax: ['Infinity', '-Infinity'].includes(kpiDetails.max_value)
+        ? null
+        : kpiDetails.max_value.toString(),
       target: kpiDetails.kpi_target?.toString(),
       value: kpiDetails.latest_filled_value?.toString(),
+      kpi_date: kpiDetails.kpi_date
     };
+  }
+
+  @Put(':id/add-value')
+  @UsePipes(new ValidationPipe())
+  async addKpiValue(
+    @Param('id') kpiId: number,
+    @Query('userId') userId: number,
+    @Body() dto: AddValueDto,
+  ) {
+    const result = await this.kpiService.addKpiValue(kpiId, userId, dto);
+
+    if (!result) {
+      throw new HttpException(
+        {
+          status: HttpStatus.INTERNAL_SERVER_ERROR,
+          error:
+            result && result.error
+              ? result.error.message
+              : 'There was an error adding the KPI value',
+        },
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
+
+    return result;
+  }
+
+  // FOR LUNCH SESSION: Endpoint to fetch turnover data for electronic products by date.
+  // Returns aggregated turnover or throws an error if unsuccessful.
+
+  @Get('electronics-turnover')
+  async getElectronicsTurnover() {
+    try {
+      return await this.kpiService.getElectronicsTurnover();
+    } catch (err) {
+      throw new HttpException(
+        'Failed to fetch electronics turnover by date.',
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
   }
 }

@@ -12,7 +12,7 @@ import {
     data: any;
     xKey: string;
     leftYKey: string;
-    leftYColor: string;
+    leftYColor?: string;
     width: number,
     height: number,
     chartStyle?: React.CSSProperties
@@ -44,7 +44,7 @@ import {
 
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey={xKey} />
-        <YAxis yAxisId="left" orientation="left" stroke={leftYColor} />
+        <YAxis dataKey={leftYKey} yAxisId="left" orientation="left" stroke={leftYColor} />
         <Tooltip />
         <Legend />
         <Bar yAxisId="left" dataKey={leftYKey} fill={leftYColor} />
