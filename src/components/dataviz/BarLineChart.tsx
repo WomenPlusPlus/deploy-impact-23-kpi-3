@@ -40,14 +40,14 @@ const BarLineChart: React.FC<BarLineChartProps> = ({
       <CartesianGrid stroke="#f5f5f5" />
       <XAxis dataKey={xKey} scale="band" />
       <YAxis />
-      <Tooltip />
+      <Tooltip
+      itemStyle={{color: '#444444'}}/>
       <Legend/>
       <Bar
         dataKey={barDataKey}
         barSize={barSize}
         fill={barFill}
-        // @ts-ignore
-        name={<span style={{ color: '#444444' }}>KPI value</span>}
+        name="KPI value"
        />
       <Line
         type="linear"
