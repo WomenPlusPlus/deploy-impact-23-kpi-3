@@ -21,8 +21,7 @@ interface BarLineChartProps {
   barDataKey: string;  
   barSize: number;  
   barFill: string;  
-  chartStyle?: React.CSSProperties;
- 
+  chartStyle?: React.CSSProperties; 
 }
 
 const BarLineChart: React.FC<BarLineChartProps> = ({
@@ -34,21 +33,22 @@ const BarLineChart: React.FC<BarLineChartProps> = ({
   height,
   barDataKey,  
   barSize,  
-  barFill,   
+  barFill
 }) => (
   <ResponsiveContainer width="100%" height={height}>
     <ComposedChart width={width} height={height} data={data}>
       <CartesianGrid stroke="#f5f5f5" />
       <XAxis dataKey={xKey} scale="band" />
       <YAxis />
-      <Tooltip />
-      <Legend />
+      <Tooltip
+      itemStyle={{color: '#444444'}}/>
+      <Legend/>
       <Bar
         dataKey={barDataKey}
         barSize={barSize}
         fill={barFill}
         name="KPI value"
-      />
+       />
       <Line
         type="linear"
         dataKey={leftYKey}
