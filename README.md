@@ -26,3 +26,7 @@ Backend will run by default on port `http://localhost:3000/`
 2. `$ yarn storybook`
 
 Storybook will run on port `http://localhost:6006/`
+
+## Project documentation
+
+[Go to progect documentation](/docs/main.md)
