@@ -35,14 +35,16 @@ const BarLineChart: React.FC<BarLineChartProps> = ({
   barDataKey,  
   barSize,  
   barFill,   
-}) => (
-  <ResponsiveContainer width="100%" height={height}>
+}) => {
+
+  console.log({data, xKey, leftYKey})
+  return <ResponsiveContainer width="100%" height={height}>
     <ComposedChart width={width} height={height} data={data}>
-      <CartesianGrid stroke="#f5f5f5" />
-      <XAxis dataKey={xKey} scale="band" />
-      <YAxis />
-      <Tooltip />
-      <Legend />
+      <CartesianGrid stroke="#f5f5f5"/>
+      <XAxis dataKey={xKey} scale="band"/>
+      <YAxis/>
+      <Tooltip/>
+      <Legend/>
       <Bar
         dataKey={barDataKey}
         barSize={barSize}
@@ -57,6 +59,6 @@ const BarLineChart: React.FC<BarLineChartProps> = ({
       />
     </ComposedChart>
   </ResponsiveContainer>
-);
+};
 
 export default BarLineChart;

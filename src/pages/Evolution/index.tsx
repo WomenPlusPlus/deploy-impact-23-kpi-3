@@ -45,8 +45,13 @@ export const EvolutionPage = () => {
 					throw new Error('HTTP error! Status: ' + response.status);
 				}
 				const data = await response.json();
+				const sortedData = data.sort((a: any, b: any) => a.formatted_date > b.formatted_date ? 1 : -1 );
+				const uniqueDataSet = new Set();
+				sortedData.forEach((a: any) => {
+					uniqueDataSet.add(a.formatted_date);
+				});
 				setBarLinechartData({
-					data,
+					data: Array.from(uniqueDataSet).map((d: any) => data.find((o: any) => o.formatted_date === d)),
 					loading: false,
 					error: null,
 				});

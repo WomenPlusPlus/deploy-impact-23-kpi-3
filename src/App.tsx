@@ -33,13 +33,13 @@ function App() {
 						mode="horizontal"
 					>
 						<Menu.Item>
-							<Link to="/">Home</Link>
+							<Link to="/">Add KPI</Link>
 						</Menu.Item>
 						<Menu.Item>
-							<Link to="circle/circle_id/kpis">GateKeeper KPIs List (will be moved)</Link>
+							<Link to="circle/circle_id/kpis">Define KPI</Link>
 						</Menu.Item>
 						<Menu.Item>
-							<Link to="circle/circle_id/evolution">Barchart (will be moved)</Link>
+							<Link to="circle/circle_id/evolution">Data Dashboard</Link>
 						</Menu.Item>
 					</Menu>
 				</div>
