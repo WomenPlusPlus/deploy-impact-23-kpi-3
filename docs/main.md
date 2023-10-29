@@ -1,5 +1,10 @@
 # Product name: _Golden Keys - KPI APP for Pro Juventute_
 
+## Objective
+Streamlined KPI Analysis: Create an intuitive KPI management app that simplifies data entry and offers powerful data analysis and visualization features.
+
+Our primary goal is to provide efficient KPI tracking, with advanced analytics as a potential enhancement with attention to Data validity.
+
 ## Project overview
 
 * **[Brief product description:](/docs/brief.md)**
