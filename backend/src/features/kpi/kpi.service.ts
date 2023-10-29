@@ -41,7 +41,7 @@ export class KpiService {
     try {
       const rpcMethodDict = {
         gatekeeper: 'fetch_gatekeeper_kpis',
-        economist: 'fetch_economist_kpis',
+        economist: 'fetch_economist_kpis2',
       };
       const { data, error } = await this.service.db.rpc(
         rpcMethodDict[userType],
@@ -79,6 +79,30 @@ export class KpiService {
       );
       throw new Error(
         `Error fetching KPI details and unit constraints: ${JSON.stringify(
+          error,
+        )}`,
+      );
+    }
+
+    return data[0];
+  }
+
+  async getKpiSumAndTarget(kpiId: number, circleId: number): Promise<any> {
+    const { data, error } = await this.service.db.rpc(
+      'get_progress_bar_data_2',
+      {
+        _circle_id: circleId,
+        _kpi_id: kpiId,
+      },
+    );
+
+    if (error) {
+      console.error(
+        'Error fetching KPI values Sum and Target:',
+        JSON.stringify(error, null, 2),
+      );
+      throw new Error(
+        `Error fetching KPI values SUM and target: ${JSON.stringify(
           error,
         )}`,
       );

@@ -17,7 +17,7 @@ export default function ProgressBarComponent({
   progressBarStyle,
 }: ProgressBarProps) {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '50%' }}>
       <Progress percent={percent} showInfo={showPercentage} strokeColor={strokeColor} style={progressBarStyle} />
       {data && <Typography.Text>{data}</Typography.Text>}
     </div>

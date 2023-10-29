@@ -12,7 +12,13 @@ export const AddKpiValueFormPage = () => {
 
 	const [state, setState] = useState<{
 		error: string | null,
-		data: AddValueFormDataProps | null,
+		data: {
+			kpiValue: AddValueFormDataProps | undefined,
+			kpiSumTarget: {
+				total_kpi_value: number,
+				target_value: number,
+			},
+		} | null,
 		loading: boolean,
 	}>({
 		error: null,
@@ -36,7 +42,7 @@ export const AddKpiValueFormPage = () => {
 			loading: true,
 		})
 		try {
-			const response = await fetch(`http://localhost:3200/kpi/${state.data?.id}/add-value?userId=${2}`, {
+			const response = await fetch(`http://localhost:3200/kpi/${state.data?.kpiValue?.id}/add-value?userId=${2}`, {
 				method: 'PUT',
 				body: JSON.stringify(formValues),
 				headers: { 'Content-Type': 'application/json' },
@@ -59,7 +65,7 @@ export const AddKpiValueFormPage = () => {
 	useEffect(() => {
 		const getValues = async () => {
 			try {
-				const valuesToFetch = [`kpi/${kpiId}/constraints`];
+				const valuesToFetch = [`kpi/${kpiId}/constraints`, `kpi/${kpiId}/sum-and-target?circleId=1`];
 				const data = await Promise.all(
 					valuesToFetch.map(v => fetch(
 							`http://localhost:3200/${v}`
@@ -69,7 +75,10 @@ export const AddKpiValueFormPage = () => {
 				);
 				setState({
 					...state,
-					data: data[0] as unknown as AddValueFormDataProps,
+					data: {
+						kpiValue: data[0] as unknown as AddValueFormDataProps,
+						kpiSumTarget: data[1] as unknown as any
+					},
 					loading: false,
 				})
 

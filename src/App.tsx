@@ -27,7 +27,7 @@ function App() {
 					justifyContent: 'flex-start',
 				}}>
 				<Title level={4} style={{color: 'lightgrey', margin: '0 1rem'}}>Golden Keys</Title>
-				<div style={{minWidth: 200}}>
+				<div style={{flexGrow: 1}}>
 					<Menu
 						theme="dark"
 						mode="horizontal"

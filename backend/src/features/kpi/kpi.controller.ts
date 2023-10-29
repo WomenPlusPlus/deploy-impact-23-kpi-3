@@ -90,6 +90,21 @@ export class KpiController {
     };
   }
 
+  // To fetch details and constraints for a KPI
+  @Get(':id/sum-and-target')
+  async getKpiSumAndTarget(@Param('id') kpiId: number, @Query('circleId') circleId: number) {
+    const kpiSumAndTarget = await this.kpiService.getKpiSumAndTarget(
+      kpiId,
+      circleId,
+    );
+    if (!kpiSumAndTarget) {
+      throw new NotFoundException(
+        `Sum values and targets for kpi: ${kpiId} and circle ${circleId} not found`,
+      );
+    }
+    return kpiSumAndTarget;
+  }
+
   @Put(':id/add-value')
   @UsePipes(new ValidationPipe())
   async addKpiValue(

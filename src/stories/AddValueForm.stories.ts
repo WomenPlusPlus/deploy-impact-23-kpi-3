@@ -13,26 +13,38 @@ type Story = StoryObj<typeof meta>;
 export const MonthlyPercentage: Story = {
 	args: {
 		data: {
-			id: 3,
-			periodicity: 'MONTHLY',
-			unit: 'Percentage',
-			unitMin: '0',
-			unitMax: '100',
-			target: '100',
-			value: '55'
+			kpiValue: {
+				id: 3,
+				periodicity: 'MONTHLY',
+				unit: 'Percentage',
+				unitMin: '0',
+				unitMax: '100',
+				target: '100',
+				value: '55'
+			},
+			kpiSumTarget: {
+				"target_value": 500000,
+				"total_kpi_value": 400228
+			}
 		},
 	}
 };
 export const YearlyCount: Story = {
 	args: {
 		data: {
-			id: 4,
-			periodicity: 'YEARLY',
-			unit: 'Count',
-			unitMin: '0',
-			unitMax: null,
-			target: '100',
-			value: undefined
+			kpiValue: {
+				id: 4,
+				periodicity: 'YEARLY',
+				unit: 'Count',
+				unitMin: '0',
+				unitMax: null,
+				target: '100',
+				value: undefined
+			},
+			kpiSumTarget: {
+				"target_value": 500000,
+				"total_kpi_value": 400228
+			}
 		},
 	}
 };

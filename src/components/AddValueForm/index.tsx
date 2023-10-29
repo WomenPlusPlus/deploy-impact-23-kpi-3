@@ -1,6 +1,7 @@
 import React from 'react';
 import {Button, DatePicker, Spin, InputNumber, Form} from 'antd';
-import {SFormItemLabel, SFormItem, SCardForm, SSpace} from './styled'
+import {SFormItemLabel, SFormItem, SCardForm, SSpace} from './styled';
+import ProgressBar from '../dataviz/ProgressBar'
 
 export interface AddValueFormDataProps {
 	id: number,
@@ -13,7 +14,13 @@ export interface AddValueFormDataProps {
 }
 
 export interface AddValueFormProps {
-	data: AddValueFormDataProps | null,
+	data: {
+		kpiValue: AddValueFormDataProps | undefined,
+		kpiSumTarget: {
+			total_kpi_value: number,
+			target_value: number,
+		},
+	} | null,
 	initialValues?: Record<string, string>,
 	loading?: boolean,
 	onSubmit: (values: any) => void,
@@ -74,7 +81,7 @@ export const AddValueForm = ({
 						<DatePicker
 							size="large"
 							style={{width: '100%'}}
-							picker={(periodFields[data?.periodicity]) as 'week' | 'month' | 'quarter' | 'year' | 'time' | 'date' | undefined}
+							picker={(periodFields[data.kpiValue?.periodicity || 'MONTHLY']) as 'week' | 'month' | 'quarter' | 'year' | 'time' | 'date' | undefined}
 						/>
 					</SFormItem>
 
@@ -86,12 +93,19 @@ export const AddValueForm = ({
 						<InputNumber
 							size="large"
 							style={{width: '100%'}}
-							min={data.unitMin ? data.unitMin : undefined}
-							max={data.unitMax ? data.unitMax : undefined}
-							defaultValue={data.value || '0'}
+							min={data.kpiValue?.unitMin ? data.kpiValue?.unitMin : undefined}
+							max={data.kpiValue?.unitMax ? data.kpiValue?.unitMax : undefined}
+							defaultValue={data.kpiValue?.value || '0'}
 							onChange={onChange}
 						/>
 					</SFormItem>
+
+					<div style={{ display: 'flex', width: '80%', justifyContent: 'flex-end' }}>
+						<ProgressBar
+							percent={+((data.kpiSumTarget.total_kpi_value / data.kpiSumTarget.target_value) * 100).toFixed(2)}
+							data={((data.kpiSumTarget.total_kpi_value / data.kpiSumTarget.target_value) * 100).toFixed(2)+'%'}
+						/>
+					</div>
 
 					<SFormItem wrapperCol={{offset: 18}}>
 						<Button type="primary" htmlType="submit" size="large">
