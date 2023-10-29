@@ -1,3 +1,5 @@
+# API Documentation
+
 The project's backend is built using Nest.js and Supabase.js. Nest.js provides a robust framework for scalable server-side applications, leveraging TypeScript. Supabase.js is utilized for its real-time database and authentication features. 
 
 Within backend architecture, one of the most important organizational units is the "features" directory, which houses different functional modules of the application. Each feature typically contains its own set of services, controllers, and other related files that handle specific areas of functionality.
